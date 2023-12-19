@@ -6,41 +6,48 @@ import RelatorioPaciente from "../Pages/Admin/RelatorioPaciente";
 import Usuarios from "../Pages/Admin/Usuarios";
 
 //Icons
-import { FaUserFriends, FaUsersCog } from "react-icons/fa";
-import { FaFileContract } from "react-icons/fa";
-import { FaBookOpen } from "react-icons/fa";
+import { FaUserFriends, FaUsersCog, FaFileContract, FaBookOpen } from "react-icons/fa";
 import { RiMoneyDollarBoxLine } from "react-icons/ri";
+import { FaFileSignature } from "react-icons/fa6";
+import AcaoSemanal from "../Pages/Admin/AcaoSemanal";
+import { FaCalendarAlt } from "react-icons/fa";
 
 
 export const AdminRoutes = [
   {
     path: "/admin/home",
     element: <Paciente />,
-    name: "Cadastro de Paciente",
+    name: "Gerenciar Pacientes",
     icon: FaUserFriends
   },
   {
     path: "/admin/usuarioAdm",
     element: <Usuarios />,
-    name: "Cadastro de Usuário",
+    name: "Gerenciar Usuários",
     icon: FaUsersCog
   },
   {
     path: "/admin/relatorio",
     element: <RelatorioPaciente />,
-    name: "Relatorio Mesal",
+    name: "Relatório Mensal",
     icon: FaFileContract
   },
   {
-    path: "/admin/acoesApoio",
+    path: "/admin/acaoApoio",
     element: <AcoesApoio />,
-    name: "Cadastro de Ações Apoio",
+    name: "Cadastro Ações de Apoio",
     icon: FaBookOpen
+  },
+  {
+    path: "/admin/acaoApoioSemanal",
+    element: <AcaoSemanal />,
+    name: "Ações de Apoio Semanais",
+    icon: FaCalendarAlt
   },
   {
     path: "/admin/movimentacaoGasto",
     element: <MovimentacaoGasto />,
-    name: "Cadastro de Movimentação",
+    name: "Cadastro de Tipo de Gastos",
     icon: RiMoneyDollarBoxLine
   },
 ];

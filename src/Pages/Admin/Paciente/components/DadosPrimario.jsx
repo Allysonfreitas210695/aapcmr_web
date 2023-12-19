@@ -58,7 +58,6 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
             if (paciente.dataNascimento != null) {
                 const dataNascimentoFormatada = moment(paciente.dataNascimento).format("YYYY-MM-DD");
                 setValue("dataNascimento", dataNascimentoFormatada);
-
             }
             setValue("cep", paciente.cep);
             setValue("complemento", paciente.complemento);
@@ -114,7 +113,6 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
             });
             return;
         }
-        console.log(cestaBasica)
         const json = {
             id: paciente == null || !paciente?.id ? 0 : paciente.id,
             nome: data.nome,

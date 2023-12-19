@@ -12,18 +12,16 @@ export default function SelectCustom({ name, value, onChange, options, label }) 
     return (
         <FormGroup>
             <Label for={name}>{label}</Label>
-            {options.length > 0 &&
-                <Select
-                    className='w-100'
-                    value={options.find(o => o.value === value.value)}
-                    options={options}
-                    id={name}
-                    name={name}
-                    onChange={handleChange}
-                    getOptionValue={(option) => option.value}
-                    getOptionLabel={(option) => option.label}
-                />
-            }
+            <Select
+                className='w-100'
+                value={options.find(o => o.value === value?.value)}
+                options={options}
+                id={name}
+                name={name}
+                onChange={handleChange}
+                getOptionValue={(option) => option.value}
+                getOptionLabel={(option) => option.label}
+            />
         </FormGroup>
     );
 }
