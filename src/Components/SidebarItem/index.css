@@ -1,0 +1,5 @@
+a:hover {
+    color: #FFF; /* Cor do texto no hover */
+    background-color: rgba(30, 24, 42, 0.2); /* Cor de fundo no hover */
+    border-radius: 20%;
+  }
