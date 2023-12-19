@@ -1,4 +1,5 @@
 //Pages
+import AcoesApoio from "../Pages/Admin/AcoesApoio";
 import Paciente from "../Pages/Admin/Paciente";
 import RelatorioPaciente from "../Pages/Admin/RelatorioPaciente";
 import Usuarios from "../Pages/Admin/Usuarios";
@@ -6,6 +7,7 @@ import Usuarios from "../Pages/Admin/Usuarios";
 //Icons
 import { FaUserFriends, FaUsersCog } from "react-icons/fa";
 import { FaFileContract } from "react-icons/fa";
+import { FaBookOpen } from "react-icons/fa";
 
 
 export const AdminRoutes = [
@@ -26,5 +28,11 @@ export const AdminRoutes = [
     element: <RelatorioPaciente />,
     name: "Relatorio Mesal",
     icon: FaFileContract
+  },
+  {
+    path: "/admin/acoesApoio",
+    element: <AcoesApoio />,
+    name: "Cadastro de Ações Apoio",
+    icon: FaBookOpen
   },
 ];

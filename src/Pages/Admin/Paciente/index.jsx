@@ -4,6 +4,8 @@ import { FaPlus } from 'react-icons/fa6';
 
 //Context
 import { useAuth } from '../../../Context/useAuth';
+
+//Componentes
 import Loading from '../../../Components/Loading';
 import TableCustom from '../../../Components/TableCustom';
 import NovoPaciente from './components/NovoPaciente';
