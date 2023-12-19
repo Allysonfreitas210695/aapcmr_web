@@ -33,7 +33,7 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
         mode: 'onBlur'
     });
 
- 
+
 
     const options = [
         { value: 'Solteiro(a)', label: 'Solteiro(a)' },
@@ -44,15 +44,21 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
         { value: 'União Estável', label: 'União Estável' }
     ];
 
+    const optionsStatusCestaBasica = [
+        { value: true, label: 'Sim' },
+        { value: false, label: 'Não' }
+    ];
+
     useEffect(() => {
         if (!!paciente) {
             setValue("nome", paciente.nome);
             setValue("naturalidade", paciente.naturalidade);
             setValue("bairro", paciente.bairro);
+            setValue("susNumero", paciente.susNumero);
             if (paciente.dataNascimento != null) {
                 const dataNascimentoFormatada = moment(paciente.dataNascimento).format("YYYY-MM-DD");
                 setValue("dataNascimento", dataNascimentoFormatada);
-                
+
             }
             setValue("cep", paciente.cep);
             setValue("complemento", paciente.complemento);
@@ -60,26 +66,20 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
             setValue("uf", paciente.uf);
             setValue("logradouro", paciente.logradouro);
             setValue("numero", paciente.numero);
-            
+
             setCpf(paciente.cpf);
             setCep(paciente.cep);
-            setRg(paciente.rg);
             setEstadoCivil({ value: paciente.statusCivil, label: paciente.statusCivil });
+            setCestaBasica({ value: paciente.cestaBasica, label: paciente.cestaBasica ? "Sim" : "Não" });
         }
     }, [paciente]);
 
-    
+
     const [cpf, setCpf] = useState('');
     const handleCpfChange = (value) => {
         setCpf(value);
     };
 
-    const [rg, setRg] = useState('');
-    const handleRgChange = (value) => {
-        setRg(value);
-    };
-
-    
     const [cep, setCep] = useState('');
     const handleCepChange = (value) => {
         setCep(value);
@@ -90,16 +90,13 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
         setEstadoCivil(selectedOption);
     };
 
-    const onSubmit = async (data) => {
-        if (!validarRG(rg)) {
-            ShowMessage({
-                title: 'Error',
-                text: "RG invalido.",
-                icon: 'error'
-            });
-            return;
-        }
 
+    const [cestaBasica, setCestaBasica] = useState({ value: true, label: 'Sim' });
+    const handleCestaBasicaChange = (selectedOption) => {
+        setCestaBasica(selectedOption);
+    };
+
+    const onSubmit = async (data) => {
         if (!validarCPF(cpf)) {
             ShowMessage({
                 title: 'Error',
@@ -117,7 +114,7 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
             });
             return;
         }
-
+        console.log(cestaBasica)
         const json = {
             id: paciente == null || !paciente?.id ? 0 : paciente.id,
             nome: data.nome,
@@ -130,8 +127,9 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
             naturalidade: data.naturalidade,
             cidade: data.cidade,
             numero: data.numero,
-            rg: rg.replace(/[./\-]/g, ""),
+            susNumero: data.susNumero,
             statusCivil: estadoCivil.value,
+            cestaBasica: cestaBasica.value,
             uf: data.uf,
             usuarioId: session.id
         }
@@ -208,14 +206,14 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
                     <ControlledInput
                         control={control}
                         name='nome'
-                        label='Nome'
+                        label={<><span className='text-danger'>*</span> Nome</>}
                         type='text'
                         rules={{
                             required: true
                         }}
                     />
                 </Col>
-                <Col sm={12} lg={2}>
+                <Col sm={12} lg={3}>
                     <SelectCustom
                         control={control}
                         name='statusCivil'
@@ -225,23 +223,22 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
                         onChange={handleEstadoCivil}
                     />
                 </Col>
-                <Col sm={12} lg={3}>
+                <Col sm={12} lg={4}>
                     <ControlledInput
                         control={control}
                         name='naturalidade'
-                        label='Naturalidade'
+                        label={<><span className='text-danger'>*</span> Naturalidade</>}
                         type='text'
                         rules={{
                             required: true
                         }}
                     />
                 </Col>
-
-                <Col sm={12} lg={2}>
+                <Col sm={12} lg={3}>
                     <ControlledInput
                         control={control}
                         name='dataNascimento'
-                        label='Data de Nascimento'
+                        label={<><span className='text-danger'>*</span> Data de Nascimento</>}
                         type='date'
                         rules={{
                             required: true
@@ -249,39 +246,51 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
                         value
                     />
                 </Col>
-                <Col sm={12} lg={2}>
-                    <MaskedInput
-                        value={rg}
-                        name={"rg"}
-                        label={"RG"}
-                        onChange={handleRgChange}
-                        mask="99.999.999-9"
-                        placeholder="Digite seu RG"
+                <Col sm={12} lg={3}>
+                    <SelectCustom
+                        control={control}
+                        name='cestaBasica'
+                        label='Recebe cesta Básica?'
+                        value={cestaBasica}
+                        options={optionsStatusCestaBasica}
+                        onChange={handleCestaBasicaChange}
                     />
                 </Col>
-                <Col sm={12} lg={2}>
+                <Col sm={12} lg={3}>
+                    <ControlledInput
+                        control={control}
+                        name='susNumero'
+                        label='Número do SUS'
+                        type='number'
+                        maxlenght={15}
+                        rules={{
+                            required: false
+                        }}
+                    />
+                </Col>
+                <Col sm={12} lg={3}>
                     <MaskedInput
                         value={cpf}
                         name={"rg"}
-                        label={"CPF"}
+                        label={<><span className='text-danger'>*</span> CPF</>}
                         onChange={handleCpfChange}
                         mask="999.999.999-99"
                         placeholder="Digite seu CPF"
                     />
                 </Col>
 
-                <Col sm={12} lg={2}>
+                <Col sm={12} lg={3}>
                     <MaskedInput
                         value={cep}
                         name={"Cep"}
-                        label={"Cep"}
+                        label={<><span className='text-danger'>*</span> CEP</>}
                         onChange={handleCepChange}
                         mask="99999-999"
                         placeholder="Digite seu CEP"
                         onBlur={handleOnBlur}
                     />
                 </Col>
-                <Col sm={12} lg={6}>
+                <Col sm={12} lg={5}>
                     <ControlledInput
                         control={control}
                         name='complemento'
@@ -297,7 +306,7 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
                     <ControlledInput
                         control={control}
                         name='logradouro'
-                        label='Logradouro'
+                        label={<><span className='text-danger'>*</span> Logradouro</>}
                         type='text'
                         rules={{
                             required: true
@@ -308,7 +317,7 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
                     <ControlledInput
                         control={control}
                         name='bairro'
-                        label='Bairro'
+                        label={<><span className='text-danger'>*</span> Bairro</>}
                         type='text'
                         rules={{
                             required: true
@@ -319,7 +328,7 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
                     <ControlledInput
                         control={control}
                         name='numero'
-                        label='Número'
+                        label={<><span className='text-danger'>*</span> Número</>}
                         type='number'
                         rules={{
                             required: true
@@ -329,8 +338,8 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
                 <Col sm={12} lg={3}>
                     <ControlledInput
                         control={control}
+                        label={<><span className='text-danger'>*</span> Cidade</>}
                         name='cidade'
-                        label='Cidade'
                         type='text'
                         rules={{
                             required: true

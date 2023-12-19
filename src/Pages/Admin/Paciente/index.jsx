@@ -38,7 +38,7 @@ export default function Paciente() {
     { title: 'Naturalidade', field: 'naturalidade' },
     { title: 'DataNascimento', field: 'dataNascimento' },
     { title: 'CPF', field: 'cpf' },
-    { title: 'RG', field: 'rg' },
+    { title: 'Némero do SUS', field: 'susNumero' },
   ]);
 
   const loadPacientes = async () => {

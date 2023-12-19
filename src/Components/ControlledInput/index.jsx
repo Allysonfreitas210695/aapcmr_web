@@ -2,7 +2,7 @@ import React from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
 import { useController } from 'react-hook-form';
 
-export default function ControlledInput({ control, name, label, type, rules, value }) {
+export default function ControlledInput({ control, name, label, type, rules, maxlenght = 120 }) {
     const {
         field: { ref, ...inputProps },
         fieldState: { invalid, error },
@@ -22,6 +22,7 @@ export default function ControlledInput({ control, name, label, type, rules, val
                 id={name}
                 invalid={invalid}
                 innerRef={ref}
+                maxLength={maxlenght}
             />
             {error && <span className='text-danger'>{error?.message == "" ? "Campo obrigatório" : error?.message}</span>}
         </FormGroup>
