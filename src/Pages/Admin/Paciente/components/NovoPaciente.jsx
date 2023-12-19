@@ -67,7 +67,7 @@ export default function NovoPaciente({ id = null, handleVoltar }) {
         <>
             <Row>
                 <Col lg={12} md={12} className='mb-2 d-flex justify-content-end'>
-                    <Button color='primary' className='text-white' onClick={() => handleVoltar()}>
+                    <Button color='danger' className='text-white' onClick={() => handleVoltar()}>
                         <FaArrowLeft color='#fff' /> Voltar
                     </Button>
                 </Col>
@@ -80,18 +80,28 @@ export default function NovoPaciente({ id = null, handleVoltar }) {
                             <NavLink
                                 role='button'
                                 style={{ backgroundColor: activeStep == 1 ? "#fff" : "#ccc" }}
-                                className={activeStep == 1 ? "active fw-bold text-success" : "text-secondary"}
+                                className={activeStep == 1 ? "active fw-bold text-primary" : "text-secondary"}
                                 onClick={() => { setActiveStep(1); }}
                             >
-                                Dado Primário
+                                Dados Primário
                             </NavLink>
                         </NavItem>
                         <NavItem className='ms-2'>
                             <NavLink
                                 role='button'
                                 style={{ backgroundColor: activeStep == 2 ? "#fff" : "#ccc" }}
-                                className={activeStep == 2 ? "active fw-bold text-success" : "text-secondary"}
-                                onClick={() => { setActiveStep(2); }}
+                                className={activeStep == 2 ? "active fw-bold text-primary" : "text-secondary"}
+                                onClick={() => {
+                                    if (paciente == null) {
+                                        ShowMessage({
+                                            title: 'Aviso',
+                                            text: 'Salve primeiro os dados primarios do paciente para avança para outras telas.',
+                                            icon: 'warning'
+                                        });
+                                        return;
+                                    }
+                                    setActiveStep(2);
+                                }}
                             >
                                 Tratamento
                             </NavLink>

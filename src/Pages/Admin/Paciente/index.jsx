@@ -6,14 +6,16 @@ import { FaPlus } from 'react-icons/fa6';
 import { useAuth } from '../../../Context/useAuth';
 import Loading from '../../../Components/Loading';
 import TableCustom from '../../../Components/TableCustom';
+import NovoPaciente from './components/NovoPaciente';
 
 //Service
-import { api_GET } from '../../../Service/apiConfig';
+import { api_DELETE, api_GET } from '../../../Service/apiConfig';
 
 //ShowMessage
-import { ShowMessage } from '../../../helpers/ShowMessage';
-import NovoPaciente from './components/NovoPaciente';
-import { EditeActionTable } from '../../../Constants/ActionsTable';
+import { ShowConfirmation, ShowMessage } from '../../../helpers/ShowMessage';
+
+//Actions 
+import { EditeActionTable, RemoveActionTable } from '../../../Constants/ActionsTable';
 
 export default function Paciente() {
   const { showLoading, loding } = useAuth();
@@ -59,13 +61,41 @@ export default function Paciente() {
     loadPacientes();
   }, []);
 
-  const handleEditUsuario = (rowData) => {
+  const handleEditPaciente = (rowData) => {
     setPacienteId(rowData.id);
+  }
+
+  const handleRemovePaciente = async (rowData) => {
+    const resposta = await ShowConfirmation({ title: "", text: "Você tem certeza que quer deletar esse paciente?" });
+    if (resposta) {
+      try {
+        showLoading(true);
+        let response = await api_DELETE(`Paciente/${rowData.id}`);
+        const { data } = response;
+
+        showLoading(false);
+        ShowMessage({
+          title: 'Sucesso',
+          text: 'Operação Realizado com sucesso',
+          icon: 'success'
+        }, () => { loadPacientes() });
+
+      } catch (error) {
+        ShowMessage({
+          title: 'Error',
+          text: error?.message ?? "Erro na Operação",
+          icon: 'error'
+        });
+        return;
+      } finally {
+        showLoading(false);
+      }
+    }
   }
 
 
   // //Listas com as acoes definidas
-  const _actions = [EditeActionTable(handleEditUsuario)];
+  const _actions = [EditeActionTable(handleEditPaciente), RemoveActionTable(handleRemovePaciente)];
 
   const handleVoltar = () => {
     setPacienteId(null);

@@ -8,8 +8,7 @@ export default function SelectCustom({ name, value, onChange, options, label }) 
             onChange(selectedOption);
         }
     };
-    console.log(options)
-    console.log(value)
+
     return (
         <FormGroup>
             <Label for={name}>{label}</Label>

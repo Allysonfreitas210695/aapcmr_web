@@ -33,10 +33,7 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
         mode: 'onBlur'
     });
 
-    const [cpf, setCpf] = useState('');
-    const [rg, setRg] = useState('');
-    const [cep, setCep] = useState('');
-    const [estadoCivil, setEstadoCivil] = useState({ value: 'Solteiro(a)', label: 'Solteiro(a)' });
+ 
 
     const options = [
         { value: 'Solteiro(a)', label: 'Solteiro(a)' },
@@ -51,15 +48,11 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
         if (!!paciente) {
             setValue("nome", paciente.nome);
             setValue("naturalidade", paciente.naturalidade);
-            setValue("statusCivil", { value: paciente.statusCivil, label: paciente.statusCivil });
-            setCpf(paciente.cpf);
-            setCep(paciente.cep);
-            setRg(paciente.rg);
             setValue("bairro", paciente.bairro);
             if (paciente.dataNascimento != null) {
                 const dataNascimentoFormatada = moment(paciente.dataNascimento).format("YYYY-MM-DD");
                 setValue("dataNascimento", dataNascimentoFormatada);
-
+                
             }
             setValue("cep", paciente.cep);
             setValue("complemento", paciente.complemento);
@@ -67,21 +60,32 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
             setValue("uf", paciente.uf);
             setValue("logradouro", paciente.logradouro);
             setValue("numero", paciente.numero);
+            
+            setCpf(paciente.cpf);
+            setCep(paciente.cep);
+            setRg(paciente.rg);
+            setEstadoCivil({ value: paciente.statusCivil, label: paciente.statusCivil });
         }
     }, [paciente]);
 
+    
+    const [cpf, setCpf] = useState('');
     const handleCpfChange = (value) => {
         setCpf(value);
     };
 
+    const [rg, setRg] = useState('');
     const handleRgChange = (value) => {
         setRg(value);
     };
 
+    
+    const [cep, setCep] = useState('');
     const handleCepChange = (value) => {
         setCep(value);
     };
 
+    const [estadoCivil, setEstadoCivil] = useState({ value: 'Solteiro(a)', label: 'Solteiro(a)' });
     const handleEstadoCivil = (selectedOption) => {
         setEstadoCivil(selectedOption);
     };
@@ -315,7 +319,7 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
                     <ControlledInput
                         control={control}
                         name='numero'
-                        label='numero'
+                        label='Número'
                         type='number'
                         rules={{
                             required: true
@@ -326,7 +330,7 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
                     <ControlledInput
                         control={control}
                         name='cidade'
-                        label='cidade'
+                        label='Cidade'
                         type='text'
                         rules={{
                             required: true
