@@ -4,7 +4,7 @@ import { FaArrowLeft } from "react-icons/fa";
 
 //Componentes
 import DadosPrimario from './DadosPrimario';
-import Tratamento from './Tratamento';
+import TratamentoPaciente from './TratamentoPaciente';
 
 //Context
 import { useAuth } from '../../../../Context/useAuth';
@@ -54,7 +54,7 @@ export default function NovoPaciente({ id = null, handleVoltar }) {
                     setPaciente={setPaciente}
                 />
             case 2:
-                return <Tratamento
+                return <TratamentoPaciente
                     paciente={paciente}
                     loadPaciente={loadPaciente}
                     showLoading={showLoading}
@@ -103,7 +103,7 @@ export default function NovoPaciente({ id = null, handleVoltar }) {
                                     setActiveStep(2);
                                 }}
                             >
-                                Tratamento
+                                Tratamentos do Paciente
                             </NavLink>
                         </NavItem>
                     </Nav>

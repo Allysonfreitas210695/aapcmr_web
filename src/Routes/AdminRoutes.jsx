@@ -1,6 +1,5 @@
 //Pages
 import AcoesApoio from "../Pages/Admin/AcoesApoio";
-import MovimentacaoGasto from "../Pages/Admin/MovimentacaoGasto";
 import Paciente from "../Pages/Admin/Paciente";
 import RelatorioPaciente from "../Pages/Admin/RelatorioPaciente";
 import Usuarios from "../Pages/Admin/Usuarios";
@@ -8,9 +7,9 @@ import Usuarios from "../Pages/Admin/Usuarios";
 //Icons
 import { FaUserFriends, FaUsersCog, FaFileContract, FaBookOpen } from "react-icons/fa";
 import { RiMoneyDollarBoxLine } from "react-icons/ri";
-import { FaFileSignature } from "react-icons/fa6";
 import AcaoSemanal from "../Pages/Admin/AcaoSemanal";
 import { FaCalendarAlt } from "react-icons/fa";
+import TiposGasto from "../Pages/Admin/TiposGasto";
 
 
 export const AdminRoutes = [
@@ -45,8 +44,8 @@ export const AdminRoutes = [
     icon: FaCalendarAlt
   },
   {
-    path: "/admin/movimentacaoGasto",
-    element: <MovimentacaoGasto />,
+    path: "/admin/tiposGasto",
+    element: <TiposGasto />,
     name: "Cadastro de Tipo de Gastos",
     icon: RiMoneyDollarBoxLine
   },

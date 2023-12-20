@@ -21,7 +21,7 @@ import { useForm } from 'react-hook-form';
 import ControlledInput from '../../../Components/ControlledInput';
 import { ModalCustom } from '../../../Components/Modal';
 
-export default function MovimentacaoGasto() {
+export default function TiposGasto() {
     const { showLoading, loding } = useAuth();
 
     const {
@@ -32,7 +32,7 @@ export default function MovimentacaoGasto() {
         mode: 'onBlur'
     });
 
-    const [listMovimentacaoGasto, setListMovimentacaoGasto] = useState([]);
+    const [listTiposGasto, setListTiposGasto] = useState([]);
 
     //State para pegar ID do paciente
     const [movimentacaoGastoId, setMovimentacaoGastoId] = useState(null);
@@ -46,12 +46,12 @@ export default function MovimentacaoGasto() {
         setIsOpenModal(!isOpenModal)
     };
 
-    const loadMovimentacaoGasto = async () => {
+    const loadTiposGasto = async () => {
         showLoading(true);
         try {
             let response = await api_GET("MovimentacaoGasto");
             const { data } = response;
-            setListMovimentacaoGasto(data);
+            setListTiposGasto(data);
         } catch (error) {
             ShowMessage({
                 title: 'Error',
@@ -65,7 +65,7 @@ export default function MovimentacaoGasto() {
     }
 
     useEffect(() => {
-        loadMovimentacaoGasto();
+        loadTiposGasto();
     }, []);
 
     const handleEditMovimentacaoGasto = (rowData) => {
@@ -87,7 +87,7 @@ export default function MovimentacaoGasto() {
                     title: 'Sucesso',
                     text: 'Operação Realizado com sucesso',
                     icon: 'success'
-                }, () => { loadMovimentacaoGasto() });
+                }, () => { loadTiposGasto() });
 
             } catch (error) {
                 ShowMessage({
@@ -147,7 +147,7 @@ export default function MovimentacaoGasto() {
             setMovimentacaoGastoId(null);
             setIsOpenModal(false);
             setValue("descricao", "");
-            loadMovimentacaoGasto();
+            loadTiposGasto();
         }
     }
 
@@ -168,7 +168,7 @@ export default function MovimentacaoGasto() {
                                 <ControlledInput
                                     control={control}
                                     name='descricao'
-                                    label='Descrição da Movimenta gasto'
+                                    label='Descrição'
                                     type='text'
                                     rules={{
                                         required: true
@@ -187,7 +187,7 @@ export default function MovimentacaoGasto() {
                             <TableCustom
                                 title='Lista de Movimentação'
                                 columns={[{ title: 'Descrição', field: 'descricao' }]}
-                                data={listMovimentacaoGasto}
+                                data={listTiposGasto}
                                 actions={_actions}
                             />
                         </Col>
