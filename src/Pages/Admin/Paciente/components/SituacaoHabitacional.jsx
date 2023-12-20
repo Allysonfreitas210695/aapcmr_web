@@ -64,6 +64,7 @@ export default function SituacaoHabitacional({ paciente, loadPaciente, showLoadi
 
     const onSubmit = async (data) => {
         const json = {
+            id: paciente.situacaoHabitacional == null ? 0 : paciente.situacaoHabitacional.id,
             bairro: data.bairro,
             cep: cep.replace(/[./\-]/g, ""),
             complemento: data.complemento,

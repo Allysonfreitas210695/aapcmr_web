@@ -4,8 +4,6 @@ import { useForm } from 'react-hook-form';
 import { HiPencilAlt } from 'react-icons/hi';
 import { FaPlus, FaRegSave } from 'react-icons/fa';
 
-//Context
-import { useAuth } from '../../../../Context/useAuth';
 
 //Component
 import ControlledInput from '../../../../Components/ControlledInput';
@@ -16,7 +14,6 @@ import { EditeActionTable, RemoveActionTable } from '../../../../Constants/Actio
 import SelectCustom from '../../../../Components/SelectCustom';
 
 export default function TratamentoPaciente({ paciente, loadPaciente, showLoading, setPaciente }) {
-    const { session } = useAuth();
     const {
         handleSubmit,
         formState: { errors },
@@ -44,7 +41,7 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
     ];
 
     useEffect(() => {
-        setListTramentosPaciente(paciente?.tratamentoPacientes)
+        setListTramentosPaciente(paciente?.tratamentoPacientes ?? [])
     }, [paciente]);
 
     const handleRemoveTramentoPaciente = async ({ id }) => {
