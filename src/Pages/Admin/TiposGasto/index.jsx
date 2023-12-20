@@ -185,7 +185,7 @@ export default function TiposGasto() {
                         </Col>
                         <Col lg={12} md={12}>
                             <TableCustom
-                                title='Lista de Movimentação'
+                                title='Lista de Tipos de Gasto'
                                 columns={[{ title: 'Descrição', field: 'descricao' }]}
                                 data={listTiposGasto}
                                 actions={_actions}

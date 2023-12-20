@@ -96,7 +96,7 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
             statusTratamento: statusTratamento.value,
             medico: data.medico,
             tipoCirurgia: data.tipoCirurgia,
-            anoDiagnostico: +data.anoDiagnostico,
+            anoDiagnostico: data.anoDiagnostico,
             pacienteId: paciente.id
         }
 

@@ -67,7 +67,6 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
             setValue("numero", paciente.numero);
 
             setCpf(paciente.cpf);
-            setCep(paciente.cep);
             setEstadoCivil({ value: paciente.statusCivil, label: paciente.statusCivil });
             setCestaBasica({ value: paciente.cestaBasica, label: paciente.cestaBasica ? "Sim" : "Não" });
         }
@@ -79,10 +78,7 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
         setCpf(value);
     };
 
-    const [cep, setCep] = useState('');
-    const handleCepChange = (value) => {
-        setCep(value);
-    };
+   
 
     const [estadoCivil, setEstadoCivil] = useState({ value: 'Solteiro(a)', label: 'Solteiro(a)' });
     const handleEstadoCivil = (selectedOption) => {
@@ -114,21 +110,14 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
             return;
         }
         const json = {
-            id: paciente == null || !paciente?.id ? 0 : paciente.id,
+            id: paciente == null ? 0 : paciente.id,
             nome: data.nome,
-            bairro: data.bairro,
-            cep: cep.replace(/[./\-]/g, ""),
-            complemento: data.complemento,
             cpf: cpf.replace(/[./\-]/g, ""),
             dataNascimento: data.dataNascimento,
-            logradouro: data.logradouro,
             naturalidade: data.naturalidade,
-            cidade: data.cidade,
-            numero: data.numero,
             susNumero: data.susNumero,
             statusCivil: estadoCivil.value,
             cestaBasica: cestaBasica.value,
-            uf: data.uf,
             usuarioId: session.id
         }
 
@@ -176,26 +165,7 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
         }
     }
 
-    const handleOnBlur = async (event) => {
-        try {
-            showLoading(true);
-            const response = await viacep(event);
-            showLoading(false);
-            setValue("bairro", response.bairro);
-            setValue("cep", response.cep);
-            setValue("complemento", response.complemento);
-            setValue("cidade", response.localidade);
-            setValue("uf", response.uf);
-            setValue("logradouro", response.logradouro);
-        } catch (error) {
-            ShowMessage({
-                title: 'Error',
-                text: "Cep invalido!",
-                icon: 'error'
-            });
-            return;
-        }
-    }
+    
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -274,74 +244,6 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
                         onChange={handleCpfChange}
                         mask="999.999.999-99"
                         placeholder="Digite seu CPF"
-                    />
-                </Col>
-
-                <Col sm={12} lg={3}>
-                    <MaskedInput
-                        value={cep}
-                        name={"Cep"}
-                        label={<><span className='text-danger'>*</span> CEP</>}
-                        onChange={handleCepChange}
-                        mask="99999-999"
-                        placeholder="Digite seu CEP"
-                        onBlur={handleOnBlur}
-                    />
-                </Col>
-                <Col sm={12} lg={5}>
-                    <ControlledInput
-                        control={control}
-                        name='complemento'
-                        label='Complemento'
-                        type='text'
-                        rules={{
-                            required: false
-                        }}
-                    />
-                </Col>
-
-                <Col sm={12} lg={4}>
-                    <ControlledInput
-                        control={control}
-                        name='logradouro'
-                        label={<><span className='text-danger'>*</span> Logradouro</>}
-                        type='text'
-                        rules={{
-                            required: true
-                        }}
-                    />
-                </Col>
-                <Col sm={12} lg={3}>
-                    <ControlledInput
-                        control={control}
-                        name='bairro'
-                        label={<><span className='text-danger'>*</span> Bairro</>}
-                        type='text'
-                        rules={{
-                            required: true
-                        }}
-                    />
-                </Col>
-                <Col sm={12} lg={2}>
-                    <ControlledInput
-                        control={control}
-                        name='numero'
-                        label={<><span className='text-danger'>*</span> Número</>}
-                        type='number'
-                        rules={{
-                            required: true
-                        }}
-                    />
-                </Col>
-                <Col sm={12} lg={3}>
-                    <ControlledInput
-                        control={control}
-                        label={<><span className='text-danger'>*</span> Cidade</>}
-                        name='cidade'
-                        type='text'
-                        rules={{
-                            required: true
-                        }}
                     />
                 </Col>
             </Row>

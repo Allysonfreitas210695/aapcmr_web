@@ -14,6 +14,8 @@ import { api_GET } from '../../../../Service/apiConfig';
 
 //Helpers
 import { ShowMessage } from '../../../../helpers/ShowMessage';
+import SituacaoHabitacional from './SituacaoHabitacional';
+import ComposicaoFamiliar from './ComposicaoFamiliar';
 
 export default function NovoPaciente({ id = null, handleVoltar }) {
     const { showLoading, loding } = useAuth();
@@ -55,6 +57,20 @@ export default function NovoPaciente({ id = null, handleVoltar }) {
                 />
             case 2:
                 return <TratamentoPaciente
+                    paciente={paciente}
+                    loadPaciente={loadPaciente}
+                    showLoading={showLoading}
+                    setPaciente={setPaciente}
+                />
+            case 3:
+                return <SituacaoHabitacional
+                    paciente={paciente}
+                    loadPaciente={loadPaciente}
+                    showLoading={showLoading}
+                    setPaciente={setPaciente}
+                />
+            case 4:
+                return <ComposicaoFamiliar
                     paciente={paciente}
                     loadPaciente={loadPaciente}
                     showLoading={showLoading}
@@ -104,6 +120,46 @@ export default function NovoPaciente({ id = null, handleVoltar }) {
                                 }}
                             >
                                 Tratamentos do Paciente
+                            </NavLink>
+                        </NavItem>
+                        <NavItem className='ms-2'>
+                            <NavLink
+                                role='button'
+                                style={{ backgroundColor: activeStep == 3 ? "#fff" : "#ccc" }}
+                                className={activeStep == 3 ? "active fw-bold text-primary" : "text-secondary"}
+                                onClick={() => {
+                                    if (paciente == null) {
+                                        ShowMessage({
+                                            title: 'Aviso',
+                                            text: 'Salve primeiro os dados primarios do paciente para avança para outras telas.',
+                                            icon: 'warning'
+                                        });
+                                        return;
+                                    }
+                                    setActiveStep(3);
+                                }}
+                            >
+                                Situação Habitacional
+                            </NavLink>
+                        </NavItem>
+                        <NavItem className='ms-2'>
+                            <NavLink
+                                role='button'
+                                style={{ backgroundColor: activeStep == 4 ? "#fff" : "#ccc" }}
+                                className={activeStep == 4 ? "active fw-bold text-primary" : "text-secondary"}
+                                onClick={() => {
+                                    if (paciente == null) {
+                                        ShowMessage({
+                                            title: 'Aviso',
+                                            text: 'Salve primeiro os dados primarios do paciente para avança para outras telas.',
+                                            icon: 'warning'
+                                        });
+                                        return;
+                                    }
+                                    setActiveStep(4);
+                                }}
+                            >
+                                Composição Familiar
                             </NavLink>
                         </NavItem>
                     </Nav>
