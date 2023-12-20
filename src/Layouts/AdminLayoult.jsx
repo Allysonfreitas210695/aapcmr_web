@@ -24,7 +24,6 @@ const AdminLayout = ({ adminRoutes }) => {
         <Hearder />
         <main
           style={{
-            
             marginTop: "60px",
             marginLeft: !collapsed ? "260px" : "60px",
             transition: 'margin-left 0.3s ease-in-out',

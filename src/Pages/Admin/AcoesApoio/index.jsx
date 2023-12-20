@@ -161,7 +161,8 @@ export default function AcoesApoio() {
                         toggle={togglemodal}
                         onSubmit={onSubmit}
                         size={"lg"}
-                        edit={acaoApoioId != null}
+                        edit={acaoApoioId}
+                        title='Cadastro de Ações de Apoio'
                     >
                         <Row>
                             <Col lg={"12"} sm={"12"}>

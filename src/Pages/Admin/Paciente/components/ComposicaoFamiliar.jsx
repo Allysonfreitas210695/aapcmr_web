@@ -24,7 +24,7 @@ export default function ComposicaoFamiliar({ paciente, loadPaciente, showLoading
     { title: 'Nome do Familiar', field: 'nomeFamiliar' },
     { title: 'Idade do Familiar', field: 'idadeFamiliar' },
     { title: 'Vinculo Familiar', field: 'vinculoFamiliar' },
-    { title: 'Renda', field: 'renda', render: (rowDate) => <>{rowDate.renda.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</>}])
+    { title: 'Renda', field: 'renda', render: (rowDate) => <>{rowDate.renda.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</> }])
 
   const [optionsVinculosFamiliar] = useState([
     { value: 'Pai', label: 'Pai' },
@@ -58,7 +58,7 @@ export default function ComposicaoFamiliar({ paciente, loadPaciente, showLoading
   }, [paciente]);
 
   const onSubmit = async (data) => {
-    if(vinculosFamiliar == null){
+    if (vinculosFamiliar == null) {
       ShowMessage({
         title: 'Aviso',
         text: "Por favoer, informe o vinculo familiar da pessoa.",
@@ -77,8 +77,8 @@ export default function ComposicaoFamiliar({ paciente, loadPaciente, showLoading
     }
 
     if (!familiar) {
-      showLoading(true);
       try {
+        showLoading(true);
         let response = await api_POST("ComposicaoFamiliar", json);
         const { data } = response;
         loadPaciente(paciente.id);
@@ -102,8 +102,8 @@ export default function ComposicaoFamiliar({ paciente, loadPaciente, showLoading
         showLoading(false);
       }
     } else {
-      showLoading(true);
       try {
+        showLoading(true);
         let response = await api_PUT("ComposicaoFamiliar", json);
         loadPaciente(paciente.id);
         ShowMessage({
@@ -157,7 +157,7 @@ export default function ComposicaoFamiliar({ paciente, loadPaciente, showLoading
   }
 
   const handleEditTramentoPaciente = (composicaoFamiliar) => {
-    setVinculosFamiliar({value : composicaoFamiliar.vinculoFamiliar, label: composicaoFamiliar.vinculoFamiliar})
+    setVinculosFamiliar({ value: composicaoFamiliar.vinculoFamiliar, label: composicaoFamiliar.vinculoFamiliar })
     setFamiliar(composicaoFamiliar);
     setValue("nomeFamiliar", composicaoFamiliar.nomeFamiliar);
     setValue("idadeFamiliar", composicaoFamiliar.idadeFamiliar);

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
-import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { useForm } from 'react-hook-form';
-import { Button, Col, Row } from 'reactstrap';
 import { HiPencilAlt } from 'react-icons/hi';
 import { FaRegSave, FaRegWindowClose } from 'react-icons/fa';
+import { useForm } from 'react-hook-form';
+import { Button, Col, Row } from 'reactstrap';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import moment from 'moment';
+import 'moment/locale/pt-br';
 
 //Helpers
 import { ShowConfirmation, ShowMessage } from '../../../helpers/ShowMessage';
@@ -18,10 +19,11 @@ import { useAuth } from '../../../Context/useAuth';
 
 //Components
 import SelectCustom from '../../../Components/SelectCustom';
-import { diasDaSemana, meses, defaultMessages } from './CalendarConfi';
+import { defaultMessages } from './CalendarConfi';
 import { ModalCustom } from '../../../Components/Modal';
 import ControlledInput from '../../../Components/ControlledInput';
 
+moment.locale('pt-br');
 // Configura o moment como localizador para o React Big Calendar
 const localizer = momentLocalizer(moment);
 
@@ -356,11 +358,36 @@ export default function AcaoSemanal() {
                     defaultDate={new Date()}
                     selectable
                     onSelectSlot={handleSelect}
-                    onSelectEvent={handleSelectEvent} // Use essa propriedade para lidar com a seleção de eventos existentes
+                    onSelectEvent={handleSelectEvent}
                     messages={defaultMessages}
                     popup={true}
                     resizable
+                    eventPropGetter={(event) => {
+                        let eventStyle = {};
+                        if (new Date(event.end) < new Date()) {
+                            eventStyle.backgroundColor = 'red';
+                            eventStyle.color = 'white';
+                        } else {
+                            eventStyle.backgroundColor = 'green';
+                            eventStyle.color = 'white';
+                        }
+                        return { style: eventStyle };
+                    }}
+                    dayPropGetter={(date) => {
+                        const now = new Date();
+                        if (date < now) {
+                            return {
+                                className: 'past-day',
+                                style: {
+                                    backgroundColor: '#95a5a6',
+                                    color: 'white'
+                                },
+                            };
+                        }
+                        return {};
+                    }}
                 />
+
             </div>
         </>
     );

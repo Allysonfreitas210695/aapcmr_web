@@ -13,3 +13,11 @@ export const RemoveActionTable = (callback) => {
         onClick: (event, rowData) => callback(rowData)
     }
 }
+
+export const SeachActionTable = (callback) => {
+    return {
+        icon: 'search',
+        tooltip: 'Pesquisar Registro',
+        onClick: (event, rowData) => callback(rowData)
+    }
+}

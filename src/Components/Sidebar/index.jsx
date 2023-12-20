@@ -9,7 +9,7 @@ export default function Sidebar({ routesLink, toggleSidebar, collapsed }) {
             className={`bg-primary text-light ${collapsed ? 'collapsed' : ''}`}
             style={{
                 flex: '0 0 auto',
-                width: collapsed ? '50px' : '250px',
+                width: collapsed ? '50px' : '260px',
                 height: '100vh',
                 transition: 'width 0.6s ease-in-out',
                 position: 'fixed',

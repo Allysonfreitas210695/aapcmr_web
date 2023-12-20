@@ -5,24 +5,31 @@ import RelatorioPaciente from "../Pages/Admin/RelatorioPaciente";
 import Usuarios from "../Pages/Admin/Usuarios";
 
 //Icons
-import { FaUserFriends, FaUsersCog, FaFileContract, FaBookOpen } from "react-icons/fa";
+import { FaUserFriends, FaUsersCog, FaFileContract, FaBookOpen, FaSearch } from "react-icons/fa";
 import { RiMoneyDollarBoxLine } from "react-icons/ri";
 import AcaoSemanal from "../Pages/Admin/AcaoSemanal";
 import { FaCalendarAlt } from "react-icons/fa";
 import TiposGasto from "../Pages/Admin/TiposGasto";
+import ConsultaPaciente from "../Pages/Admin/ConsultaPaciente";
 
 
 export const AdminRoutes = [
   {
     path: "/admin/home",
     element: <Paciente />,
-    name: "Gerenciar Pacientes",
+    name: "Controle de Pacientes",
     icon: FaUserFriends
+  },
+  {
+    path: "/admin/consultaPaciente",
+    element: <ConsultaPaciente />,
+    name: "Consulta Paciente",
+    icon: FaSearch
   },
   {
     path: "/admin/usuarioAdm",
     element: <Usuarios />,
-    name: "Gerenciar Usuários",
+    name: "Controle de Usuários",
     icon: FaUsersCog
   },
   {

@@ -213,12 +213,12 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
                         }}
                         value
                     />
-                </Col>
+                </Col> 
                 <Col sm={12} lg={3}>
                     <SelectCustom
                         control={control}
                         name='cestaBasica'
-                        label='Recebe cesta Básica?'
+                        label='Recebe Cesta Básica?'
                         value={cestaBasica}
                         options={optionsStatusCestaBasica}
                         onChange={handleCestaBasicaChange}

@@ -182,7 +182,8 @@ export default function Usuarios() {
             toggle={togglemodal}
             onSubmit={onSubmit}
             size={"lg"}
-            edit={usuarioEditId != null}
+            edit={usuarioEditId}
+            title='Cadastro de Usuário'
           >
             <Row>
               <Col lg={"6"} sm={"6"}>

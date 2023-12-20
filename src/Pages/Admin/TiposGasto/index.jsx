@@ -161,7 +161,8 @@ export default function TiposGasto() {
                         toggle={togglemodal}
                         onSubmit={onSubmit}
                         size={"lg"}
-                        edit={movimentacaoGastoId != null}
+                        edit={movimentacaoGastoId}
+                        title='Cadastro de Tipo de Gastos'
                     >
                         <Row>
                             <Col lg={"12"} sm={"12"}>

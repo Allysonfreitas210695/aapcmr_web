@@ -161,7 +161,7 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
                     <ControlledInput
                         control={control}
                         name='diagnostico'
-                        label={<><span className='text-danger'>*</span> Diagnostico</>}
+                        label={<><span className='text-danger'>*</span> Diagnóstico</>}
                         type='text'
                         rules={{
                             required: true
@@ -205,7 +205,7 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
                     <ControlledInput
                         control={control}
                         name='anoDiagnostico'
-                        label={<><span className='text-danger'>*</span> Ano do Diagnostico</>}
+                        label={<><span className='text-danger'>*</span> Ano do Diagnóstico</>}
                         type='number'
                         maxlenght={15}
                         rules={{

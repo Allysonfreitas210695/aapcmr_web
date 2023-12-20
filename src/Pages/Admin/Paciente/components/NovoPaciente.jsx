@@ -83,13 +83,12 @@ export default function NovoPaciente({ id = null, handleVoltar }) {
         <>
             <Row>
                 <Col lg={12} md={12} className='mb-2 d-flex justify-content-end'>
-                    <Button color='danger' className='text-white' onClick={() => handleVoltar()}>
+                    <Button color='secondary' className='text-white' onClick={() => handleVoltar()}>
                         <FaArrowLeft color='#fff' /> Voltar
                     </Button>
                 </Col>
             </Row>
             <div className='bg-white p-3 rounded shadow'>
-
                 <Row>
                     <Nav tabs>
                         <NavItem className='ms-2'>

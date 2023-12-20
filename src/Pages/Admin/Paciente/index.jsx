@@ -18,6 +18,7 @@ import { ShowConfirmation, ShowMessage } from '../../../helpers/ShowMessage';
 
 //Actions 
 import { EditeActionTable, RemoveActionTable } from '../../../Constants/ActionsTable';
+import { mascaraCPF } from '../../../helpers/ValidadacaoDocumentos';
 
 export default function Paciente() {
   const { showLoading, loding } = useAuth();
@@ -37,7 +38,7 @@ export default function Paciente() {
     { title: 'Estado Civil', field: 'statusCivil' },
     { title: 'Naturalidade', field: 'naturalidade' },
     { title: 'DataNascimento', field: 'dataNascimento' },
-    { title: 'CPF', field: 'cpf' },
+    { title: 'CPF', field: 'cpf', render: (rowDate) => <>{mascaraCPF(rowDate.cpf)}</> },
     { title: 'Némero do SUS', field: 'susNumero' },
   ]);
 
