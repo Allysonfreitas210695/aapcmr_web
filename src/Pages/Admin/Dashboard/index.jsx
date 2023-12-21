@@ -32,7 +32,11 @@ export default function Dashboard() {
     //Pegar a lista de informações na API
     const [listDasboard, setListDasboard] = useState([]);
 
+    //State para pegar qual card clicado e armazenar as informações
     const [itemCard, setItemCard] = useState(null);
+
+    //State para filtro
+    const [filtroDashBorad, setFiltroDashBorad] = useState({ dataInicial: null, dataFinal: null });
 
     const loadDashboard = async (json) => {
         showLoading(true);
@@ -53,14 +57,16 @@ export default function Dashboard() {
     }
 
     useEffect(() => {
-        loadDashboard({ dataInicial: null, dataFinal: null });
+        loadDashboard(filtroDashBorad);
     }, []);
 
     const handleVoltar = () => {
         setItemCard(null);
+        loadDashboard(filtroDashBorad);
     }
 
     const onSubmit = (data) => {
+        setFiltroDashBorad({ dataInicial: moment(data.dataInicial).format("YYYY-MM-DD HH:mm:ss"), dataFinal: moment(data.dataFinal).format("YYYY-MM-DD HH:mm:ss") })
         loadDashboard({ dataInicial: moment(data.dataInicial).format("YYYY-MM-DD HH:mm:ss"), dataFinal: moment(data.dataFinal).format("YYYY-MM-DD HH:mm:ss") })
     }
 

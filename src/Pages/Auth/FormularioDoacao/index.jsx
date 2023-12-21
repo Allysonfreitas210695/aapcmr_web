@@ -57,6 +57,24 @@ export default function FormularioDoacao() {
     }
 
     const onSubmit = async (data) => {
+        if(telefone?.length > 0 && telefone.replace(/[()\-.\s_]/g, '').length < 11) {
+            ShowMessage({
+                title: 'Aviso',
+                text: "Númeno de telefone incorreto",
+                icon: 'warning'
+            });
+            return;
+        }
+
+        if (data.mensageiro == false && data.deposito == false) {
+            ShowMessage({
+                title: 'Aviso',
+                text: "Marque o modelo de envior da doação se é 'Messageiro' ou 'Deposito'",
+                icon: 'warning'
+            });
+            return;
+        }
+
         if (data.mensageiro == true && data.deposito == true) {
             ShowMessage({
                 title: 'Aviso',
@@ -68,12 +86,12 @@ export default function FormularioDoacao() {
 
         const json = {
             nomeDoador: data.nomeDoador,
-            telefone: telefone.replace(/[./\-]/g, ""),
+            telefone: telefone.replace(/[()\-.\s_]/g, ''),
             valorDoacao: data.valor,
             dataDoacao: data.dataDoacao,
             tipoDeEnvioValor: data.mensageiro ? "Mensageiro" : "Depósito",
             bairro: data.bairro,
-            cep: cep.replace(/[./\-]/g, ""),
+            cep: cep.replace(/[()\-.\s_]/g, ''),
             complemento: data.complemento,
             cidade: data.cidade,
             numero: data.numero,
@@ -89,6 +107,10 @@ export default function FormularioDoacao() {
                 title: 'Sucesso',
                 text: 'Obrigado por sua colaboração com nosso Associação.',
                 icon: 'success'
+            }, () => {
+                setTimeout(() => {
+                    window.location.href = "/auth/login"
+                }, 500)
             });
         } catch (error) {
             ShowMessage({
@@ -140,7 +162,7 @@ export default function FormularioDoacao() {
                                         name={"telefone"}
                                         label={<><span className='text-danger'>*</span> Telefone</>}
                                         onChange={handleTelefoneChange}
-                                        mask="(99) 99999-9999"
+                                        mask="(99) 9999-99999"
                                     />
                                 </Col>
                                 <Col sm={12} lg={2}>

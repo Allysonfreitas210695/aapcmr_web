@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
-import { AddActionTable, SeachActionTable } from '../../../../Constants/ActionsTable';
+import { AddActionTable, RemoveActionTable, SeachActionTable } from '../../../../Constants/ActionsTable';
 import { Button, Col, Row } from 'reactstrap';
 import { FaArrowLeft } from 'react-icons/fa6';
 
 //helpers
 import { mascaraCPF, mascaraTelefone } from '../../../../helpers/ValidadacaoDocumentos';
-import { ShowMessage } from '../../../../helpers/ShowMessage';
+import { ShowConfirmation, ShowMessage } from '../../../../helpers/ShowMessage';
 
 //Components
 import TableCustom from '../../../../Components/TableCustom';
 import FichaPaciente from '../../ConsultaPaciente/components/FichaPaciente';
 
 //Services
-import { api_PUT } from '../../../../Service/api';
+import { api_DELETE, api_PUT } from '../../../../Service/api';
 
 //Context
 import { useAuth } from '../../../../Context/useAuth';
@@ -82,7 +82,34 @@ export default function TabelaCard({ itemCard, handleVoltar }) {
             return null;
     }
 
-    const _actions = itemCard.tipo == "Doação" ? [handleAddConfirmacao] : [SeachActionTable(handleSearchPaciente)];
+    const handleRemoveDoacao = async (rowData) => {
+        const resposta = await ShowConfirmation({ title: "", text: "Você tem certeza que quer deletar essa doação?" });
+        if (resposta) {
+            try {
+                showLoading(true);
+                let response = await api_DELETE(`Doacao/${rowData.id}`);
+
+                showLoading(false);
+                ShowMessage({
+                    title: 'Sucesso',
+                    text: 'Operação Realizado com sucesso',
+                    icon: 'success'
+                }, () => { handleVoltar() });
+
+            } catch (error) {
+                ShowMessage({
+                    title: 'Error',
+                    text: error?.message ?? "Erro na Operação",
+                    icon: 'error'
+                });
+                return;
+            } finally {
+                showLoading(false);
+            }
+        }
+    }
+
+    const _actions = itemCard.tipo == "Doação" ? [handleAddConfirmacao, RemoveActionTable(handleRemoveDoacao)] : [SeachActionTable(handleSearchPaciente)];
 
     return (
         <>
