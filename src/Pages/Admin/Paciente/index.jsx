@@ -39,7 +39,7 @@ export default function Paciente() {
     { title: 'Naturalidade', field: 'naturalidade' },
     { title: 'DataNascimento', field: 'dataNascimento' },
     { title: 'CPF', field: 'cpf', render: (rowDate) => <>{mascaraCPF(rowDate.cpf)}</> },
-    { title: 'Némero do SUS', field: 'susNumero' },
+    { title: 'Status', field: 'status' },
   ]);
 
   const loadPacientes = async () => {

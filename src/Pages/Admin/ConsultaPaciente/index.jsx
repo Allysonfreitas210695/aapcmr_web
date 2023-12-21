@@ -47,7 +47,7 @@ export default function ConsultaPaciente() {
         { title: 'Naturalidade', field: 'naturalidade' },
         { title: 'DataNascimento', field: 'dataNascimento' },
         { title: 'CPF', field: 'cpf', render: (rowDate) => <>{mascaraCPF(rowDate.cpf)}</> },
-        { title: 'Número do SUS', field: 'susNumero' },
+        { title: 'Status', field: 'status' },
     ]);
 
     const optionsStatusCestaBasica = [

@@ -3,19 +3,27 @@ import AcoesApoio from "../Pages/Admin/AcoesApoio";
 import Paciente from "../Pages/Admin/Paciente";
 import RelatorioPaciente from "../Pages/Admin/RelatorioPaciente";
 import Usuarios from "../Pages/Admin/Usuarios";
+import TiposGasto from "../Pages/Admin/TiposGasto";
+import ConsultaPaciente from "../Pages/Admin/ConsultaPaciente";
+import Dashboard from "../Pages/Admin/Dashboard";
+import AcaoSemanal from "../Pages/Admin/AcaoSemanal";
 
 //Icons
 import { FaUserFriends, FaUsersCog, FaFileContract, FaBookOpen, FaSearch } from "react-icons/fa";
+import { BiSolidDashboard } from "react-icons/bi";
 import { RiMoneyDollarBoxLine } from "react-icons/ri";
-import AcaoSemanal from "../Pages/Admin/AcaoSemanal";
 import { FaCalendarAlt } from "react-icons/fa";
-import TiposGasto from "../Pages/Admin/TiposGasto";
-import ConsultaPaciente from "../Pages/Admin/ConsultaPaciente";
 
 
 export const AdminRoutes = [
   {
     path: "/admin/home",
+    element: <Dashboard />,
+    name: "Dashboard",
+    icon: BiSolidDashboard
+  },
+  {
+    path: "/admin/controlePaciente",
     element: <Paciente />,
     name: "Controle de Pacientes",
     icon: FaUserFriends

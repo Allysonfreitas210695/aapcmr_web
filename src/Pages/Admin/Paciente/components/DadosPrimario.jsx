@@ -48,6 +48,16 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
         { value: false, label: 'Não' }
     ];
 
+    const optionsStatus = [
+        { value: true, label: 'Ativo' },
+        { value: false, label: 'Inativo' }
+    ];
+
+    const optionsSexo = [
+        { value: "Feminino", label: 'Feminino' },
+        { value: "Masculino", label: 'Masculino' }
+    ];
+
     useEffect(() => {
         if (!!paciente) {
             setValue("nome", paciente.nome);
@@ -68,6 +78,8 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
             setCpf(paciente.cpf);
             setEstadoCivil({ value: paciente.statusCivil, label: paciente.statusCivil });
             setCestaBasica({ value: paciente.cestaBasica, label: paciente.cestaBasica ? "Sim" : "Não" });
+            setSexo({ value: paciente.sexo, label: paciente.sexo });
+            setStatus({ value: paciente.status, label: paciente.status });
         }
     }, [paciente]);
 
@@ -76,8 +88,6 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
     const handleCpfChange = (value) => {
         setCpf(value);
     };
-
-   
 
     const [estadoCivil, setEstadoCivil] = useState({ value: 'Solteiro(a)', label: 'Solteiro(a)' });
     const handleEstadoCivil = (selectedOption) => {
@@ -88,6 +98,16 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
     const [cestaBasica, setCestaBasica] = useState({ value: true, label: 'Sim' });
     const handleCestaBasicaChange = (selectedOption) => {
         setCestaBasica(selectedOption);
+    };
+
+    const [status, setStatus] = useState({ value: true, label: 'Ativo' });
+    const handleStatusChange = (selectedOption) => {
+        setStatus(selectedOption);
+    };
+
+    const [sexo, setSexo] = useState({ value: "Masculino", label: 'Masculino' });
+    const handleSexoChange = (selectedOption) => {
+        setSexo(selectedOption);
     };
 
     const onSubmit = async (data) => {
@@ -117,6 +137,8 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
             susNumero: data.susNumero,
             statusCivil: estadoCivil.value,
             cestaBasica: cestaBasica.value,
+            status: status.value,
+            sexo: sexo.value,
             usuarioId: session.id
         }
 
@@ -164,7 +186,7 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
         }
     }
 
-    
+
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -180,6 +202,16 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
                         }}
                     />
                 </Col>
+                <Col sm={12} lg={2}>
+                    <MaskedInput
+                        value={cpf}
+                        name={"cpf"}
+                        label={<><span className='text-danger'>*</span> CPF</>}
+                        onChange={handleCpfChange}
+                        mask="999.999.999-99"
+                        placeholder="Digite seu CPF"
+                    />
+                </Col>
                 <Col sm={12} lg={3}>
                     <SelectCustom
                         control={control}
@@ -190,7 +222,17 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
                         onChange={handleEstadoCivil}
                     />
                 </Col>
-                <Col sm={12} lg={4}>
+                <Col sm={12} lg={2}>
+                    <SelectCustom
+                        control={control}
+                        name='status'
+                        label='Status'
+                        value={status}
+                        options={optionsStatus}
+                        onChange={handleStatusChange}
+                    />
+                </Col>
+                <Col sm={12} lg={3}>
                     <ControlledInput
                         control={control}
                         name='naturalidade'
@@ -212,15 +254,15 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
                         }}
                         value
                     />
-                </Col> 
+                </Col>
                 <Col sm={12} lg={3}>
                     <SelectCustom
                         control={control}
-                        name='cestaBasica'
-                        label='Recebe Cesta Básica?'
-                        value={cestaBasica}
-                        options={optionsStatusCestaBasica}
-                        onChange={handleCestaBasicaChange}
+                        name='sexo'
+                        label='Sexo'
+                        value={sexo}
+                        options={optionsSexo}
+                        onChange={handleSexoChange}
                     />
                 </Col>
                 <Col sm={12} lg={3}>
@@ -236,13 +278,13 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
                     />
                 </Col>
                 <Col sm={12} lg={3}>
-                    <MaskedInput
-                        value={cpf}
-                        name={"rg"}
-                        label={<><span className='text-danger'>*</span> CPF</>}
-                        onChange={handleCpfChange}
-                        mask="999.999.999-99"
-                        placeholder="Digite seu CPF"
+                    <SelectCustom
+                        control={control}
+                        name='cestaBasica'
+                        label='Recebe Cesta Básica?'
+                        value={cestaBasica}
+                        options={optionsStatusCestaBasica}
+                        onChange={handleCestaBasicaChange}
                     />
                 </Col>
             </Row>
