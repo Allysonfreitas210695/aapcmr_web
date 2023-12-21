@@ -24,7 +24,7 @@ import { useAuth } from '../../../../Context/useAuth';
 
 export default function DadosPrimario({ paciente, loadPaciente, showLoading, setPaciente }) {
     const { session } = useAuth();
-    
+
     const {
         handleSubmit,
         control,
@@ -73,8 +73,10 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
             setValue("uf", paciente.uf);
             setValue("logradouro", paciente.logradouro);
             setValue("numero", paciente.numero);
-
             setCpf(paciente.cpf);
+            setCelular(paciente.celular ?? "");
+            console.log(paciente.telefoneFixo)
+            setTelefone(paciente.telefoneFixo ?? "");
             setEstadoCivil({ value: paciente.statusCivil, label: paciente.statusCivil });
             setCestaBasica({ value: paciente.cestaBasica, label: paciente.cestaBasica ? "Sim" : "Não" });
             setSexo({ value: paciente.sexo, label: paciente.sexo });
@@ -109,6 +111,16 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
         setSexo(selectedOption);
     };
 
+    const [telefone, setTelefone] = useState('');
+    const handleTelefoneChange = (value) => {
+        setTelefone(value);
+    };
+
+    const [celular, setCelular] = useState('');
+    const handleCelularChange = (value) => {
+        setCelular(value);
+    };
+
     const onSubmit = async (data) => {
         if (!validarCPF(cpf)) {
             ShowMessage({
@@ -127,6 +139,34 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
             });
             return;
         }
+
+        if (telefone?.length > 0 && telefone.replace(/[()\-.\s_]/g, '').length < 10) {
+            ShowMessage({
+                title: 'Aviso',
+                text: "Númeno de telefone incorreto.",
+                icon: 'warning'
+            });
+            return;
+        }
+
+        if (celular.length == 0) {
+            ShowMessage({
+                title: 'Aviso',
+                text: "O campo do celular é obrigatório",
+                icon: 'warning'
+            });
+            return;
+        }
+
+        if (celular?.length > 0 && celular.replace(/[()\-.\s_]/g, '').length < 11) {
+            ShowMessage({
+                title: 'Aviso',
+                text: "Númeno de celular incorreto.",
+                icon: 'warning'
+            });
+            return;
+        }
+
         const json = {
             id: paciente == null ? 0 : paciente.id,
             nome: data.nome,
@@ -138,50 +178,36 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
             cestaBasica: cestaBasica.value,
             status: status.value,
             sexo: sexo.value,
+            celular: celular.replace(/[()\-.\s_]/g, ''),
+            telefoneFixo: telefone.replace(/[()\-.\s_]/g, ''),
             usuarioId: session.id
         }
 
-        if (paciente == null || !paciente?.id) {
-            showLoading(true);
-            try {
+        showLoading(true);
+        try {
+            if (paciente == null || !paciente?.id) {
                 let response = await api_POST("Paciente", json);
                 const { data } = response;
                 setPaciente(data);
-                ShowMessage({
-                    title: 'Sucesso',
-                    text: 'Sucesso na operação.',
-                    icon: 'success'
-                });
-            } catch (error) {
-                ShowMessage({
-                    title: 'Error',
-                    text: error?.message ?? "Erro na Operação",
-                    icon: 'error'
-                });
-                return;
-            } finally {
-                showLoading(false);
             }
-        } else {
-            showLoading(true);
-            try {
+            else {
                 let response = await api_PUT("Paciente", json);
                 loadPaciente(paciente.id);
-                ShowMessage({
-                    title: 'Sucesso',
-                    text: 'Sucesso na operação.',
-                    icon: 'success'
-                });
-            } catch (error) {
-                ShowMessage({
-                    title: 'Error',
-                    text: error?.message ?? "Erro na Operação",
-                    icon: 'error'
-                });
-                return;
-            } finally {
-                showLoading(false);
             }
+            ShowMessage({
+                title: 'Sucesso',
+                text: 'Sucesso na operação.',
+                icon: 'success'
+            });
+        } catch (error) {
+            ShowMessage({
+                title: 'Error',
+                text: error?.message ?? "Erro na Operação",
+                icon: 'error'
+            });
+            return;
+        } finally {
+            showLoading(false);
         }
     }
 
@@ -274,6 +300,24 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
                         rules={{
                             required: false
                         }}
+                    />
+                </Col>
+                <Col sm={12} lg={3}>
+                    <MaskedInput
+                        value={telefone}
+                        name={"telefoneFixo"}
+                        label={"Telefone"}
+                        onChange={handleTelefoneChange}
+                        mask="(99) 9999-9999"
+                    />
+                </Col>
+                <Col sm={12} lg={3}>
+                    <MaskedInput
+                        value={celular}
+                        name={"celular"}
+                        label={<><span className='text-danger'>*</span> Celular</>}
+                        onChange={handleCelularChange}
+                        mask="(99) 99999-9999"
                     />
                 </Col>
                 <Col sm={12} lg={3}>

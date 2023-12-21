@@ -15,7 +15,7 @@ import { api_DELETE, api_GET } from '../../../Service/api';
 
 //Helpers
 import { ShowConfirmation, ShowMessage } from '../../../helpers/ShowMessage';
-import { mascaraCPF } from '../../../helpers/ValidadacaoDocumentos';
+import { mascaraCPF, mascaraTelefone } from '../../../helpers/ValidadacaoDocumentos';
 
 //Actions 
 import { EditeActionTable, RemoveActionTable } from '../../../Constants/ActionsTable';
@@ -34,6 +34,7 @@ export default function Paciente() {
 
   const [columns] = useState([
     { title: 'Nome', field: 'nome' },
+    { title: 'Celular', field: 'celular', render: (rowDate) => <>{mascaraTelefone(rowDate.cpf)}</> },
     { title: 'Endereço', field: 'endereco' },
     { title: 'Estado Civil', field: 'statusCivil' },
     { title: 'Naturalidade', field: 'naturalidade' },

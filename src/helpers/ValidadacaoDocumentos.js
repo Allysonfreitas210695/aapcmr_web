@@ -73,9 +73,9 @@ export const mascaraCPF = (v) => {
 export const mascaraTelefone = (v) => {
     // Remove caracteres não numéricos
     const numeroLimpo = v.replace(/\D/g, '');
-    // Aplica a máscara
-    const regex = /^(\d{2})(\d{5})(\d{4})$/;
+    // Aplica a máscara para telefone (9 ou 10 dígitos)
+    const regex = /^(\d{2})(\d{4,5})(\d{4})$/;
     const resultado = numeroLimpo.replace(regex, '($1) $2-$3');
 
     return resultado;
-}
+};

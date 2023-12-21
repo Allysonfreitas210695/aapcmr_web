@@ -22,7 +22,6 @@ export default function Dashboard() {
     const {
         handleSubmit,
         control,
-        setValue
     } = useForm({
         mode: 'onBlur'
     });

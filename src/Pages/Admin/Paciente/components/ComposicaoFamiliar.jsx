@@ -29,7 +29,7 @@ export default function ComposicaoFamiliar({ paciente, loadPaciente, showLoading
 
   const [columns] = useState([
     { title: 'Nome do Familiar', field: 'nomeFamiliar' },
-    { title: 'Idade do Familiar', field: 'idadeFamiliar' },
+    { title: 'Idade do Familiar', field: 'idadeFamiliar', render: (rowDate) => <>{rowDate.idadeFamiliar} Ano(s)</> },
     { title: 'Vinculo Familiar', field: 'vinculoFamiliar' },
     { title: 'Renda', field: 'renda', render: (rowDate) => <>{rowDate.renda.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</> }])
 
@@ -37,7 +37,8 @@ export default function ComposicaoFamiliar({ paciente, loadPaciente, showLoading
     { value: 'Pai', label: 'Pai' },
     { value: 'Filho(a)', label: 'Filho(a)' },
     { value: 'Irmão(a)', label: 'Irmão(a)' },
-    { value: 'Avós', label: 'Avós' },
+    { value: 'Avó', label: 'Avó' },
+    { value: 'Avô', label: 'Avô' },
     { value: 'Neto(a)', label: 'Neto(a)' },
     { value: 'Bisneto(a)', label: 'Bisneto(a)' },
     { value: 'Tio(a)', label: 'Tio(a)' },
@@ -83,12 +84,16 @@ export default function ComposicaoFamiliar({ paciente, loadPaciente, showLoading
       pacienteId: paciente.id
     }
 
-    if (!familiar) {
+    showLoading(true);
       try {
-        showLoading(true);
-        let response = await api_POST("ComposicaoFamiliar", json);
-        const { data } = response;
-        loadPaciente(paciente.id);
+        if (!familiar) {
+          let response = await api_POST("ComposicaoFamiliar", json);
+          const { data } = response;
+          loadPaciente(paciente.id);
+        } else {
+          let response = await api_PUT("ComposicaoFamiliar", json);
+          loadPaciente(paciente.id);
+        }
         ShowMessage({
           title: 'Sucesso',
           text: 'Sucesso na operação.',
@@ -108,31 +113,6 @@ export default function ComposicaoFamiliar({ paciente, loadPaciente, showLoading
         setFamiliar(null);
         showLoading(false);
       }
-    } else {
-      try {
-        showLoading(true);
-        let response = await api_PUT("ComposicaoFamiliar", json);
-        loadPaciente(paciente.id);
-        ShowMessage({
-          title: 'Sucesso',
-          text: 'Sucesso na operação.',
-          icon: 'success'
-        });
-      } catch (error) {
-        ShowMessage({
-          title: 'Error',
-          text: error?.message ?? "Erro na Operação",
-          icon: 'error'
-        });
-        return;
-      } finally {
-        setValue("nomeFamiliar", "");
-        setValue("idadeFamiliar", "");
-        setValue("renda", "");
-        setFamiliar(null);
-        showLoading(false);
-      }
-    }
   }
 
   const handleRemoveTramentoPaciente = async ({ id }) => {
@@ -231,7 +211,7 @@ export default function ComposicaoFamiliar({ paciente, loadPaciente, showLoading
       </Row>
       <Col lg={12} md={12}>
         <TableCustom
-          title='Lista de tratamentos do paciente'
+          title='Lista de composição familiar'
           columns={columns}
           data={listComposicaoFamiliar}
           actions={_actions}

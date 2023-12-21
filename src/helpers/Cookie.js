@@ -1,9 +1,9 @@
 import Cookies from 'js-cookie';
 
 export const setSessionCookie = (session) => {
-    const expiration = session.Expires ? new Date(session.Expires) : null;
+    const expiration = session.expires != null ? new Date(session.expires) : null;
     const cookieValue = { ...session,  expires: expiration };
-    Cookies.set('session', JSON.stringify(cookieValue), { expires: 7 });
+    Cookies.set('session', JSON.stringify(cookieValue), { expires: 2 });
 }
 
 export const getSessionCookie = () => {

@@ -25,7 +25,6 @@ export default function SituacaoHabitacional({ paciente, loadPaciente, showLoadi
     });
 
     useEffect(() => {
-        console.log(paciente)
         if (!!paciente && paciente?.situacaoHabitacional != null) {
             setValue("moradia", paciente.situacaoHabitacional.moradia);
             setValue("transporte", paciente.situacaoHabitacional.transporte);
@@ -67,8 +66,16 @@ export default function SituacaoHabitacional({ paciente, loadPaciente, showLoadi
     }
 
     const onSubmit = async (data) => {
+        if(cep.length == 0 || cep.replace(/[./\-]/g, "").length < 8){
+            ShowMessage({
+                title: 'Error',
+                text: "Cep invalido!",
+                icon: 'error'
+            });
+            return;
+        }
         const json = {
-            id: paciente.situacaoHabitacional == null ? 0 : paciente.situacaoHabitacional.id,
+            id: paciente.situacaoHabitacional ? paciente.situacaoHabitacional.id : 0,
             bairro: data.bairro,
             cep: cep.replace(/[./\-]/g, ""),
             complemento: data.complemento,
@@ -80,51 +87,36 @@ export default function SituacaoHabitacional({ paciente, loadPaciente, showLoadi
             transporte: data.transporte,
             moradia: data.moradia,
             casa: data.casa
-        }
-        
-        if (!paciente.situacaoHabitacional) {
-            try {
-                showLoading(true);
-                let response = await api_POST("SituacaoHabitacional", json);
-                const { data } = response;
-                setPaciente(data);
-                ShowMessage({
-                    title: 'Sucesso',
-                    text: 'Sucesso na operação.',
-                    icon: 'success'
-                });
-            } catch (error) {
-                ShowMessage({
-                    title: 'Error',
-                    text: error?.message ?? "Erro na Operação",
-                    icon: 'error'
-                });
-                return;
-            } finally {
-                showLoading(false);
-            }
-        } else {
-            showLoading(true);
-            try {
-                let response = await api_PUT("SituacaoHabitacional", json);
+        };
+
+        showLoading(true);
+        try {
+            let response;
+            if (!paciente.situacaoHabitacional) {
+                response = await api_POST("SituacaoHabitacional", json);
+                const { data: responseData } = response;
+                setPaciente(responseData);
+            } else {
+                response = await api_PUT("SituacaoHabitacional", json);
                 loadPaciente(paciente.id);
-                ShowMessage({
-                    title: 'Sucesso',
-                    text: 'Sucesso na operação.',
-                    icon: 'success'
-                });
-            } catch (error) {
-                ShowMessage({
-                    title: 'Error',
-                    text: error?.message ?? "Erro na Operação",
-                    icon: 'error'
-                });
-                return;
-            } finally {
-                showLoading(false);
             }
+
+            ShowMessage({
+                title: 'Sucesso',
+                text: 'Sucesso na operação.',
+                icon: 'success'
+            });
+        } catch (error) {
+            ShowMessage({
+                title: 'Error',
+                text: error?.message ?? "Erro na Operação",
+                icon: 'error'
+            });
+        } finally {
+            showLoading(false);
         }
-    }
+    };
+
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>

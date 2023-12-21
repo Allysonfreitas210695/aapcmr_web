@@ -34,6 +34,7 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
 
     const [columns] = useState([
         { title: 'Diagnostico', field: 'diagnostico' },
+        { title: 'Hospital do Tratamento', field: 'hospitalTratamento' },
         { title: 'Ano do Diagnostico', field: 'anoDiagnostico' },
         { title: 'Status do Tratamento', field: 'statusTratamento' },
         { title: 'Medico', field: 'medico' },
@@ -83,7 +84,10 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
         setValue("medico", tratamentoPacientes.medico);
         setValue("tipoCirurgia", tratamentoPacientes.tipoCirurgia);
         setValue("anoDiagnostico", tratamentoPacientes.anoDiagnostico);
-        setStatusTratamento({value: tratamentoPacientes.statusTratamento, label: tratamentoPacientes.statusTratamento})
+        setValue("hospitalTratamento", tratamentoPacientes.hospitalTratamento);
+        setValue("observacao", tratamentoPacientes.observacao);
+        setValue("dataObservacao", tratamentoPacientes.dataObservacao);
+        setStatusTratamento({ value: tratamentoPacientes.statusTratamento, label: tratamentoPacientes.statusTratamento })
     }
 
     const [statusTratamento, setStatusTratamento] = useState({ value: "Em Andamento", label: 'Em Andamento' });
@@ -92,69 +96,59 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
     };
 
     const onSubmit = async (data) => {
+        if (data.observacao.length > 0 && !data.dataObservacao) {
+            ShowMessage({
+                title: 'Aviso',
+                text: 'Ao preencher o campo de observação, o campo de data de observação também deve ser preenchido.',
+                icon: 'warning'
+            });
+            return;
+        }
+
         const json = {
             id: tratamentoPaciente == null ? 0 : tratamentoPaciente.id,
             diagnostico: data.diagnostico,
             statusTratamento: statusTratamento.value,
             medico: data.medico,
             tipoCirurgia: data.tipoCirurgia,
+            hospitalTratamento: data.hospitalTratamento,
             anoDiagnostico: data.anoDiagnostico,
+            observacao: data.observacao,
+            dataObservacao: data.dataObservacao,
             pacienteId: paciente.id
-        }
+        };
 
-        if (!tratamentoPaciente) {
-            showLoading(true);
-            try {
-                let response = await api_POST("TratamentoPaciente", json);
-                const { data } = response;
-                loadPaciente(paciente.id);
-                ShowMessage({
-                    title: 'Sucesso',
-                    text: 'Sucesso na operação.',
-                    icon: 'success'
-                });
-            } catch (error) {
-                ShowMessage({
-                    title: 'Error',
-                    text: error?.message ?? "Erro na Operação",
-                    icon: 'error'
-                });
-                return;
-            } finally {
-                setValue("diagnostico", "");
-                setValue("medico", "");
-                setValue("tipoCirurgia", "");
-                setValue("anoDiagnostico", "");
-                setTratamentoPaciente(null);
-                showLoading(false);
+        showLoading(true);
+        try {
+            let response;
+            if (!tratamentoPaciente) {
+                response = await api_POST("TratamentoPaciente", json);
+            } else {
+                response = await api_PUT("TratamentoPaciente", json);
             }
-        } else {
-            showLoading(true);
-            try {
-                let response = await api_PUT("TratamentoPaciente", json);
-                loadPaciente(paciente.id);
-                ShowMessage({
-                    title: 'Sucesso',
-                    text: 'Sucesso na operação.',
-                    icon: 'success'
-                });
-            } catch (error) {
-                ShowMessage({
-                    title: 'Error',
-                    text: error?.message ?? "Erro na Operação",
-                    icon: 'error'
-                });
-                return;
-            } finally {
-                setValue("diagnostico", "");
-                setValue("medico", "");
-                setValue("tipoCirurgia", "");
-                setValue("anoDiagnostico", "");
-                setTratamentoPaciente(null);
-                showLoading(false);
-            }
+
+            loadPaciente(paciente.id);
+            ShowMessage({
+                title: 'Sucesso',
+                text: 'Sucesso na operação.',
+                icon: 'success'
+            });
+        } catch (error) {
+            ShowMessage({
+                title: 'Error',
+                text: error?.message ?? "Erro na Operação",
+                icon: 'error'
+            });
+        } finally {
+            // Limpar os valores dos campos e redefinir o estado
+            Object.keys(data).forEach(key => {
+                setValue(key, "");
+            });
+            setTratamentoPaciente(null);
+            showLoading(false);
         }
-    }
+    };
+
 
 
     // //Listas com as acoes definidas
@@ -162,11 +156,22 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <Row>
-                <Col sm={12} lg={6}>
+                <Col sm={12} lg={5}>
                     <ControlledInput
                         control={control}
                         name='diagnostico'
                         label={<><span className='text-danger'>*</span> Diagnóstico</>}
+                        type='text'
+                        rules={{
+                            required: true
+                        }}
+                    />
+                </Col>
+                <Col sm={12} lg={4}>
+                    <ControlledInput
+                        control={control}
+                        name='hospitalTratamento'
+                        label={<><span className='text-danger'>*</span> Hospital do Tratamento</>}
                         type='text'
                         rules={{
                             required: true
@@ -194,7 +199,7 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
                         }}
                     />
                 </Col>
-                <Col sm={12} lg={5}>
+                <Col sm={12} lg={3}>
                     <ControlledInput
                         control={control}
                         name='tipoCirurgia'
@@ -218,12 +223,34 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
                         }}
                     />
                 </Col>
-                <Col sm={12} lg={3} className='mt-2'>
-                    <br />
-                    <Button color={tratamentoPaciente ? "warning" : "success"}>
-                        {tratamentoPaciente ? <><HiPencilAlt /> Edit</> : <><FaPlus /> Adicionar</>}
-                    </Button>
+                <Col sm={12} lg={3}>
+                    <ControlledInput
+                        control={control}
+                        name='dataObservacao'
+                        label={"Data de Observação"}
+                        type='date'
+                        maxlenght={15}
+                        rules={{
+                            required: false
+                        }}
+                    />
                 </Col>
+                <Col sm={12} lg={12}>
+                    <ControlledInput
+                        control={control}
+                        name='observacao'
+                        label={"Observação"}
+                        type='textarea'
+                        rules={{
+                            required: false
+                        }}
+                    />
+                </Col>
+                <div className='d-flex justify-content-center align-items-center mb-2'>
+                    <Button color={tratamentoPaciente ? "warning" : "success"}>
+                        {tratamentoPaciente ? <><HiPencilAlt /> Edit</> : <><FaRegSave /> Salvar</>}
+                    </Button>
+                </div>
             </Row>
             <Col lg={12} md={12}>
                 <TableCustom

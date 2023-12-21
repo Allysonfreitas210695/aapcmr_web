@@ -34,10 +34,9 @@ const handleErrorResponse = (error) => {
 
 const handleSessionExpiration = (session) => {
     const now = new Date();
-    const expiration = new Date(session.expiredToken);
+    const expiration = new Date(session.expires);
     if (expiration < now) {
         deleteSessionCookie();
-        window.location.reload();
         return true;
     }
     return false;
@@ -46,9 +45,9 @@ const handleSessionExpiration = (session) => {
 const makeRequest = async (method, endpoint, obj = null, contentType = 'application/json', validate_auth = true) => {
     //pegando as informaçoes do cookie
     let session = getSessionCookie();
-
+    
     if (validate_auth && handleSessionExpiration(session)) {
-        return null;
+        window.location.href = "/auth/login";
     }
 
     //Configuração de header de envior

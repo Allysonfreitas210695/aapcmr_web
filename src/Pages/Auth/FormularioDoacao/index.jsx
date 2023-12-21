@@ -57,7 +57,7 @@ export default function FormularioDoacao() {
     }
 
     const onSubmit = async (data) => {
-        if(telefone?.length > 0 && telefone.replace(/[()\-.\s_]/g, '').length < 11) {
+        if(telefone?.length > 0 && telefone.replace(/[()\-.\s_]/g, '').length < 10) {
             ShowMessage({
                 title: 'Aviso',
                 text: "Númeno de telefone incorreto",
