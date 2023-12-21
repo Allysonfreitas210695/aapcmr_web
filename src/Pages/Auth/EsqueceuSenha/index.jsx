@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button, Col, FormGroup, Row } from 'reactstrap';
+import { Button, Col, FormGroup, Label, Row } from 'reactstrap';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from "react-icons/fa";
 
 //Components
 import Container from '../../../Components/Container/Index';
@@ -91,6 +92,15 @@ export default function EsqueceuSenha() {
                                         }}
                                     />
 
+                                </Col>
+                                <Col sm={"12"} lg={"12"}>
+                                    <FormGroup>
+                                        <Label>
+                                            <span className='text-primary' style={{cursor: "pointer"}} onClick={() => navigate("/auth/login")}>
+                                                Voltar <FaArrowLeft />
+                                            </span>
+                                        </Label>
+                                    </FormGroup>
                                 </Col>
                                 <Col Col className='text-center'>
                                     <FormGroup className='text-center'>

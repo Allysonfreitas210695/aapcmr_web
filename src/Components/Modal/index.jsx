@@ -18,7 +18,7 @@ export const ModalCustom = ({ children, title = "", isOpen = false, toggle, onSu
             toggle={toggle}
             {...args}
         >
-            <ModalHeader toggle={toggle} close={closeBtn} >
+            <ModalHeader toggle={toggle} close={closeBtn} style={{borderBottom: "none"}} className='m-0 p-2'>
                 {title}
             </ModalHeader>
             <ModalBody>

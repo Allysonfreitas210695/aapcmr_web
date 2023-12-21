@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, Col, FormGroup, Row } from 'reactstrap';
+import { Button, Col, FormGroup, Label, Row } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
 
 //Components
@@ -16,6 +16,7 @@ import { ShowMessage } from '../../../helpers/ShowMessage';
 
 //Service
 import { api_POST_Unauthorize } from '../../../Service/api';
+import { FaArrowLeft } from 'react-icons/fa';
 
 export default function CadastroAdm() {
     const { showLoading } = useAuth();
@@ -133,6 +134,15 @@ export default function CadastroAdm() {
                                             }
                                         }}
                                     />
+                                </Col>
+                                <Col sm={"12"} lg={"12"}>
+                                    <FormGroup>
+                                        <Label>
+                                            <span className='text-primary' style={{cursor: "pointer"}} onClick={() => navigate("/auth/login")}>
+                                                Voltar <FaArrowLeft />
+                                            </span>
+                                        </Label>
+                                    </FormGroup>
                                 </Col>
 
                                 <Col lg={"12"} sm={"12"} className='text-center'>
