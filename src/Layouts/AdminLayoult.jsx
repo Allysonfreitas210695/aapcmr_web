@@ -15,7 +15,7 @@ const AdminLayout = ({ adminRoutes }) => {
   return (
     <div style={{ display: 'flex' }}>
       <Sidebar
-        routesLink={adminRoutes}
+        routesLink={adminRoutes?.filter(x => x.sidebar == true) || []}
         toggleSidebar={toggleSidebar}
         collapsed={collapsed}
       />

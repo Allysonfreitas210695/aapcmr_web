@@ -12,9 +12,7 @@ export const getSessionCookie = () => {
         let _cookie = JSON.parse(cookie);
         return {
             id: _cookie.id,
-            email: _cookie.email,
             nome: _cookie.nome,
-            perfil: _cookie.perfil,
             token: _cookie.token,
             expires: _cookie.expires
         };

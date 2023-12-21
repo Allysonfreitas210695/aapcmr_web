@@ -24,6 +24,7 @@ import { useAuth } from '../../../../Context/useAuth';
 
 export default function DadosPrimario({ paciente, loadPaciente, showLoading, setPaciente }) {
     const { session } = useAuth();
+    
     const {
         handleSubmit,
         control,
@@ -31,8 +32,6 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
     } = useForm({
         mode: 'onBlur'
     });
-
-
 
     const options = [
         { value: 'Solteiro(a)', label: 'Solteiro(a)' },

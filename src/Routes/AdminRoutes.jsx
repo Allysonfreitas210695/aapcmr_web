@@ -13,6 +13,7 @@ import { FaUserFriends, FaUsersCog, FaFileContract, FaBookOpen, FaSearch } from 
 import { BiSolidDashboard } from "react-icons/bi";
 import { RiMoneyDollarBoxLine } from "react-icons/ri";
 import { FaCalendarAlt } from "react-icons/fa";
+import TrocaSenha from "../Pages/Admin/TrocaSenha";
 
 
 export const AdminRoutes = [
@@ -20,48 +21,63 @@ export const AdminRoutes = [
     path: "/admin/home",
     element: <Dashboard />,
     name: "Dashboard",
-    icon: BiSolidDashboard
+    icon: BiSolidDashboard,
+    sidebar: true
   },
   {
     path: "/admin/controlePaciente",
     element: <Paciente />,
     name: "Controle de Pacientes",
-    icon: FaUserFriends
+    icon: FaUserFriends,
+    sidebar: true
   },
   {
     path: "/admin/consultaPaciente",
     element: <ConsultaPaciente />,
     name: "Consulta Paciente",
-    icon: FaSearch
+    icon: FaSearch,
+    sidebar: true
   },
   {
     path: "/admin/usuarioAdm",
     element: <Usuarios />,
     name: "Controle de Usuários",
-    icon: FaUsersCog
+    icon: FaUsersCog,
+    sidebar: true
   },
   {
     path: "/admin/relatorio",
     element: <RelatorioPaciente />,
     name: "Relatório Mensal",
-    icon: FaFileContract
+    icon: FaFileContract,
+    sidebar: true
   },
   {
     path: "/admin/acaoApoio",
     element: <AcoesApoio />,
     name: "Cadastro Ações de Apoio",
-    icon: FaBookOpen
+    icon: FaBookOpen,
+    sidebar: true
   },
   {
     path: "/admin/acaoApoioSemanal",
     element: <AcaoSemanal />,
     name: "Ações de Apoio Semanais",
-    icon: FaCalendarAlt
+    icon: FaCalendarAlt,
+    sidebar: true
   },
   {
     path: "/admin/tiposGasto",
     element: <TiposGasto />,
     name: "Cadastro de Tipo de Gastos",
-    icon: RiMoneyDollarBoxLine
+    icon: RiMoneyDollarBoxLine,
+    sidebar: true
+  },
+  {
+    path: "/admin/trocaSenha",
+    element: <TrocaSenha />,
+    name: "Troca de Senha",
+    icon: RiMoneyDollarBoxLine,
+    sidebar: false
   },
 ];

@@ -3,6 +3,7 @@ import { FaRegArrowAltCircleDown, FaRegArrowAltCircleUp, FaUser } from 'react-ic
 import { UncontrolledPopover, PopoverBody } from 'reactstrap';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { IoIosLogOut } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
 
 //Contexto
 import { useAuth } from '../../Context/useAuth';
@@ -10,6 +11,8 @@ import { useAuth } from '../../Context/useAuth';
 export default function Header() {
     const [openPopover, setPopover] = useState(false);
     const { session, logout } = useAuth();
+    const navigate = useNavigate();
+
     return (
         <header
             style={{
@@ -35,7 +38,7 @@ export default function Header() {
                             <div
                                 className='d-flex align-items-center'
                                 style={{ cursor: 'pointer' }}
-                                onClick={() => console.log("aqui troca de senha")}
+                                onClick={() => navigate("/admin/trocaSenha")}
                             >
                                 <span style={{ marginRight: '8px' }}>Trocar senha</span>
                                 <RiLockPasswordLine />

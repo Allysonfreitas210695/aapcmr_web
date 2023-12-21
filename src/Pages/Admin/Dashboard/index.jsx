@@ -11,7 +11,7 @@ import { api_POST } from '../../../Service/api';
 import { ShowMessage } from '../../../helpers/ShowMessage';
 
 export default function Dashboard() {
-    const { showLoading, loding } = useAuth();
+    const { showLoading } = useAuth();
     const [listDasboard, setListDasboard] = useState([]);
 
     const loadDashboard = async () => {
