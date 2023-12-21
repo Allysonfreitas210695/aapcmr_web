@@ -11,14 +11,14 @@ import TableCustom from '../../../Components/TableCustom';
 import NovoPaciente from './components/NovoPaciente';
 
 //Service
-import { api_DELETE, api_GET } from '../../../Service/apiConfig';
+import { api_DELETE, api_GET } from '../../../Service/api';
 
-//ShowMessage
+//Helpers
 import { ShowConfirmation, ShowMessage } from '../../../helpers/ShowMessage';
+import { mascaraCPF } from '../../../helpers/ValidadacaoDocumentos';
 
 //Actions 
 import { EditeActionTable, RemoveActionTable } from '../../../Constants/ActionsTable';
-import { mascaraCPF } from '../../../helpers/ValidadacaoDocumentos';
 
 export default function Paciente() {
   const { showLoading, loding } = useAuth();

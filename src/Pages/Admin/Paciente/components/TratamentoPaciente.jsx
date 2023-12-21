@@ -7,16 +7,21 @@ import { FaPlus, FaRegSave } from 'react-icons/fa';
 
 //Component
 import ControlledInput from '../../../../Components/ControlledInput';
-import { api_DELETE, api_POST, api_PUT } from '../../../../Service/apiConfig';
-import { ShowConfirmation, ShowMessage } from '../../../../helpers/ShowMessage';
 import TableCustom from '../../../../Components/TableCustom';
-import { EditeActionTable, RemoveActionTable } from '../../../../Constants/ActionsTable';
 import SelectCustom from '../../../../Components/SelectCustom';
+
+//Services
+import { api_DELETE, api_POST, api_PUT } from '../../../../Service/api';
+
+//Helpers
+import { ShowConfirmation, ShowMessage } from '../../../../helpers/ShowMessage';
+
+//Constants
+import { EditeActionTable, RemoveActionTable } from '../../../../Constants/ActionsTable';
 
 export default function TratamentoPaciente({ paciente, loadPaciente, showLoading, setPaciente }) {
     const {
         handleSubmit,
-        formState: { errors },
         control,
         setValue
     } = useForm({

@@ -1,19 +1,28 @@
 import React, { useState } from 'react'
 import { Button, Col, Row } from 'reactstrap';
+import { FaFilter } from 'react-icons/fa6';
+import { useForm } from 'react-hook-form';
 
+//Context
 import { useAuth } from '../../../Context/useAuth';
+
+//Components
 import Loading from '../../../Components/Loading';
 import TableCustom from '../../../Components/TableCustom';
 import ControlledInput from '../../../Components/ControlledInput';
-import { useForm } from 'react-hook-form';
 import MaskedInput from '../../../Components/MaskedInput';
 import SelectCustom from '../../../Components/SelectCustom';
-import { FaFilter } from 'react-icons/fa6';
-import { ShowMessage } from '../../../helpers/ShowMessage';
-import { api_POST } from '../../../Service/apiConfig';
-import { mascaraCPF } from '../../../helpers/ValidadacaoDocumentos';
-import { SeachActionTable } from '../../../Constants/ActionsTable';
 import FichaPaciente from './components/FichaPaciente';
+
+//Helpers
+import { ShowMessage } from '../../../helpers/ShowMessage';
+import { mascaraCPF } from '../../../helpers/ValidadacaoDocumentos';
+
+//Service
+import { api_POST } from '../../../Service/api';
+
+//Constants
+import { SeachActionTable } from '../../../Constants/ActionsTable';
 
 export default function ConsultaPaciente() {
     const { showLoading, loding } = useAuth();

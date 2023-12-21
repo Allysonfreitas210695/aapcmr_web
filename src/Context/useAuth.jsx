@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import { deleteSessionCookie, getSessionCookie, setSessionCookie } from '../helpers/Cookie.js';
 
-import { api_POST_Unauthorize } from '../Service/apiConfig';
+import { api_POST_Unauthorize } from '../Service/api.js';
 
 // Definindo os tipos de ação para o reducer
 const actionTypes = {

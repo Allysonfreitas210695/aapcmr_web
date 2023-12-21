@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Button, Col, Row } from 'reactstrap';
 import { useForm } from 'react-hook-form';
 import { FaPlus } from "react-icons/fa6";
-import { HiPencilAlt } from "react-icons/hi";
 
 
 //Componente
@@ -12,7 +11,7 @@ import ControlledInput from '../../../Components/ControlledInput';
 import Loading from '../../../Components/Loading';
 
 //Service
-import { api_DELETE, api_GET, api_POST, api_PUT } from '../../../Service/apiConfig';
+import { api_DELETE, api_GET, api_POST, api_PUT } from '../../../Service/api';
 
 //Context
 import { useAuth } from '../../../Context/useAuth';

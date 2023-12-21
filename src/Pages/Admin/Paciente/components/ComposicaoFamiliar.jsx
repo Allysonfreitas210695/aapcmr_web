@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form';
-import { Button, Col, Row } from 'reactstrap'
-import { api_DELETE, api_POST, api_PUT } from '../../../../Service/apiConfig';
-import { ShowConfirmation, ShowMessage } from '../../../../helpers/ShowMessage';
-import { EditeActionTable, RemoveActionTable } from '../../../../Constants/ActionsTable';
-import ControlledInput from '../../../../Components/ControlledInput';
-import SelectCustom from '../../../../Components/SelectCustom';
 import { HiPencilAlt } from 'react-icons/hi';
 import { FaPlus } from 'react-icons/fa';
+import { Button, Col, Row } from 'reactstrap';
+import { useForm } from 'react-hook-form';
+
+//Service
+import { api_DELETE, api_POST, api_PUT } from '../../../../Service/api';
+
+//Helpers
+import { ShowConfirmation, ShowMessage } from '../../../../helpers/ShowMessage';
+
+//Constants
+import { EditeActionTable, RemoveActionTable } from '../../../../Constants/ActionsTable';
+
+//Components
+import ControlledInput from '../../../../Components/ControlledInput';
+import SelectCustom from '../../../../Components/SelectCustom';
 import TableCustom from '../../../../Components/TableCustom';
 
 export default function ComposicaoFamiliar({ paciente, loadPaciente, showLoading, setPaciente }) {
   const {
     handleSubmit,
-    formState: { errors },
     control,
     setValue
   } = useForm({

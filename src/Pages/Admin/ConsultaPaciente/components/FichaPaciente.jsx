@@ -5,15 +5,21 @@ import { FaArrowLeft } from 'react-icons/fa6'
 import { BsFileEarmarkPdfFill } from "react-icons/bs";
 import moment from 'moment';
 
-import { ShowMessage } from '../../../../helpers/ShowMessage';
-import { useAuth } from '../../../../Context/useAuth';
-import { api_GET } from '../../../../Service/apiConfig';
+//Helpers
 import { mascaraCPF } from '../../../../helpers/ValidadacaoDocumentos';
+import { ShowMessage } from '../../../../helpers/ShowMessage';
 
+//Context
+import { useAuth } from '../../../../Context/useAuth';
+
+//Service
+import { api_GET } from '../../../../Service/api';
+
+//CSS
 import "./Fichapaciente.css"
 
 export default function FichaPaciente({ id, handleVoltar }) {
-  const { showLoading, loding } = useAuth();
+  const { showLoading } = useAuth();
 
   const [paciente, setPaciente] = useState(null);
 

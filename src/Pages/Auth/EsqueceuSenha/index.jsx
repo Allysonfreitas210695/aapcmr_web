@@ -15,7 +15,7 @@ import { useAuth } from '../../../Context/useAuth';
 import { ShowMessage } from '../../../helpers/ShowMessage';
 
 //Service
-import { api_POST_Unauthorize } from '../../../Service/apiConfig';
+import { api_POST_Unauthorize } from '../../../Service/api';
 
 export default function EsqueceuSenha() {
     const { showLoading } = useAuth();

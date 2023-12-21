@@ -4,16 +4,20 @@ import { useForm } from 'react-hook-form';
 import { HiPencilAlt } from 'react-icons/hi';
 import { FaRegSave } from 'react-icons/fa';
 
+//Components
 import MaskedInput from '../../../../Components/MaskedInput';
 import ControlledInput from '../../../../Components/ControlledInput';
+
+//Helpers
 import { viacep } from '../../../../helpers/ViaCep';
 import { ShowMessage } from '../../../../helpers/ShowMessage';
-import { api_POST, api_PUT } from '../../../../Service/apiConfig';
+
+//Services
+import { api_POST, api_PUT } from '../../../../Service/api';
 
 export default function SituacaoHabitacional({ paciente, loadPaciente, showLoading, setPaciente }) {
     const {
         handleSubmit,
-        formState: { errors },
         control,
         setValue
     } = useForm({

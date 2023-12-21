@@ -11,15 +11,17 @@ import 'moment/locale/pt-br';
 //Helpers
 import { ShowConfirmation, ShowMessage } from '../../../helpers/ShowMessage';
 
-//ApicConfig
-import { api_DELETE, api_GET, api_POST, api_PUT } from '../../../Service/apiConfig';
+//Services
+import { api_DELETE, api_GET, api_POST, api_PUT } from '../../../Service/api';
+
+//Configuração do component do calendário
+import { defaultMessages } from './CalendarConfi';
 
 //Context
 import { useAuth } from '../../../Context/useAuth';
 
 //Components
 import SelectCustom from '../../../Components/SelectCustom';
-import { defaultMessages } from './CalendarConfi';
 import { ModalCustom } from '../../../Components/Modal';
 import ControlledInput from '../../../Components/ControlledInput';
 

@@ -5,17 +5,17 @@ import { FaArrowLeft } from "react-icons/fa";
 //Componentes
 import DadosPrimario from './DadosPrimario';
 import TratamentoPaciente from './TratamentoPaciente';
+import ComposicaoFamiliar from './ComposicaoFamiliar';
+import SituacaoHabitacional from './SituacaoHabitacional';
 
 //Context
 import { useAuth } from '../../../../Context/useAuth';
 
 //Service
-import { api_GET } from '../../../../Service/apiConfig';
+import { api_GET } from '../../../../Service/api';
 
 //Helpers
 import { ShowMessage } from '../../../../helpers/ShowMessage';
-import SituacaoHabitacional from './SituacaoHabitacional';
-import ComposicaoFamiliar from './ComposicaoFamiliar';
 
 export default function NovoPaciente({ id = null, handleVoltar }) {
     const { showLoading, loding } = useAuth();

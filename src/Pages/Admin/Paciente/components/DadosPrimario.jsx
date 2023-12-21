@@ -3,6 +3,7 @@ import { Row, Col, Button } from 'reactstrap';
 import { useForm } from 'react-hook-form';
 import { HiPencilAlt } from 'react-icons/hi';
 import { FaRegSave } from 'react-icons/fa';
+import moment from 'moment';
 
 
 //Components
@@ -12,21 +13,19 @@ import SelectCustom from '../../../../Components/SelectCustom';
 
 //Helpers
 import { ShowMessage } from '../../../../helpers/ShowMessage';
-import { validarCPF, validarRG } from '../../../../helpers/ValidadacaoDocumentos';
-import { viacep } from '../../../../helpers/ViaCep';
+import { validarCPF } from '../../../../helpers/ValidadacaoDocumentos';
+
 
 //Service
-import { api_POST, api_PUT } from '../../../../Service/apiConfig';
+import { api_POST, api_PUT } from '../../../../Service/api';
 
 //Context
 import { useAuth } from '../../../../Context/useAuth';
-import moment from 'moment';
 
 export default function DadosPrimario({ paciente, loadPaciente, showLoading, setPaciente }) {
     const { session } = useAuth();
     const {
         handleSubmit,
-        formState: { errors },
         control,
         setValue
     } = useForm({
