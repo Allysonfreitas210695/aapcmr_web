@@ -41,7 +41,6 @@ export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   useEffect(() => {
-    
     let session = getSessionCookie();
     if (session) {
       dispatch({ type: actionTypes.LOGIN, payload: session });
@@ -89,6 +88,7 @@ export const useAuth = () => {
   const logout = () => {
     deleteSessionCookie();
     dispatch({ type: actionTypes.LOGOUT });
+    window.location.href = "/auth/login"
   };
 
   return { session, logIn, logout, showLoading, loding };

@@ -7,7 +7,7 @@ export default function Content({ children }) {
                 width: "900px",
                 background: "#FFF",
             }}
-            className='shadow-lg p-3 bg-white rounded'
+            className={`shadow-lg p-3 bg-white rounded`}
         >
             {children}
         </div>

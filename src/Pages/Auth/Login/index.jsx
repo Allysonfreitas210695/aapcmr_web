@@ -19,7 +19,6 @@ export default function Login() {
 
     const {
         handleSubmit,
-        formState: { errors },
         control,
     } = useForm({
         mode: 'onBlur'

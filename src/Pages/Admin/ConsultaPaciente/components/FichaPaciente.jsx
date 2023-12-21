@@ -52,14 +52,15 @@ export default function FichaPaciente({ id, handleVoltar }) {
         title: 'Error',
         text: "Erro na Operação",
         icon: 'error'
-      }, () => { handleVoltar() });
+      });
+      return;
     }
-  }, [id]);
+  }, []);
 
   const handlePrint = useReactToPrint({
     content: () => ref.current,
+    documentTitle: "Relatório_paciente",
     copyStyles: true,
-    documentTitle: "Relatório_" + paciente?.nome
   });
 
   return (
@@ -183,7 +184,7 @@ export default function FichaPaciente({ id, handleVoltar }) {
                     <span className="fw-bold" >Diagnostico: </span> {value?.diagnostico ?? ""}
                   </Col>
                   <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Ano do Diagnostico: </span> {value?.anoDiagnostico ?? ""} Anos
+                    <span className="fw-bold" >Ano do Diagnostico: </span> {value?.anoDiagnostico ?? ""}
                   </Col>
                   <Col md="12" lg="4" className='mb-2'>
                     <span className="fw-bold" >Status do Tratamento: </span> {value?.statusTratamento ?? ""}

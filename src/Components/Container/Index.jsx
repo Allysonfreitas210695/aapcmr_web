@@ -5,14 +5,15 @@ export default function Container({ children }) {
         <div
             className='bg-primary'
             style={{
-                height: '100vh',
-                width: '100vw',
+                minHeight: '100vh', // Ajusta a altura mínima para ocupar pelo menos a altura da tela
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
             }}
         >
-            {children}
+            <div style={{ width: '100%', maxWidth: '900px' }}>
+                {children}
+            </div>
         </div>
     );
 }

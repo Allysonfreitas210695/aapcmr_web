@@ -4,6 +4,7 @@ import React from 'react';
 import Login from '../Pages/Auth/Login';
 import CadastroAdm from '../Pages/Auth/CadastroAdm';
 import EsqueceuSenha from '../Pages/Auth/EsqueceuSenha';
+import FormularioDoacao from '../Pages/Auth/FormularioDoacao';
 
 export const AuthRoutes = [
   {
@@ -17,5 +18,9 @@ export const AuthRoutes = [
   {
     path: "/auth/esqueceuSenha",
     element: <EsqueceuSenha />,
+  },
+  {
+    path: "/auth/formulario",
+    element: <FormularioDoacao />,
   }
 ];

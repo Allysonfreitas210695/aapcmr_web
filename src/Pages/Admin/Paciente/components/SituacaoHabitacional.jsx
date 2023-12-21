@@ -83,8 +83,8 @@ export default function SituacaoHabitacional({ paciente, loadPaciente, showLoadi
         }
         
         if (!paciente.situacaoHabitacional) {
-            showLoading(true);
             try {
+                showLoading(true);
                 let response = await api_POST("SituacaoHabitacional", json);
                 const { data } = response;
                 setPaciente(data);
@@ -163,7 +163,7 @@ export default function SituacaoHabitacional({ paciente, loadPaciente, showLoadi
                     />
                 </Col>
 
-                <Col sm={12} lg={3}>
+                <Col sm={12} lg={2}>
                     <MaskedInput
                         value={cep}
                         name={"Cep"}
@@ -174,34 +174,22 @@ export default function SituacaoHabitacional({ paciente, loadPaciente, showLoadi
                         onBlur={handleOnBlur}
                     />
                 </Col>
-                <Col sm={12} lg={5}>
-                    <ControlledInput
-                        control={control}
-                        name='complemento'
-                        label='Complemento'
-                        type='text'
-                        rules={{
-                            required: false
-                        }}
-                    />
-                </Col>
-
                 <Col sm={12} lg={4}>
                     <ControlledInput
                         control={control}
-                        name='logradouro'
-                        label={<><span className='text-danger'>*</span> Logradouro</>}
+                        name='bairro'
+                        label={<><span className='text-danger'>*</span> Bairro</>}
                         type='text'
                         rules={{
                             required: true
                         }}
                     />
                 </Col>
-                <Col sm={12} lg={3}>
+                <Col sm={12} lg={1}>
                     <ControlledInput
                         control={control}
-                        name='bairro'
-                        label={<><span className='text-danger'>*</span> Bairro</>}
+                        label={<><span className='text-danger'>*</span> UF</>}
+                        name='uf'
                         type='text'
                         rules={{
                             required: true
@@ -224,6 +212,29 @@ export default function SituacaoHabitacional({ paciente, loadPaciente, showLoadi
                         control={control}
                         label={<><span className='text-danger'>*</span> Cidade</>}
                         name='cidade'
+                        type='text'
+                        rules={{
+                            required: true
+                        }}
+                    />
+                </Col>
+                <Col sm={12} lg={6}>
+                    <ControlledInput
+                        control={control}
+                        name='complemento'
+                        label='Complemento'
+                        type='text'
+                        rules={{
+                            required: false
+                        }}
+                    />
+                </Col>
+
+                <Col sm={12} lg={6}>
+                    <ControlledInput
+                        control={control}
+                        name='logradouro'
+                        label={<><span className='text-danger'>*</span> Logradouro</>}
                         type='text'
                         rules={{
                             required: true

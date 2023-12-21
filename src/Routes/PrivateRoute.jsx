@@ -1,6 +1,5 @@
 // PrivateRoute.js
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/useAuth';
 
 
@@ -11,16 +10,16 @@ import AuthLayout from '../Layouts/AuthLayoult';
 //Routes
 import { AdminRoutes } from "../Routes/AdminRoutes"
 import { AuthRoutes } from "../Routes/AuthRoutes"
+import { useNavigate } from 'react-router-dom';
 
 export default function PrivateRoute() {
     const { session } = useAuth();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (session)
+    useEffect(()=> {
+        if(session){
             navigate("/admin/home");
-        else
-            navigate("/auth/login");
+        }
     }, [session]);
 
     return (

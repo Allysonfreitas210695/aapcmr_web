@@ -2,7 +2,7 @@ import React from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
 import { useController } from 'react-hook-form';
 
-export default function ControlledInput({ control, name, label, type, rules, maxlenght = 120 }) {
+export default function ControlledInput({ control, name, label, type, rules, maxlenght = 120, check = false }) {
     const {
         field: { ref, ...inputProps },
         fieldState: { invalid, error },
@@ -14,7 +14,7 @@ export default function ControlledInput({ control, name, label, type, rules, max
     });
 
     return (
-        <FormGroup>
+        <FormGroup check={check}>
             <Label for={name}>{label}</Label>
             <Input
                 {...inputProps}
