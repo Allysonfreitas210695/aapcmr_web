@@ -1,0 +1,8 @@
+.shandow-hover {
+    transition: box-shadow 0.3s ease;
+}
+
+.shandow-hover:hover {
+    box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.3) !important; 
+    transform: scale(1.05);
+}

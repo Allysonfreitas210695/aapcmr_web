@@ -28,6 +28,7 @@ export const localization = {
 };
 
 export const options = {
+    exportButton: true,
     headerStyle: {
         fontFamily: 'Montserrat, Helvetica Neue, Arial, sans-serif',
         fontWeight: '700',

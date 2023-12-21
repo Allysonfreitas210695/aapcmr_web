@@ -21,3 +21,11 @@ export const SeachActionTable = (callback) => {
         onClick: (event, rowData) => callback(rowData)
     }
 }
+
+export const AddActionTable = (callback) => {
+    return {
+        icon: 'add',
+        tooltip: 'Adicionar Registro',
+        onClick: (event, rowData) => callback(rowData)
+    }
+}

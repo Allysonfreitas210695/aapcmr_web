@@ -85,6 +85,9 @@ export default function FichaPaciente({ id, handleVoltar }) {
           <div className='mt-2 w-100 content'>
             <h5 className='d-flex align-items-center justify-content-between' style={{ borderBottom: "1px solid #ccc" }}>Dados do Paciente</h5>
             <Row className='px-1 py-2'>
+            <Col md="12" lg="12" className='mb-2'>
+                <span className="fw-bold" >Status: </span> {paciente?.status ? "Ativo" : "Inativo"}
+              </Col>
               <Col md="12" lg="4" className='mb-2'>
                 <span className="fw-bold" >Nome: </span> {paciente?.nome ?? ""}
               </Col>

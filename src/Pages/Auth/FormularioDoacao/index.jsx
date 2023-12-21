@@ -71,7 +71,7 @@ export default function FormularioDoacao() {
             telefone: telefone.replace(/[./\-]/g, ""),
             valorDoacao: data.valor,
             dataDoacao: data.dataDoacao,
-            tipoDeEnvioValor: data.mensageiro ? "Mensageiro" : "Deposito",
+            tipoDeEnvioValor: data.mensageiro ? "Mensageiro" : "Depósito",
             bairro: data.bairro,
             cep: cep.replace(/[./\-]/g, ""),
             complemento: data.complemento,
