@@ -123,7 +123,7 @@ export default function SituacaoHabitacional({ paciente, loadPaciente, showLoadi
             if (!paciente.situacaoHabitacional) {
                 response = await api_POST("SituacaoHabitacional", json);
                 const { data: responseData } = response;
-                setPaciente(responseData);
+                loadPaciente(paciente.id);
             } else {
                 response = await api_PUT("SituacaoHabitacional", json);
                 loadPaciente(paciente.id);

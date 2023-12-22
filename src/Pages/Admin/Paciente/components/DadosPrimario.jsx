@@ -75,7 +75,6 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
             setValue("numero", paciente.numero);
             setCpf(paciente.cpf);
             setCelular(paciente.celular ?? "");
-            console.log(paciente.telefoneFixo)
             setTelefone(paciente.telefoneFixo ?? "");
             setEstadoCivil({ value: paciente.statusCivil, label: paciente.statusCivil });
             setCestaBasica({ value: paciente.cestaBasica, label: paciente.cestaBasica ? "Sim" : "Não" });
@@ -188,7 +187,7 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
             if (paciente == null || !paciente?.id) {
                 let response = await api_POST("Paciente", json);
                 const { data } = response;
-                setPaciente(data);
+                loadPaciente(data.id);
             }
             else {
                 let response = await api_PUT("Paciente", json);

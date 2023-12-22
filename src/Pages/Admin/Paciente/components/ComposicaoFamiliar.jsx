@@ -88,7 +88,6 @@ export default function ComposicaoFamiliar({ paciente, loadPaciente, showLoading
       try {
         if (!familiar) {
           let response = await api_POST("ComposicaoFamiliar", json);
-          const { data } = response;
           loadPaciente(paciente.id);
         } else {
           let response = await api_PUT("ComposicaoFamiliar", json);
