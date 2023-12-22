@@ -238,14 +238,14 @@ export default function RelatorioMensal() {
         'Data': moment(item.data).format("DD/MM/YYYY"),
         'Entrada': item.entrada?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
         'Saida': item.saida?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
-        'Saldo Referente ao Dia': item.saldo?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+        'Saldo': item.saldo?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
       })),
       {
-        'Movimentação': 'Todas:',
+        'Movimentação': 'Total:',
         'Data': '',
         'Entrada': totalEntrada?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
         'Saida': totalSaida?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
-        'Saldo Referente ao Dia': TotalSaldo?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+        'Saldo': TotalSaldo?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
       },
     ];
 

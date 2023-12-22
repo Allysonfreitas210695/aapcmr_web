@@ -61,27 +61,23 @@ export default function ConsultaPaciente() {
         setCpf(value);
     };
 
-    const [cestaBasica, setCestaBasica] = useState({ value: false, label: 'Não' });
+    const [cestaBasica, setCestaBasica] = useState(null);
     const handleCestaBasicaChange = (selectedOption) => {
         setCestaBasica(selectedOption);
     };
 
-    const onSubmit = async (data) => {
-        if (!cpf || cpf.trim().length === 0) {
-            ShowMessage({
-                title: 'Aviso',
-                text: "Por favor, Informe o CPF do paciente.",
-                icon: 'warning'
-            });
-            return;
-        }
+    const [statusTratamento, setStatusTratamento] = useState(null);
+    const handleStatusTratamento = (selectedOption) => {
+        setStatusTratamento(selectedOption);
+    };
 
+    const onSubmit = async (data) => {
         const json = {
             nome: data.nome,
             dataNascimento: data.dataNascimento,
             cpf: cpf.replace(/[./\-]/g, ""),
-            susNumero: data.susNumero,
-            cestaBasica: cestaBasica.value
+            cestaBasica: cestaBasica == null ? null : cestaBasica.value,
+            statusTratamento: statusTratamento == null ? null : statusTratamento.value
         }
 
         try {
@@ -138,7 +134,7 @@ export default function ConsultaPaciente() {
             {!loding &&
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <Row>
-                        <Col sm={12} lg={5}>
+                        <Col sm={12} lg={6}>
                             <ControlledInput
                                 control={control}
                                 name='nome'
@@ -147,6 +143,16 @@ export default function ConsultaPaciente() {
                                 rules={{
                                     required: false
                                 }}
+                            />
+                        </Col>
+                        <Col sm={12} lg={3}>
+                            <MaskedInput
+                                value={cpf}
+                                name={"rg"}
+                                label={"CPF"}
+                                onChange={handleCpfChange}
+                                mask="999.999.999-99"
+                                placeholder="Digite seu CPF"
                             />
                         </Col>
                         <Col sm={12} lg={3}>
@@ -162,32 +168,20 @@ export default function ConsultaPaciente() {
                             />
                         </Col>
                         <Col sm={12} lg={3}>
-                            <MaskedInput
-                                value={cpf}
-                                name={"rg"}
-                                label={<><span className='text-danger'>*</span> CPF</>}
-                                onChange={handleCpfChange}
-                                mask="999.999.999-99"
-                                placeholder="Digite seu CPF"
-                            />
-                        </Col>
-                        <Col sm={12} lg={3}>
-                            <ControlledInput
+                            <SelectCustom
                                 control={control}
-                                name='susNumero'
-                                label='Número do SUS'
-                                type='number'
-                                maxlenght={15}
-                                rules={{
-                                    required: false
-                                }}
+                                name='statusTratamento'
+                                label='Status do Tratamento'
+                                value={statusTratamento}
+                                options={[{ value: "Finalizado", label: 'Finalizado' }, { value: "Em Andamento", label: 'Em Andamento' }]}
+                                onChange={handleStatusTratamento}
                             />
                         </Col>
                         <Col sm={12} lg={3}>
                             <SelectCustom
                                 control={control}
                                 name='cestaBasica'
-                                label='Recebe Cesta Básica?'
+                                label='Cesta Básica'
                                 value={cestaBasica}
                                 options={optionsStatusCestaBasica}
                                 onChange={handleCestaBasicaChange}

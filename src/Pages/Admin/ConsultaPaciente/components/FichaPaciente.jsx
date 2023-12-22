@@ -129,13 +129,13 @@ export default function FichaPaciente({ id, handleVoltar }) {
                   <span className="fw-bold" >Moradia: </span> {paciente?.situacaoHabitacional?.moradia ?? ""}
                 </Col>
                 <Col md="12" lg="4" className='mb-2'>
-                  <span className="fw-bold" >Transporte? </span> {paciente?.situacaoHabitacional?.transporte ? "Sim" : "Não"}
+                  <span className="fw-bold" >Transpor: </span> {paciente?.situacaoHabitacional?.transporte ? "Sim" : "Não"}
                 </Col>
                 <Col md="12" lg="4" className='mb-2'>
-                  <span className="fw-bold" >Água? </span> {paciente?.situacaoHabitacional?.agua ? "Sim" : "Não"}
+                  <span className="fw-bold" >Água: </span> {paciente?.situacaoHabitacional?.agua ? "Sim" : "Não"}
                 </Col>
                 <Col md="12" lg="4" className='mb-2'>
-                  <span className="fw-bold" >Luz? </span> {paciente?.situacaoHabitacional?.luz ? "Sim" : "Não"}
+                  <span className="fw-bold" >Luz: </span> {paciente?.situacaoHabitacional?.luz ? "Sim" : "Não"}
                 </Col>
                 <Col md="12" lg="4" className='mb-2'>
                   <span className="fw-bold" >Instalação Sanitária? </span> {paciente?.situacaoHabitacional?.instalacaoSanitaria ? "Sim" : "Não"}
@@ -217,10 +217,10 @@ export default function FichaPaciente({ id, handleVoltar }) {
                     <span className="fw-bold" >Tipo da Cirurgia: </span> {value?.tipoCirurgia ?? ""}
                   </Col>
                   <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Histórico Familiar de Câncer? </span> {value?.historicoFamiliaCancer ? "Sim" : "Não"}
+                    <span className="fw-bold" >Histórico Familiar de Câncer: </span> {value?.historicoFamiliaCancer ? "Sim" : "Não"}
                   </Col>
                   <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Uso de Álcool/Drogas? </span> {value?.usoEntorpecente ? "Sim" : "Não"}
+                    <span className="fw-bold" >Uso de Álcool/Drogas: </span> {value?.usoEntorpecente ? "Sim" : "Não"}
                   </Col>
                   <Col md="12" lg="4" className='mb-2'>
                     <span className="fw-bold" >Data da Observação: </span> {value?.dataObservacao != null  ? moment(value?.dataObservacao).format("DD/MM/YYYY") :  ""}

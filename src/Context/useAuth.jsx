@@ -73,7 +73,7 @@ export const useAuth = () => {
       showLoading(false);
 
       if (!response || !response.data)
-        throw new Error("Usuário ou senha inválidos.");
+        throw new Error("Email ou senha inválida.");
 
       const { data } = response;
       setSessionCookie(data);

@@ -61,7 +61,7 @@ export default function Login() {
                 <Row>
                     <Col sm={12} lg={12}>
                         <h5>Seja Bem-Vindo,</h5>
-                        <h6>Se você é um doador, por favor clique <span className='text-primary' style={{cursor: "pointer"}} onClick={() => navigate("/auth/formulario")}>aqui</span> para contribuir!</h6>
+                        <h6>Se você é um doador, por favor clique <span className='text-primary' style={{cursor: "pointer"}} onClick={() => navigate("/auth/formulario")}>aqui</span> para contribuir.</h6>
                     </Col>
                 </Row>
             </ModalCustom>
