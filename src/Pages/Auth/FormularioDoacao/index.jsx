@@ -53,6 +53,8 @@ export default function FormularioDoacao() {
                 icon: 'error'
             });
             return;
+        }finally {
+            showLoading(false);
         }
     }
 
