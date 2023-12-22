@@ -142,7 +142,7 @@ export default function Dashboard() {
                                         <span className="display-5 text-center">{listDasboard?.valorTotalMessageiro?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
                                     </div>
                                     <CardText className='fw-bold'>
-                                        Doações Por Messageiro
+                                        Doações Por Mensageiro
                                     </CardText>
                                 </CardBody>
                             </Card>

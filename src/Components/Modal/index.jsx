@@ -7,7 +7,7 @@ import { HiPencilAlt } from 'react-icons/hi';
 
 export const ModalCustom = ({ children, title = "", isOpen = false, toggle, onSubmit, edit, save, invisibleButtons = true, ...args }) => {
     const closeBtn = (
-        <Button className="close bg-secondary text-white border-none" style={{borderRadius: "100%"}} onClick={toggle} type="button">
+        <Button className="close bg-danger text-white border-none" style={{borderRadius: "100%"}} onClick={toggle} type="button">
             &times;
         </Button>
     );

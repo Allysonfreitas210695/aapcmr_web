@@ -1,5 +1,15 @@
 a:hover {
-    color: #FFF; /* Cor do texto no hover */
-    background-color: rgba(30, 24, 42, 0.2); /* Cor de fundo no hover */
-    border-radius: 20%;
-  }
+  color: #FFF;
+  /* Cor do texto no hover */
+  background: #2c3e50; /* Cor de fundo no hover */
+  color: #fff; /* Cor do texto (branco) no hover */
+  /* Cor de fundo no hover */
+  border-radius: 10%;
+}
+
+.active {
+  font-weight: 400;
+  background: #2c3e50; /* Cor de fundo no hover */
+  color: #fff; /* Cor do texto (branco) no hover */
+  border-radius: 10%;
+}

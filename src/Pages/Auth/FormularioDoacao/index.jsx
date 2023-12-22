@@ -162,7 +162,7 @@ export default function FormularioDoacao() {
                                         name={"telefone"}
                                         label={<><span className='text-danger'>*</span> Telefone</>}
                                         onChange={handleTelefoneChange}
-                                        mask="(99) 9999-99999"
+                                        mask="(99) 9999-9999"
                                     />
                                 </Col>
                                 <Col sm={12} lg={2}>
@@ -281,7 +281,7 @@ export default function FormularioDoacao() {
                                     <ControlledInput
                                         check={true}
                                         control={control}
-                                        label={"Deposito"}
+                                        label={"Depósito"}
                                         name='deposito'
                                         type='checkbox'
                                         rules={{

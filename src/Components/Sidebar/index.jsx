@@ -14,7 +14,7 @@ export default function Sidebar({ routesLink, toggleSidebar, collapsed }) {
                 transition: 'width 0.6s ease-in-out',
                 position: 'fixed',
                 zIndex: 999999,
-                background: "#3498db"
+                background: "#34495e"
             }}
         >
             <div style={{ position: 'absolute', top: '10px', right: '5px' }}>
