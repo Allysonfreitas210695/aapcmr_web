@@ -94,7 +94,7 @@ export default function Login() {
                                         <ControlledInput
                                             control={control}
                                             name='senha'
-                                            label='senha'
+                                            label='Senha'
                                             type='password'
                                             rules={{
                                                 required: true,
