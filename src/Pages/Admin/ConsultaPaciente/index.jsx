@@ -105,7 +105,7 @@ export default function ConsultaPaciente() {
             setValue("nome", "");
             setValue("dataNascimento", "");
             setValue("susNumero", "");
-            setCestaBasica({ value: false, label: 'Não' });
+            setCestaBasica(null);
             showLoading(false);
         }
     }

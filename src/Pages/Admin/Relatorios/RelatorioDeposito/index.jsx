@@ -138,7 +138,7 @@ export default function RelatorioDeposito() {
                                 <Col sm={12} lg={4}>
                                     <ControlledInput
                                         control={control}
-                                        name='dataIncial'
+                                        name='dataInicial'
                                         label='Data Inical'
                                         type='date'
                                         rules={{

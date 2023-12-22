@@ -182,7 +182,7 @@ export default function ComposicaoFamiliar({ paciente, loadPaciente, showLoading
           <SelectCustom
             control={control}
             name='vinculoFamiliar'
-            label='Vinculo Familiar'
+            label={<><span className='text-danger'>*</span> Vínculo Familiar</>}
             value={vinculosFamiliar}
             options={optionsVinculosFamiliar}
             onChange={handleVinculosFamiliar}

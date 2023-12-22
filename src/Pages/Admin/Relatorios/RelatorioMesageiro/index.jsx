@@ -101,7 +101,7 @@ export default function RelatorioMesageiro() {
         document.body.removeChild(link);
     };
 
-    const handleFiltroRelatorioMensal = async (data) => {
+    const handleFiltroRelatorioMesageiro = async (data) => {
         const { dataInicial, dataFinal } = data;
         showLoading(true);
         try {
@@ -130,12 +130,12 @@ export default function RelatorioMesageiro() {
                         </Button>
                     </div>
                     <div className='bg-white p-3 rounded shadow'>
-                        <form onSubmit={handleSubmit(handleFiltroRelatorioMensal)}>
+                        <form onSubmit={handleSubmit(handleFiltroRelatorioMesageiro)}>
                             <Row className='mb-3'>
                                 <Col sm={12} lg={4}>
                                     <ControlledInput
                                         control={control}
-                                        name='dataIncial'
+                                        name='dataInicial'
                                         label='Data Inical'
                                         type='date'
                                         rules={{
