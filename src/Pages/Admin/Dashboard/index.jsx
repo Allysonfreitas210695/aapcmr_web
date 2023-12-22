@@ -99,7 +99,7 @@ export default function Dashboard() {
                             </Col>
                             <Col sm={12} lg={4} className='mb-3'>
                                 <br />
-                                <Button color='primary' className='w-100 mt-2'>
+                                <Button color='primary' className=' mt-2'>
                                     <FaFilter />  Filtrar
                                 </Button>
                             </Col>

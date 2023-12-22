@@ -18,6 +18,7 @@ import { ShowConfirmation, ShowMessage } from '../../../../helpers/ShowMessage';
 
 //Constants
 import { EditeActionTable, RemoveActionTable } from '../../../../Constants/ActionsTable';
+import moment from 'moment';
 
 export default function TratamentoPaciente({ paciente, loadPaciente, showLoading, setPaciente }) {
     const {
@@ -81,7 +82,7 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
         setValue("anoDiagnostico", tratamentoPacientes.anoDiagnostico);
         setValue("hospitalTratamento", tratamentoPacientes.hospitalTratamento);
         setValue("observacao", tratamentoPacientes.observacao);
-        setValue("dataObservacao", tratamentoPacientes.dataObservacao);
+        setValue("dataObservacao", moment(tratamentoPacientes.dataObservacao).format("YYYY-MM-DD"));
         setHistoricoFamiliaCancer({value: tratamentoPacientes.historicoFamiliaCancer, label: tratamentoPacientes.historicoFamiliaCancer ? "Sim" : "Não"});
         setUsoEntorpecente({value: tratamentoPacientes.usoEntorpecente, label: tratamentoPacientes.usoEntorpecente ? "Sim" : "Não"})
         setStatusTratamento({ value: tratamentoPacientes.statusTratamento, label: tratamentoPacientes.statusTratamento })

@@ -1,19 +1,19 @@
 //Pages
 import AcoesApoio from "../Pages/Admin/AcoesApoio";
 import Paciente from "../Pages/Admin/Paciente";
-import RelatorioPaciente from "../Pages/Admin/RelatorioPaciente";
 import Usuarios from "../Pages/Admin/Usuarios";
 import TiposGasto from "../Pages/Admin/TiposGasto";
 import ConsultaPaciente from "../Pages/Admin/ConsultaPaciente";
 import Dashboard from "../Pages/Admin/Dashboard";
 import AcaoSemanal from "../Pages/Admin/AcaoSemanal";
+import TrocaSenha from "../Pages/Admin/TrocaSenha";
+import RelatorioMensal from "../Pages/Admin/RelatorioMensal";
 
 //Icons
 import { FaUserFriends, FaUsersCog, FaFileContract, FaBookOpen, FaSearch } from "react-icons/fa";
 import { BiSolidDashboard } from "react-icons/bi";
 import { RiMoneyDollarBoxLine } from "react-icons/ri";
 import { FaCalendarAlt } from "react-icons/fa";
-import TrocaSenha from "../Pages/Admin/TrocaSenha";
 
 
 export const AdminRoutes = [
@@ -46,8 +46,15 @@ export const AdminRoutes = [
     sidebar: true
   },
   {
+    path: "/admin/tiposGasto",
+    element: <TiposGasto />,
+    name: "Cadastro de Tipo de Gastos",
+    icon: RiMoneyDollarBoxLine,
+    sidebar: true
+  },
+  {
     path: "/admin/relatorio",
-    element: <RelatorioPaciente />,
+    element: <RelatorioMensal />,
     name: "Relatório Mensal",
     icon: FaFileContract,
     sidebar: true
@@ -64,13 +71,6 @@ export const AdminRoutes = [
     element: <AcaoSemanal />,
     name: "Ações de Apoio Semanais",
     icon: FaCalendarAlt,
-    sidebar: true
-  },
-  {
-    path: "/admin/tiposGasto",
-    element: <TiposGasto />,
-    name: "Cadastro de Tipo de Gastos",
-    icon: RiMoneyDollarBoxLine,
     sidebar: true
   },
   {

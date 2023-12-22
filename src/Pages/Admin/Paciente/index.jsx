@@ -34,7 +34,7 @@ export default function Paciente() {
 
   const [columns] = useState([
     { title: 'Nome', field: 'nome' },
-    { title: 'Celular', field: 'celular', render: (rowDate) => <>{mascaraTelefone(rowDate.cpf)}</> },
+    { title: 'Celular', field: 'celular', render: (rowDate) => <>{mascaraTelefone(rowDate.celular)}</> },
     { title: 'Endereço', field: 'endereco' },
     { title: 'Naturalidade', field: 'naturalidade' },
     { title: 'DataNascimento', field: 'dataNascimento' },

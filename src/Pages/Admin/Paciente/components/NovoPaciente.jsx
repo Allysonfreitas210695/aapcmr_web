@@ -64,21 +64,21 @@ export default function NovoPaciente({ id = null, handleVoltar }) {
                     setPaciente={setPaciente}
                 />
             case 3:
-                return <TratamentoPaciente
-                    paciente={paciente}
-                    loadPaciente={loadPaciente}
-                    showLoading={showLoading}
-                    setPaciente={setPaciente}
-                />
-            case 4:
                 return <SituacaoHabitacional
                     paciente={paciente}
                     loadPaciente={loadPaciente}
                     showLoading={showLoading}
                     setPaciente={setPaciente}
                 />
-            case 5:
+            case 4:
                 return <ComposicaoFamiliar
+                    paciente={paciente}
+                    loadPaciente={loadPaciente}
+                    showLoading={showLoading}
+                    setPaciente={setPaciente}
+                />
+            case 5:
+                return <TratamentoPaciente
                     paciente={paciente}
                     loadPaciente={loadPaciente}
                     showLoading={showLoading}

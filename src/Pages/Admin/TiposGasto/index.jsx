@@ -35,13 +35,13 @@ export default function TiposGasto() {
     const [listTiposGasto, setListTiposGasto] = useState([]);
 
     //State para pegar ID do paciente
-    const [movimentacaoGastoId, setMovimentacaoGastoId] = useState(null);
+    const [loadTipoGastoId, setloadTipoGastoId] = useState(null);
 
     //State para controlar modal
     const [isOpenModal, setIsOpenModal] = useState(false);
 
     const togglemodal = () => {
-        setMovimentacaoGastoId(null);
+        setloadTipoGastoId(null);
         setValue("descricao", "");
         setIsOpenModal(!isOpenModal)
     };
@@ -49,7 +49,7 @@ export default function TiposGasto() {
     const loadTiposGasto = async () => {
         showLoading(true);
         try {
-            let response = await api_GET("MovimentacaoGasto");
+            let response = await api_GET("TipoGasto");
             const { data } = response;
             setListTiposGasto(data);
         } catch (error) {
@@ -69,18 +69,18 @@ export default function TiposGasto() {
         loadTiposGasto();
     }, []);
 
-    const handleEditMovimentacaoGasto = (rowData) => {
-        setMovimentacaoGastoId(rowData.id);
+    const handleEditloadTipoGasto = (rowData) => {
+        setloadTipoGastoId(rowData.id);
         setValue("descricao", rowData.descricao);
         setIsOpenModal(true);
     }
 
-    const handleRemoveMovimentacaoGasto = async (rowData) => {
+    const handleRemoveloadTipoGasto = async (rowData) => {
         const resposta = await ShowConfirmation({ title: "", text: "Você tem certeza que quer deletar essa ação de apoio?" });
         if (resposta) {
             try {
                 showLoading(true);
-                let response = await api_DELETE(`MovimentacaoGasto/${rowData.id}`);
+                let response = await api_DELETE(`TipoGasto/${rowData.id}`);
                 const { data } = response;
 
                 showLoading(false);
@@ -104,7 +104,7 @@ export default function TiposGasto() {
     }
 
     // //Listas com as acoes definidas
-    const _actions = [EditeActionTable(handleEditMovimentacaoGasto), RemoveActionTable(handleRemoveMovimentacaoGasto)];
+    const _actions = [EditeActionTable(handleEditloadTipoGasto), RemoveActionTable(handleRemoveloadTipoGasto)];
 
     const onSubmit = async () => {
         const { descricao } = getValues();
@@ -117,12 +117,12 @@ export default function TiposGasto() {
             return;
         }
 
-        let id = movimentacaoGastoId;
+        let id = loadTipoGastoId;
 
         try {
             if (id) {
                 showLoading(true);
-                await api_PUT("MovimentacaoGasto", { id, descricao });
+                await api_PUT("TipoGasto", { id, descricao });
                 ShowMessage({
                     title: 'Sucesso',
                     text: 'Sucesso na operação.',
@@ -130,7 +130,7 @@ export default function TiposGasto() {
                 });
             } else{
                 showLoading(true);
-                await api_POST("MovimentacaoGasto", { descricao });
+                await api_POST("TipoGasto", { descricao });
                 ShowMessage({
                     title: 'Sucesso',
                     text: 'Sucesso na operação.',
@@ -145,7 +145,7 @@ export default function TiposGasto() {
             });
         } finally {
             showLoading(false);
-            setMovimentacaoGastoId(null);
+            setloadTipoGastoId(null);
             setIsOpenModal(false);
             setValue("descricao", "");
             loadTiposGasto();
@@ -162,7 +162,7 @@ export default function TiposGasto() {
                         toggle={togglemodal}
                         onSubmit={onSubmit}
                         size={"lg"}
-                        edit={movimentacaoGastoId}
+                        edit={loadTipoGastoId}
                         title='Cadastro de Tipo de Gastos'
                     >
                         <Row>
