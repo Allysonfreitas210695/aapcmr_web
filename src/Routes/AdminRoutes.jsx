@@ -7,13 +7,20 @@ import ConsultaPaciente from "../Pages/Admin/ConsultaPaciente";
 import Dashboard from "../Pages/Admin/Dashboard";
 import AcaoSemanal from "../Pages/Admin/AcaoSemanal";
 import TrocaSenha from "../Pages/Admin/TrocaSenha";
-import RelatorioMensal from "../Pages/Admin/RelatorioMensal";
+
+//Relatorio
+
+import Relatorios from "../Pages/Admin/Relatorios/Relatorios";
 
 //Icons
 import { FaUserFriends, FaUsersCog, FaFileContract, FaBookOpen, FaSearch } from "react-icons/fa";
 import { BiSolidDashboard } from "react-icons/bi";
 import { RiMoneyDollarBoxLine } from "react-icons/ri";
 import { FaCalendarAlt } from "react-icons/fa";
+import RelatorioDeposito from "../Pages/Admin/Relatorios/RelatorioDeposito";
+import RelatorioMovimentacao from "../Pages/Admin/Relatorios/RelatorioMovimentacao";
+import RelatorioDoacao from "../Pages/Admin/Relatorios/RelatorioDoacao";
+import RelatorioMesageiro from "../Pages/Admin/Relatorios/RelatorioMesageiro";
 
 
 export const AdminRoutes = [
@@ -54,7 +61,7 @@ export const AdminRoutes = [
   },
   {
     path: "/admin/relatorio",
-    element: <RelatorioMensal />,
+    element: <Relatorios />,
     name: "Relatório Mensal",
     icon: FaFileContract,
     sidebar: true
@@ -77,7 +84,36 @@ export const AdminRoutes = [
     path: "/admin/trocaSenha",
     element: <TrocaSenha />,
     name: "Troca de Senha",
-    icon: RiMoneyDollarBoxLine,
     sidebar: false
+  },
+
+  // Relatórios
+  {
+    path: "/admin/relatorio/movimentacoes",
+    element: <RelatorioMovimentacao/>,
+    name: "Relatório de Movimentações",
+    sidebar: false,
+    relatorio: true
+  },
+  {
+    path: "/admin/relatorio/doacaoDeposito",
+    element: <RelatorioDeposito />,
+    name: "Relatório de Doação por Depósito",
+    sidebar: false,
+    relatorio: true
+  },
+  {
+    path: "/admin/relatorio/doacoes",
+    element: <RelatorioDoacao />,
+    name: "Relatório de Doação",
+    sidebar: false,
+    relatorio: true
+  },
+  {
+    path: "/admin/relatorio/doacaoMesageiro",
+    element: <RelatorioMesageiro />,
+    name: "Relatório de Doação por Mesageiro",
+    sidebar: false,
+    relatorio: true
   },
 ];
