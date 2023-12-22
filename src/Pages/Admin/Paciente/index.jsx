@@ -36,7 +36,6 @@ export default function Paciente() {
     { title: 'Nome', field: 'nome' },
     { title: 'Celular', field: 'celular', render: (rowDate) => <>{mascaraTelefone(rowDate.cpf)}</> },
     { title: 'Endereço', field: 'endereco' },
-    { title: 'Estado Civil', field: 'statusCivil' },
     { title: 'Naturalidade', field: 'naturalidade' },
     { title: 'DataNascimento', field: 'dataNascimento' },
     { title: 'CPF', field: 'cpf', render: (rowDate) => <>{mascaraCPF(rowDate.cpf)}</> },

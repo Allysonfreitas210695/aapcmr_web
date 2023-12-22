@@ -34,7 +34,7 @@ export const AdminRoutes = [
   {
     path: "/admin/consultaPaciente",
     element: <ConsultaPaciente />,
-    name: "Consulta Paciente",
+    name: "Histórico do Paciente",
     icon: FaSearch,
     sidebar: true
   },

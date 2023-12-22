@@ -6,14 +6,15 @@ export default function Sidebar({ routesLink, toggleSidebar, collapsed }) {
 
     return (
         <aside
-            className={`bg-primary text-light ${collapsed ? 'collapsed' : ''}`}
+            className={`text-light ${collapsed ? 'collapsed' : ''}`}
             style={{
                 flex: '0 0 auto',
                 width: collapsed ? '50px' : '260px',
                 height: '100vh',
                 transition: 'width 0.6s ease-in-out',
                 position: 'fixed',
-                zIndex: 999999
+                zIndex: 999999,
+                background: "#3498db"
             }}
         >
             <div style={{ position: 'absolute', top: '10px', right: '5px' }}>

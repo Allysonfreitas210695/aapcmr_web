@@ -216,7 +216,7 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <Row>
-                <Col sm={12} lg={5}>
+                <Col sm={12} lg={6}>
                     <ControlledInput
                         control={control}
                         name='nome'
@@ -227,7 +227,7 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
                         }}
                     />
                 </Col>
-                <Col sm={12} lg={2}>
+                <Col sm={12} lg={3}>
                     <MaskedInput
                         value={cpf}
                         name={"cpf"}
@@ -257,7 +257,7 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
                         onChange={handleStatusChange}
                     />
                 </Col>
-                <Col sm={12} lg={3}>
+                <Col sm={12} lg={4}>
                     <ControlledInput
                         control={control}
                         name='naturalidade'

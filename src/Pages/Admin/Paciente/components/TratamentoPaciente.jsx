@@ -41,11 +41,6 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
         { title: 'Tipo da Cirurgia', field: 'tipoCirurgia' },
     ]);
 
-    const optionsStatusTratamento = [
-        { value: "Finalizado", label: 'Finalizado' },
-        { value: "Em Andamento", label: 'Em Andamento' }
-    ];
-
     useEffect(() => {
         setListTramentosPaciente(paciente?.tratamentoPacientes ?? [])
     }, [paciente]);
@@ -87,12 +82,24 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
         setValue("hospitalTratamento", tratamentoPacientes.hospitalTratamento);
         setValue("observacao", tratamentoPacientes.observacao);
         setValue("dataObservacao", tratamentoPacientes.dataObservacao);
+        setHistoricoFamiliaCancer({value: tratamentoPacientes.historicoFamiliaCancer, label: tratamentoPacientes.historicoFamiliaCancer ? "Sim" : "Não"});
+        setUsoEntorpecente({value: tratamentoPacientes.usoEntorpecente, label: tratamentoPacientes.usoEntorpecente ? "Sim" : "Não"})
         setStatusTratamento({ value: tratamentoPacientes.statusTratamento, label: tratamentoPacientes.statusTratamento })
     }
 
     const [statusTratamento, setStatusTratamento] = useState({ value: "Em Andamento", label: 'Em Andamento' });
     const handleStatusTratamento = (selectedOption) => {
         setStatusTratamento(selectedOption);
+    };
+
+    const [historicoFamiliaCancer, setHistoricoFamiliaCancer] = useState({ value: false, label: 'Não' });
+    const handleHistoricoFamiliaCancer = (selectedOption) => {
+        setHistoricoFamiliaCancer(selectedOption);
+    };
+
+    const [usoEntorpecente, setUsoEntorpecente] = useState({ value: false, label: 'Não' });
+    const handleUsoEntorpecente = (selectedOption) => {
+        setUsoEntorpecente(selectedOption);
     };
 
     const onSubmit = async (data) => {
@@ -115,6 +122,8 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
             anoDiagnostico: data.anoDiagnostico,
             observacao: data.observacao,
             dataObservacao: data.dataObservacao,
+            usoEntorpecente: usoEntorpecente.value,
+            historicoFamiliaCancer: historicoFamiliaCancer.value,
             pacienteId: paciente.id
         };
 
@@ -149,8 +158,6 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
         }
     };
 
-
-
     // //Listas com as acoes definidas
     const _actions = [EditeActionTable(handleEditTramentoPaciente), RemoveActionTable(handleRemoveTramentoPaciente)];
     return (
@@ -184,11 +191,11 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
                         name='statusTratamento'
                         label='Status do Tratamento'
                         value={statusTratamento}
-                        options={optionsStatusTratamento}
+                        options={[{ value: "Finalizado", label: 'Finalizado' },{ value: "Em Andamento", label: 'Em Andamento' }]}
                         onChange={handleStatusTratamento}
                     />
                 </Col>
-                <Col sm={12} lg={3}>
+                <Col sm={12} lg={5}>
                     <ControlledInput
                         control={control}
                         name='medico'
@@ -199,7 +206,7 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
                         }}
                     />
                 </Col>
-                <Col sm={12} lg={3}>
+                <Col sm={12} lg={4}>
                     <ControlledInput
                         control={control}
                         name='tipoCirurgia'
@@ -223,7 +230,27 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
                         }}
                     />
                 </Col>
-                <Col sm={12} lg={3}>
+                <Col sm={12} lg={4}>
+                    <SelectCustom
+                        control={control}
+                        name='historicoFamiliaCancer'
+                        label='Histórico Familiar de Câncer?'
+                        value={historicoFamiliaCancer}
+                        options={[{ value: true, label: 'Sim' }, { value: false, label: "Não"}]}
+                        onChange={handleHistoricoFamiliaCancer}
+                    />
+                </Col>
+                <Col sm={12} lg={4}>
+                    <SelectCustom
+                        control={control}
+                        name='usoEntorpecente'
+                        label='Uso de Álcool/Drogas'
+                        value={usoEntorpecente}
+                        options={[{ value: true, label: 'Sim' }, { value: false, label: "Não"}]}
+                        onChange={handleUsoEntorpecente}
+                    />
+                </Col>
+                <Col sm={12} lg={4}>
                     <ControlledInput
                         control={control}
                         name='dataObservacao'

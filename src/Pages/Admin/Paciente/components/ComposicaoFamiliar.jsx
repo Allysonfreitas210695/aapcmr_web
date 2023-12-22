@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { HiPencilAlt } from 'react-icons/hi';
-import { FaPlus } from 'react-icons/fa';
+import { FaPlus, FaRegSave } from 'react-icons/fa';
 import { Button, Col, Row } from 'reactstrap';
 import { useForm } from 'react-hook-form';
 
@@ -205,7 +205,7 @@ export default function ComposicaoFamiliar({ paciente, loadPaciente, showLoading
         <Col sm={12} lg={3} className='mt-2'>
           <br />
           <Button color={familiar ? "warning" : "success"}>
-            {familiar ? <><HiPencilAlt /> Edit</> : <><FaPlus /> Adicionar</>}
+            {familiar ? <><HiPencilAlt /> Edit</> : <><FaRegSave /> Salvar</>}
           </Button>
         </Col>
       </Row>

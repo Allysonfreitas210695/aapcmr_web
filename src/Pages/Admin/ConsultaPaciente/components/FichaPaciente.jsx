@@ -6,7 +6,7 @@ import { BsFileEarmarkPdfFill } from "react-icons/bs";
 import moment from 'moment';
 
 //Helpers
-import { mascaraCPF } from '../../../../helpers/ValidadacaoDocumentos';
+import { mascaraCPF, mascaraTelefone } from '../../../../helpers/ValidadacaoDocumentos';
 import { ShowMessage } from '../../../../helpers/ShowMessage';
 
 //Context
@@ -85,7 +85,7 @@ export default function FichaPaciente({ id, handleVoltar }) {
           <div className='mt-2 w-100 content'>
             <h5 className='d-flex align-items-center justify-content-between' style={{ borderBottom: "1px solid #ccc" }}>Dados do Paciente</h5>
             <Row className='px-1 py-2'>
-            <Col md="12" lg="12" className='mb-2'>
+              <Col md="12" lg="12" className='mb-2'>
                 <span className="fw-bold" >Status: </span> {paciente?.status ? "Ativo" : "Inativo"}
               </Col>
               <Col md="12" lg="4" className='mb-2'>
@@ -106,8 +106,14 @@ export default function FichaPaciente({ id, handleVoltar }) {
               <Col md="12" lg="4" className='mb-2'>
                 <span className="fw-bold" >Recebe Cesta Básica? </span> {paciente?.cestaBasica ? "Sim" : "Não"}
               </Col>
-              <Col md="12" lg="6" className='mb-2'>
-                <span className="fw-bold" >Número SUS: </span> {(paciente?.susNumero != '') ? paciente?.susNumero : "Não Informado"}
+              <Col md="12" lg="4" className='mb-2'>
+                <span className="fw-bold" >Número SUS: </span> {!!paciente?.susNumero ? paciente?.susNumero : "Não Informado"}
+              </Col>
+              <Col md="12" lg="4" className='mb-2'>
+                <span className="fw-bold" >Celular: </span> {!!paciente?.celular ? mascaraTelefone(paciente?.celular) : "Não Informado"}
+              </Col>
+              <Col md="12" lg="4" className='mb-2'>
+                <span className="fw-bold" >Telefone Fixo: </span> {!!paciente?.telefoneFixo ? mascaraTelefone(paciente?.telefoneFixo) : "Não Informado"}
               </Col>
             </Row>
           </div>
@@ -115,38 +121,47 @@ export default function FichaPaciente({ id, handleVoltar }) {
           <div className='mt-2 w-100 content'>
             <h5 className='d-flex align-items-center justify-content-between' style={{ borderBottom: "1px solid #ccc" }}>Situação habitacional</h5>
             {paciente?.situacaoHabitacional != null &&
-                <Row className='px-1 py-2'>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Casa: </span> {paciente?.situacaoHabitacional?.casa ?? ""}
-                  </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Moradia: </span> {paciente?.situacaoHabitacional?.moradia ?? ""}
-                  </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Transporte: </span> {paciente?.situacaoHabitacional?.transporte ?? ""}
-                  </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >CEP: </span> {paciente?.situacaoHabitacional?.cep?.replace(/^(\d{5})(\d)/, '$1-$2') ?? ""}
-                  </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Bairro: </span> {paciente?.situacaoHabitacional?.bairro ?? ""}
-                  </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Numero: </span> {paciente?.situacaoHabitacional?.numero ?? ""}
-                  </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Complemento: </span> {paciente?.situacaoHabitacional?.complemento ?? ""}
-                  </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Cidade: </span> {paciente?.situacaoHabitacional?.cidade ?? ""}
-                  </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Logradouro: </span> {paciente?.situacaoHabitacional?.logradouro ?? ""}
-                  </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >UF: </span> {paciente?.situacaoHabitacional?.uf ?? ""}
-                  </Col>
-                </Row>
+              <Row className='px-1 py-2'>
+                <Col md="12" lg="4" className='mb-2'>
+                  <span className="fw-bold" >Casa: </span> {paciente?.situacaoHabitacional?.casa ?? ""}
+                </Col>
+                <Col md="12" lg="4" className='mb-2'>
+                  <span className="fw-bold" >Moradia: </span> {paciente?.situacaoHabitacional?.moradia ?? ""}
+                </Col>
+                <Col md="12" lg="4" className='mb-2'>
+                  <span className="fw-bold" >Transporte? </span> {paciente?.situacaoHabitacional?.transporte ? "Sim" : "Não"}
+                </Col>
+                <Col md="12" lg="4" className='mb-2'>
+                  <span className="fw-bold" >Água? </span> {paciente?.situacaoHabitacional?.agua ? "Sim" : "Não"}
+                </Col>
+                <Col md="12" lg="4" className='mb-2'>
+                  <span className="fw-bold" >Luz? </span> {paciente?.situacaoHabitacional?.luz ? "Sim" : "Não"}
+                </Col>
+                <Col md="12" lg="4" className='mb-2'>
+                  <span className="fw-bold" >Instalação Sanitária? </span> {paciente?.situacaoHabitacional?.instalacaoSanitaria ? "Sim" : "Não"}
+                </Col>
+                <Col md="12" lg="4" className='mb-2'>
+                  <span className="fw-bold" >CEP: </span> {paciente?.situacaoHabitacional?.cep?.replace(/^(\d{5})(\d)/, '$1-$2') ?? ""}
+                </Col>
+                <Col md="12" lg="4" className='mb-2'>
+                  <span className="fw-bold" >Bairro: </span> {paciente?.situacaoHabitacional?.bairro ?? ""}
+                </Col>
+                <Col md="12" lg="4" className='mb-2'>
+                  <span className="fw-bold" >UF: </span> {paciente?.situacaoHabitacional?.uf ?? ""}
+                </Col>
+                <Col md="12" lg="4" className='mb-2'>
+                  <span className="fw-bold" >Numero: </span> {paciente?.situacaoHabitacional?.numero ?? ""}
+                </Col>
+                <Col md="12" lg="4" className='mb-2'>
+                  <span className="fw-bold" >Complemento: </span> {paciente?.situacaoHabitacional?.complemento ?? ""}
+                </Col>
+                <Col md="12" lg="4" className='mb-2'>
+                  <span className="fw-bold" >Cidade: </span> {paciente?.situacaoHabitacional?.cidade ?? ""}
+                </Col>
+                <Col md="12" lg="4" className='mb-2'>
+                  <span className="fw-bold" >Logradouro: </span> {paciente?.situacaoHabitacional?.logradouro ?? ""}
+                </Col>
+              </Row>
             }
           </div>
 
@@ -187,6 +202,9 @@ export default function FichaPaciente({ id, handleVoltar }) {
                     <span className="fw-bold" >Diagnostico: </span> {value?.diagnostico ?? ""}
                   </Col>
                   <Col md="12" lg="4" className='mb-2'>
+                    <span className="fw-bold" >Hospital do Tratamento: </span> {value?.hospitalTratamento ?? ""}
+                  </Col>
+                  <Col md="12" lg="4" className='mb-2'>
                     <span className="fw-bold" >Ano do Diagnostico: </span> {value?.anoDiagnostico ?? ""}
                   </Col>
                   <Col md="12" lg="4" className='mb-2'>
@@ -197,6 +215,18 @@ export default function FichaPaciente({ id, handleVoltar }) {
                   </Col>
                   <Col md="12" lg="4" className='mb-2'>
                     <span className="fw-bold" >Tipo da Cirurgia: </span> {value?.tipoCirurgia ?? ""}
+                  </Col>
+                  <Col md="12" lg="4" className='mb-2'>
+                    <span className="fw-bold" >Histórico Familiar de Câncer? </span> {value?.historicoFamiliaCancer ? "Sim" : "Não"}
+                  </Col>
+                  <Col md="12" lg="4" className='mb-2'>
+                    <span className="fw-bold" >Uso de Álcool/Drogas? </span> {value?.usoEntorpecente ? "Sim" : "Não"}
+                  </Col>
+                  <Col md="12" lg="4" className='mb-2'>
+                    <span className="fw-bold" >Data da Observação: </span> {value?.dataObservacao != null  ? moment(value?.dataObservacao).format("DD/MM/YYYY") :  ""}
+                  </Col>
+                  <Col md="12" lg="4" className='mb-2'>
+                    <span className="fw-bold" >Observacao: </span> {value?.observacao ?? ""}
                   </Col>
                 </Row>
               ))

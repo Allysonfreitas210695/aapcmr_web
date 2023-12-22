@@ -7,6 +7,7 @@ import { FaRegSave } from 'react-icons/fa';
 //Components
 import MaskedInput from '../../../../Components/MaskedInput';
 import ControlledInput from '../../../../Components/ControlledInput';
+import SelectCustom from '../../../../Components/SelectCustom';
 
 //Helpers
 import { viacep } from '../../../../helpers/ViaCep';
@@ -36,6 +37,10 @@ export default function SituacaoHabitacional({ paciente, loadPaciente, showLoadi
             setValue("uf", paciente.situacaoHabitacional.uf);
             setValue("logradouro", paciente.situacaoHabitacional.logradouro);
             setValue("numero", paciente.situacaoHabitacional.numero);
+            setTransporte({value: paciente.situacaoHabitacional.transporte, label: paciente.situacaoHabitacional.transporte ? "Sim" : "Não"});
+            setLuz({value: paciente.situacaoHabitacional.luz, label: paciente.situacaoHabitacional.luz ? "Sim" : "Não"});
+            setAgua({value: paciente.situacaoHabitacional.agua, label: paciente.situacaoHabitacional.agua ? "Sim" : "Não"});
+            setInstalacaoSanitaria({value: paciente.situacaoHabitacional.instalacaoSanitaria, label: paciente.situacaoHabitacional.instalacaoSanitaria ? "Sim": "Não"});
         }
     }, [paciente]);
 
@@ -65,8 +70,28 @@ export default function SituacaoHabitacional({ paciente, loadPaciente, showLoadi
         }
     }
 
+    const [transporte, setTransporte] = useState({ value: false, label: 'Não' });
+    const handleTransporte = (selectedOption) => {
+        setTransporte(selectedOption);
+    };
+
+    const [luz, setLuz] = useState({ value: false, label: 'Não' });
+    const handleLuz = (selectedOption) => {
+        setLuz(selectedOption);
+    };
+
+    const [agua, setAgua] = useState({ value: false, label: 'Não' });
+    const handleAgua = (selectedOption) => {
+        setAgua(selectedOption);
+    };
+
+    const [instalacaoSanitaria, setInstalacaoSanitaria] = useState({ value: false, label: 'Não' });
+    const handleInstalacaoSanitaria = (selectedOption) => {
+        setInstalacaoSanitaria(selectedOption);
+    };
+
     const onSubmit = async (data) => {
-        if(cep.length == 0 || cep.replace(/[./\-]/g, "").length < 8){
+        if (cep.length == 0 || cep.replace(/[./\-]/g, "").length < 8) {
             ShowMessage({
                 title: 'Error',
                 text: "Cep invalido!",
@@ -84,9 +109,12 @@ export default function SituacaoHabitacional({ paciente, loadPaciente, showLoadi
             logradouro: data.logradouro,
             uf: data.uf,
             pacienteId: paciente.id,
-            transporte: data.transporte,
             moradia: data.moradia,
-            casa: data.casa
+            casa: data.casa,
+            transporte: transporte.value,
+            luz: luz.value,
+            agua: agua.value,
+            instalacaoSanitaria: instalacaoSanitaria.value
         };
 
         showLoading(true);
@@ -143,18 +171,46 @@ export default function SituacaoHabitacional({ paciente, loadPaciente, showLoadi
                         }}
                     />
                 </Col>
-                <Col sm={12} lg={4}>
-                    <ControlledInput
+                <Col sm={12} lg={2}>
+                    <SelectCustom
                         control={control}
                         name='transporte'
-                        label={<><span className='text-danger'>*</span> Transporte</>}
-                        type='text'
-                        rules={{
-                            required: true
-                        }}
+                        label='Transporte'
+                        value={transporte}
+                        options={[{ value: true, label: 'Sim' }, { value: false, label: "Não"}]}
+                        onChange={handleTransporte}
                     />
                 </Col>
-
+                <Col sm={12} lg={2}>
+                    <SelectCustom
+                        control={control}
+                        name='luz'
+                        label='Luz'
+                        value={luz}
+                        options={[{ value: true, label: 'Sim' }, { value: false, label: "Não"}]}
+                        onChange={handleLuz}
+                    />
+                </Col>
+                <Col sm={12} lg={2}>
+                    <SelectCustom
+                        control={control}
+                        name='agua'
+                        label='Água'
+                        value={agua}
+                        options={[{ value: true, label: 'Sim' }, { value: false, label: "Não"}]}
+                        onChange={handleAgua}
+                    />
+                </Col>
+                <Col sm={12} lg={3}>
+                    <SelectCustom
+                        control={control}
+                        name='instalacaoSanitaria'
+                        label='Instalação Sanitária'
+                        value={instalacaoSanitaria}
+                        options={[{ value: true, label: 'Sim' }, { value: false, label: "Não"}]}
+                        onChange={handleInstalacaoSanitaria}
+                    />
+                </Col>
                 <Col sm={12} lg={2}>
                     <MaskedInput
                         value={cep}
@@ -210,19 +266,7 @@ export default function SituacaoHabitacional({ paciente, loadPaciente, showLoadi
                         }}
                     />
                 </Col>
-                <Col sm={12} lg={6}>
-                    <ControlledInput
-                        control={control}
-                        name='complemento'
-                        label='Complemento'
-                        type='text'
-                        rules={{
-                            required: false
-                        }}
-                    />
-                </Col>
-
-                <Col sm={12} lg={6}>
+                <Col sm={12} lg={7}>
                     <ControlledInput
                         control={control}
                         name='logradouro'
@@ -230,6 +274,17 @@ export default function SituacaoHabitacional({ paciente, loadPaciente, showLoadi
                         type='text'
                         rules={{
                             required: true
+                        }}
+                    />
+                </Col>
+                <Col sm={12} lg={12}>
+                    <ControlledInput
+                        control={control}
+                        name='complemento'
+                        label='Complemento'
+                        type='text'
+                        rules={{
+                            required: false
                         }}
                     />
                 </Col>
