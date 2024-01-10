@@ -173,7 +173,7 @@ export default function RelatorioDoacao() {
                         </form>
                         <Col lg={12} md={12}>
                             <TableCustom
-                                title='Lista de Depósitos por Mesageiro'
+                                title='Lista de Depósitos por Doação'
                                 columns={[
                                     { title: 'Nome do Doador', field: 'nomeDoador' },
                                     { title: 'Telefone', field: 'telefone', render: (rowDate) => <>{mascaraTelefone(rowDate.telefone)}</> },
