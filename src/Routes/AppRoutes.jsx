@@ -13,7 +13,7 @@ const AppRoutes = () => {
   const { loding } = useAuth();
   return (
     <>
-      {loding &&  <Loading />}
+      {loding && <Loading />}
       <Router>
         <PrivateRoute />
       </Router>

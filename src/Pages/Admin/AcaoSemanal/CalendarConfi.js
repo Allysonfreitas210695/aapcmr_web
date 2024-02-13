@@ -17,6 +17,6 @@ export const defaultMessages = {
   agenda: 'Agenda',
   noEventsInRange: 'Não existe eventos neste intervalo.',
   showMore: function showMore(total) {
-      return "+" + total + " mais";
+    return '+' + total + ' mais';
   }
 };
