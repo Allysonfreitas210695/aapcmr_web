@@ -1,5 +1,5 @@
-import { deleteSessionCookie, getSessionCookie } from '../helpers/Cookie';
-import { api } from './baseURL';
+import { deleteSessionCookie, getSessionCookie } from '../helpers/Cookie.js';
+import { api } from './baseURL.js';
 
 const createHeaders = (session, contentType, validate_auth) => {
   const headers = {
