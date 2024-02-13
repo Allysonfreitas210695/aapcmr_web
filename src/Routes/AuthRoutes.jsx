@@ -8,19 +8,19 @@ import FormularioDoacao from '../Pages/Auth/FormularioDoacao';
 
 export const AuthRoutes = [
   {
-    path: "/auth/login",
-    element: <Login />,
+    path: '/auth/login',
+    element: <Login />
   },
   {
-    path: "/auth/cadastroADM",
-    element: <CadastroAdm />,
+    path: '/auth/cadastroADM',
+    element: <CadastroAdm />
   },
   {
-    path: "/auth/esqueceuSenha",
-    element: <EsqueceuSenha />,
+    path: '/auth/esqueceuSenha',
+    element: <EsqueceuSenha />
   },
   {
-    path: "/auth/formulario",
-    element: <FormularioDoacao />,
+    path: '/auth/formulario',
+    element: <FormularioDoacao />
   }
 ];

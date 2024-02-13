@@ -4,12 +4,11 @@ import AppRoutes from './Routes/AppRoutes';
 import { AuthProvider } from './Context/useAuth';
 
 //CSS
-import "./index.css"
+import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <AuthProvider>
-        <AppRoutes />
-    </AuthProvider>
+  <AuthProvider>
+    <AppRoutes />
+  </AuthProvider>
 );
-

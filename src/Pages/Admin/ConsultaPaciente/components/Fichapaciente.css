@@ -1,30 +1,30 @@
 @page {
-    size: auto;
-    margin: 0mm;
+  size: auto;
+  margin: 0mm;
 }
 
 @media print {
-     /* Define o tamanho da página e remove margens */
-     @page {
-        size: A4;
-        margin: 0;
-    }
+  /* Define o tamanho da página e remove margens */
+  @page {
+    size: A4;
+    margin: 0;
+  }
 
-    /* Estilos para o cabeçalho */
-    div.header {
-        display: block;
-        /* Adicione estilos específicos para o cabeçalho aqui */
-    }
+  /* Estilos para o cabeçalho */
+  div.header {
+    display: block;
+    /* Adicione estilos específicos para o cabeçalho aqui */
+  }
 
-    /* Estilos para o corpo */
-    div.body {
-        display: block;
-        padding: 0px 20px;
-        /* Adicione estilos específicos para o corpo aqui */
-    }
+  /* Estilos para o corpo */
+  div.body {
+    display: block;
+    padding: 0px 20px;
+    /* Adicione estilos específicos para o corpo aqui */
+  }
 
-    div.content {
-        padding-top: 20px;
-        /* page-break-inside: avoid; */
-    }
+  div.content {
+    padding-top: 20px;
+    /* page-break-inside: avoid; */
+  }
 }

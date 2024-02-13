@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Button, Col, Row } from 'reactstrap';
 import { FaPlus } from 'react-icons/fa6';
 
@@ -17,7 +17,7 @@ import { api_DELETE, api_GET } from '../../../Service/api';
 import { ShowConfirmation, ShowMessage } from '../../../helpers/ShowMessage';
 import { mascaraCPF, mascaraTelefone } from '../../../helpers/ValidadacaoDocumentos';
 
-//Actions 
+//Actions
 import { EditeActionTable, RemoveActionTable } from '../../../Constants/ActionsTable';
 
 export default function Paciente() {
@@ -34,31 +34,35 @@ export default function Paciente() {
 
   const [columns] = useState([
     { title: 'Nome', field: 'nome' },
-    { title: 'Celular', field: 'celular', render: (rowDate) => <>{mascaraTelefone(rowDate.celular)}</> },
+    {
+      title: 'Celular',
+      field: 'celular',
+      render: (rowDate) => <>{mascaraTelefone(rowDate.celular)}</>
+    },
     { title: 'Endereço', field: 'endereco' },
     { title: 'Naturalidade', field: 'naturalidade' },
     { title: 'DataNascimento', field: 'dataNascimento' },
     { title: 'CPF', field: 'cpf', render: (rowDate) => <>{mascaraCPF(rowDate.cpf)}</> },
-    { title: 'Status', field: 'status' },
+    { title: 'Status', field: 'status' }
   ]);
 
   const loadPacientes = async () => {
-      showLoading(true);
-      try {
-        let response = await api_GET("Paciente");
-        const { data } = response;
-        setListPacientes(data);
-      } catch (error) {
-        ShowMessage({
-          title: 'Error',
-          text: error?.message ?? "Erro na Operação",
-          icon: 'error'
-        });
-        return;
-      } finally {
-        showLoading(false);
-      }
-  }
+    showLoading(true);
+    try {
+      let response = await api_GET('Paciente');
+      const { data } = response;
+      setListPacientes(data);
+    } catch (error) {
+      ShowMessage({
+        title: 'Error',
+        text: error?.message ?? 'Erro na Operação',
+        icon: 'error'
+      });
+      return;
+    } finally {
+      showLoading(false);
+    }
+  };
 
   useEffect(() => {
     loadPacientes();
@@ -66,10 +70,13 @@ export default function Paciente() {
 
   const handleEditPaciente = (rowData) => {
     setPacienteId(rowData.id);
-  }
+  };
 
   const handleRemovePaciente = async (rowData) => {
-    const resposta = await ShowConfirmation({ title: "", text: "Você tem certeza que quer deletar esse paciente?" });
+    const resposta = await ShowConfirmation({
+      title: '',
+      text: 'Você tem certeza que quer deletar esse paciente?'
+    });
     if (resposta) {
       try {
         showLoading(true);
@@ -77,16 +84,20 @@ export default function Paciente() {
         const { data } = response;
 
         showLoading(false);
-        ShowMessage({
-          title: 'Sucesso',
-          text: 'Operação Realizado com sucesso',
-          icon: 'success'
-        }, () => { loadPacientes() });
-
+        ShowMessage(
+          {
+            title: 'Sucesso',
+            text: 'Operação Realizado com sucesso',
+            icon: 'success'
+          },
+          () => {
+            loadPacientes();
+          }
+        );
       } catch (error) {
         ShowMessage({
           title: 'Error',
-          text: error?.message ?? "Erro na Operação",
+          text: error?.message ?? 'Erro na Operação',
           icon: 'error'
         });
         return;
@@ -94,8 +105,7 @@ export default function Paciente() {
         showLoading(false);
       }
     }
-  }
-
+  };
 
   // //Listas com as acoes definidas
   const _actions = [EditeActionTable(handleEditPaciente), RemoveActionTable(handleRemovePaciente)];
@@ -104,29 +114,26 @@ export default function Paciente() {
     setPacienteId(null);
     setPacienteNovo(false);
     loadPacientes();
-  }
+  };
 
   if (pacienteNovo || pacienteId != null) {
-    return <NovoPaciente
-      handleVoltar={handleVoltar}
-      id={pacienteId}
-    />
+    return <NovoPaciente handleVoltar={handleVoltar} id={pacienteId} />;
   }
 
   return (
-    < >
+    <>
       {loding && <Loading />}
-      {!loding &&
+      {!loding && (
         <>
           <Row>
-            <Col lg={12} md={12} className='mb-2 d-flex justify-content-end'>
-              <Button color='success' onClick={() => setPacienteNovo(true)}>
+            <Col lg={12} md={12} className="mb-2 d-flex justify-content-end">
+              <Button color="success" onClick={() => setPacienteNovo(true)}>
                 <FaPlus /> NOVO
               </Button>
             </Col>
             <Col lg={12} md={12}>
               <TableCustom
-                title='Lista de Pacientes'
+                title="Lista de Pacientes"
                 columns={columns}
                 data={listPacientes}
                 actions={_actions}
@@ -134,7 +141,7 @@ export default function Paciente() {
             </Col>
           </Row>
         </>
-      }
+      )}
     </>
-  )
+  );
 }

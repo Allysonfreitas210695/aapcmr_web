@@ -1,0 +1,27 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "eslint-prettier/prettier": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "no-console": "warn", // Avisa sobre o uso de console.log e declarações similares
+    "no-unused-vars": "warn", // Avisa sobre variáveis não utilizadas
+    "semi": ["error", "always"], // Exige o uso de ponto e vírgula
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }] // Aceita aspas simples e permite literais de template
+  }
+}

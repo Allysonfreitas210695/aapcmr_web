@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Button, Col, Row } from 'reactstrap'
+import React, { useEffect, useRef, useState } from 'react';
+import { Button, Col, Row } from 'reactstrap';
 import { useReactToPrint } from 'react-to-print';
-import { FaArrowLeft } from 'react-icons/fa6'
-import { BsFileEarmarkPdfFill } from "react-icons/bs";
+import { FaArrowLeft } from 'react-icons/fa6';
+import { BsFileEarmarkPdfFill } from 'react-icons/bs';
 import moment from 'moment';
 
 //Helpers
@@ -16,7 +16,7 @@ import { useAuth } from '../../../../Context/useAuth';
 import { api_GET } from '../../../../Service/api';
 
 //CSS
-import "./Fichapaciente.css"
+import './Fichapaciente.css';
 
 export default function FichaPaciente({ id, handleVoltar }) {
   const { showLoading } = useAuth();
@@ -35,22 +35,21 @@ export default function FichaPaciente({ id, handleVoltar }) {
     } catch (error) {
       ShowMessage({
         title: 'Error',
-        text: error?.message ?? "Erro na Operação",
+        text: error?.message ?? 'Erro na Operação',
         icon: 'error'
       });
       return;
     } finally {
       showLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    if (id != null)
-      loadPaciente(id)
+    if (id != null) loadPaciente(id);
     else {
       ShowMessage({
         title: 'Error',
-        text: "Erro na Operação",
+        text: 'Erro na Operação',
         icon: 'error'
       });
       return;
@@ -59,181 +58,236 @@ export default function FichaPaciente({ id, handleVoltar }) {
 
   const handlePrint = useReactToPrint({
     content: () => ref.current,
-    documentTitle: "Relatório_paciente",
-    copyStyles: true,
+    documentTitle: 'Relatório_paciente',
+    copyStyles: true
   });
 
   return (
     <>
-      <div className='mb-2 d-flex justify-content-between align-items-center'>
-        <Button color='danger' className='text-white px-4' onClick={() => handlePrint()}>
-          <BsFileEarmarkPdfFill color='#fff' /> PDF
+      <div className="mb-2 d-flex justify-content-between align-items-center">
+        <Button color="danger" className="text-white px-4" onClick={() => handlePrint()}>
+          <BsFileEarmarkPdfFill color="#fff" /> PDF
         </Button>
-        <Button color='secondary' className='text-white' onClick={() => handleVoltar()}>
-          <FaArrowLeft color='#fff' /> Voltar
+        <Button color="secondary" className="text-white" onClick={() => handleVoltar()}>
+          <FaArrowLeft color="#fff" /> Voltar
         </Button>
       </div>
-      <div className='bg-white p-3 rounded shadow'>
-        <div className='bw-bold d-flex justify-content-center align-items-start flex-column mb-2 body' ref={ref}>
-          <div className='d-flex justify-content-center align-items-center w-100 header'>
-            <div className='text-center'>
-              <img src={"/images/Logo_AAPCMR.jpg"} width={220} alt="logo do sistema" />
+      <div className="bg-white p-3 rounded shadow">
+        <div
+          className="bw-bold d-flex justify-content-center align-items-start flex-column mb-2 body"
+          ref={ref}
+        >
+          <div className="d-flex justify-content-center align-items-center w-100 header">
+            <div className="text-center">
+              <img src={'/images/Logo_AAPCMR.jpg'} width={220} alt="logo do sistema" />
             </div>
           </div>
           <h2>Registro do Paciente</h2>
-          <h5 style={{ color: "#666" }}> {paciente?.nome ?? ""}</h5>
-          <div className='mt-2 w-100 content'>
-            <h5 className='d-flex align-items-center justify-content-between' style={{ borderBottom: "1px solid #ccc" }}>Dados do Paciente</h5>
-            <Row className='px-1 py-2'>
-              <Col md="12" lg="12" className='mb-2'>
-                <span className="fw-bold" >Status: </span> {paciente?.status ? "Ativo" : "Inativo"}
+          <h5 style={{ color: '#666' }}> {paciente?.nome ?? ''}</h5>
+          <div className="mt-2 w-100 content">
+            <h5
+              className="d-flex align-items-center justify-content-between"
+              style={{ borderBottom: '1px solid #ccc' }}
+            >
+              Dados do Paciente
+            </h5>
+            <Row className="px-1 py-2">
+              <Col md="12" lg="12" className="mb-2">
+                <span className="fw-bold">Status: </span> {paciente?.status ? 'Ativo' : 'Inativo'}
               </Col>
-              <Col md="12" lg="4" className='mb-2'>
-                <span className="fw-bold" >Nome: </span> {paciente?.nome ?? ""}
+              <Col md="12" lg="4" className="mb-2">
+                <span className="fw-bold">Nome: </span> {paciente?.nome ?? ''}
               </Col>
-              <Col md="12" lg="4" className='mb-2'>
-                <span className="fw-bold" >CPF: </span> {!!paciente?.cpf ? mascaraCPF(paciente?.cpf) : ""}
+              <Col md="12" lg="4" className="mb-2">
+                <span className="fw-bold">CPF: </span>{' '}
+                {!!paciente?.cpf ? mascaraCPF(paciente?.cpf) : ''}
               </Col>
-              <Col md="12" lg="4" className='mb-2'>
-                <span className="fw-bold" >Estado civil: </span> {paciente?.statusCivil ?? ""}
+              <Col md="12" lg="4" className="mb-2">
+                <span className="fw-bold">Estado civil: </span> {paciente?.statusCivil ?? ''}
               </Col>
-              <Col md="12" lg="4" className='mb-2'>
-                <span className="fw-bold" >Naturalidade: </span> {paciente?.naturalidade ?? ""}
+              <Col md="12" lg="4" className="mb-2">
+                <span className="fw-bold">Naturalidade: </span> {paciente?.naturalidade ?? ''}
               </Col>
-              <Col md="12" lg="4" className='mb-2'>
-                <span className="fw-bold" >Data de Nascimento: </span> {paciente?.dataNascimento != null ? moment(paciente?.dataNascimento).format("DD/MM/YYYY") : ""}
+              <Col md="12" lg="4" className="mb-2">
+                <span className="fw-bold">Data de Nascimento: </span>{' '}
+                {paciente?.dataNascimento != null
+                  ? moment(paciente?.dataNascimento).format('DD/MM/YYYY')
+                  : ''}
               </Col>
-              <Col md="12" lg="4" className='mb-2'>
-                <span className="fw-bold" >Recebe Cesta Básica? </span> {paciente?.cestaBasica ? "Sim" : "Não"}
+              <Col md="12" lg="4" className="mb-2">
+                <span className="fw-bold">Recebe Cesta Básica? </span>{' '}
+                {paciente?.cestaBasica ? 'Sim' : 'Não'}
               </Col>
-              <Col md="12" lg="4" className='mb-2'>
-                <span className="fw-bold" >Número SUS: </span> {!!paciente?.susNumero ? paciente?.susNumero : "Não Informado"}
+              <Col md="12" lg="4" className="mb-2">
+                <span className="fw-bold">Número SUS: </span>{' '}
+                {!!paciente?.susNumero ? paciente?.susNumero : 'Não Informado'}
               </Col>
-              <Col md="12" lg="4" className='mb-2'>
-                <span className="fw-bold" >Celular: </span> {!!paciente?.celular ? mascaraTelefone(paciente?.celular) : "Não Informado"}
+              <Col md="12" lg="4" className="mb-2">
+                <span className="fw-bold">Celular: </span>{' '}
+                {!!paciente?.celular ? mascaraTelefone(paciente?.celular) : 'Não Informado'}
               </Col>
-              <Col md="12" lg="4" className='mb-2'>
-                <span className="fw-bold" >Telefone Fixo: </span> {!!paciente?.telefoneFixo ? mascaraTelefone(paciente?.telefoneFixo) : "Não Informado"}
+              <Col md="12" lg="4" className="mb-2">
+                <span className="fw-bold">Telefone Fixo: </span>{' '}
+                {!!paciente?.telefoneFixo
+                  ? mascaraTelefone(paciente?.telefoneFixo)
+                  : 'Não Informado'}
               </Col>
             </Row>
           </div>
 
-          <div className='mt-2 w-100 content'>
-            <h5 className='d-flex align-items-center justify-content-between' style={{ borderBottom: "1px solid #ccc" }}>Situação habitacional</h5>
-            {paciente?.situacaoHabitacional != null &&
-              <Row className='px-1 py-2'>
-                <Col md="12" lg="4" className='mb-2'>
-                  <span className="fw-bold" >Casa: </span> {paciente?.situacaoHabitacional?.casa ?? ""}
+          <div className="mt-2 w-100 content">
+            <h5
+              className="d-flex align-items-center justify-content-between"
+              style={{ borderBottom: '1px solid #ccc' }}
+            >
+              Situação habitacional
+            </h5>
+            {paciente?.situacaoHabitacional != null && (
+              <Row className="px-1 py-2">
+                <Col md="12" lg="4" className="mb-2">
+                  <span className="fw-bold">Casa: </span>{' '}
+                  {paciente?.situacaoHabitacional?.casa ?? ''}
                 </Col>
-                <Col md="12" lg="4" className='mb-2'>
-                  <span className="fw-bold" >Moradia: </span> {paciente?.situacaoHabitacional?.moradia ?? ""}
+                <Col md="12" lg="4" className="mb-2">
+                  <span className="fw-bold">Moradia: </span>{' '}
+                  {paciente?.situacaoHabitacional?.moradia ?? ''}
                 </Col>
-                <Col md="12" lg="4" className='mb-2'>
-                  <span className="fw-bold" >Transpor: </span> {paciente?.situacaoHabitacional?.transporte ? "Sim" : "Não"}
+                <Col md="12" lg="4" className="mb-2">
+                  <span className="fw-bold">Transpor: </span>{' '}
+                  {paciente?.situacaoHabitacional?.transporte ? 'Sim' : 'Não'}
                 </Col>
-                <Col md="12" lg="4" className='mb-2'>
-                  <span className="fw-bold" >Água: </span> {paciente?.situacaoHabitacional?.agua ? "Sim" : "Não"}
+                <Col md="12" lg="4" className="mb-2">
+                  <span className="fw-bold">Água: </span>{' '}
+                  {paciente?.situacaoHabitacional?.agua ? 'Sim' : 'Não'}
                 </Col>
-                <Col md="12" lg="4" className='mb-2'>
-                  <span className="fw-bold" >Luz: </span> {paciente?.situacaoHabitacional?.luz ? "Sim" : "Não"}
+                <Col md="12" lg="4" className="mb-2">
+                  <span className="fw-bold">Luz: </span>{' '}
+                  {paciente?.situacaoHabitacional?.luz ? 'Sim' : 'Não'}
                 </Col>
-                <Col md="12" lg="4" className='mb-2'>
-                  <span className="fw-bold" >Instalação Sanitária? </span> {paciente?.situacaoHabitacional?.instalacaoSanitaria ? "Sim" : "Não"}
+                <Col md="12" lg="4" className="mb-2">
+                  <span className="fw-bold">Instalação Sanitária? </span>{' '}
+                  {paciente?.situacaoHabitacional?.instalacaoSanitaria ? 'Sim' : 'Não'}
                 </Col>
-                <Col md="12" lg="4" className='mb-2'>
-                  <span className="fw-bold" >CEP: </span> {paciente?.situacaoHabitacional?.cep?.replace(/^(\d{5})(\d)/, '$1-$2') ?? ""}
+                <Col md="12" lg="4" className="mb-2">
+                  <span className="fw-bold">CEP: </span>{' '}
+                  {paciente?.situacaoHabitacional?.cep?.replace(/^(\d{5})(\d)/, '$1-$2') ?? ''}
                 </Col>
-                <Col md="12" lg="4" className='mb-2'>
-                  <span className="fw-bold" >Bairro: </span> {paciente?.situacaoHabitacional?.bairro ?? ""}
+                <Col md="12" lg="4" className="mb-2">
+                  <span className="fw-bold">Bairro: </span>{' '}
+                  {paciente?.situacaoHabitacional?.bairro ?? ''}
                 </Col>
-                <Col md="12" lg="4" className='mb-2'>
-                  <span className="fw-bold" >UF: </span> {paciente?.situacaoHabitacional?.uf ?? ""}
+                <Col md="12" lg="4" className="mb-2">
+                  <span className="fw-bold">UF: </span> {paciente?.situacaoHabitacional?.uf ?? ''}
                 </Col>
-                <Col md="12" lg="4" className='mb-2'>
-                  <span className="fw-bold" >Numero: </span> {paciente?.situacaoHabitacional?.numero ?? ""}
+                <Col md="12" lg="4" className="mb-2">
+                  <span className="fw-bold">Numero: </span>{' '}
+                  {paciente?.situacaoHabitacional?.numero ?? ''}
                 </Col>
-                <Col md="12" lg="4" className='mb-2'>
-                  <span className="fw-bold" >Complemento: </span> {paciente?.situacaoHabitacional?.complemento ?? ""}
+                <Col md="12" lg="4" className="mb-2">
+                  <span className="fw-bold">Complemento: </span>{' '}
+                  {paciente?.situacaoHabitacional?.complemento ?? ''}
                 </Col>
-                <Col md="12" lg="4" className='mb-2'>
-                  <span className="fw-bold" >Cidade: </span> {paciente?.situacaoHabitacional?.cidade ?? ""}
+                <Col md="12" lg="4" className="mb-2">
+                  <span className="fw-bold">Cidade: </span>{' '}
+                  {paciente?.situacaoHabitacional?.cidade ?? ''}
                 </Col>
-                <Col md="12" lg="4" className='mb-2'>
-                  <span className="fw-bold" >Logradouro: </span> {paciente?.situacaoHabitacional?.logradouro ?? ""}
+                <Col md="12" lg="4" className="mb-2">
+                  <span className="fw-bold">Logradouro: </span>{' '}
+                  {paciente?.situacaoHabitacional?.logradouro ?? ''}
                 </Col>
               </Row>
-            }
+            )}
           </div>
 
-          <div className='mt-2 w-100 content'>
-            <h5 className='d-flex align-items-center justify-content-between ' style={{ borderBottom: "1px solid #ccc" }}>Composição Familiar</h5>
+          <div className="mt-2 w-100 content">
+            <h5
+              className="d-flex align-items-center justify-content-between "
+              style={{ borderBottom: '1px solid #ccc' }}
+            >
+              Composição Familiar
+            </h5>
             {paciente?.composicaoFamiliares?.length > 0 &&
               paciente?.composicaoFamiliares?.map((value, index) => (
-                <Row className='px-1 py-2' key={index}>
-                  <Col md="12" lg="12" className='mb-2'>
-                    <span className="fw-bold" >Familiar({index + 1}):</span>
+                <Row className="px-1 py-2" key={index}>
+                  <Col md="12" lg="12" className="mb-2">
+                    <span className="fw-bold">Familiar({index + 1}):</span>
                   </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Nome: </span> {value?.nomeFamiliar ?? ""}
+                  <Col md="12" lg="4" className="mb-2">
+                    <span className="fw-bold">Nome: </span> {value?.nomeFamiliar ?? ''}
                   </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Idade: </span> {value?.idadeFamiliar ?? ""} Anos
+                  <Col md="12" lg="4" className="mb-2">
+                    <span className="fw-bold">Idade: </span> {value?.idadeFamiliar ?? ''} Anos
                   </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Vinculo: </span> {value?.vinculoFamiliar ?? ""}
+                  <Col md="12" lg="4" className="mb-2">
+                    <span className="fw-bold">Vinculo: </span> {value?.vinculoFamiliar ?? ''}
                   </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Renda: </span> {value?.renda?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) ?? ""}
+                  <Col md="12" lg="4" className="mb-2">
+                    <span className="fw-bold">Renda: </span>{' '}
+                    {value?.renda?.toLocaleString('pt-BR', {
+                      style: 'currency',
+                      currency: 'BRL'
+                    }) ?? ''}
                   </Col>
                 </Row>
-              ))
-            }
+              ))}
           </div>
 
-          <div className='mt-2 w-100 content'>
-            <h5 className='d-flex align-items-center justify-content-between' style={{ borderBottom: "1px solid #ccc" }}>Tratamentos do Paciente</h5>
+          <div className="mt-2 w-100 content">
+            <h5
+              className="d-flex align-items-center justify-content-between"
+              style={{ borderBottom: '1px solid #ccc' }}
+            >
+              Tratamentos do Paciente
+            </h5>
             {paciente?.tratamentoPacientes?.length > 0 &&
               paciente?.tratamentoPacientes?.map((value, index) => (
-                <Row className='px-1 py-2' key={index}>
-                  <Col md="12" lg="12" className='mb-2'>
-                    <span className="fw-bold" >Tratamento({index + 1}):</span>
+                <Row className="px-1 py-2" key={index}>
+                  <Col md="12" lg="12" className="mb-2">
+                    <span className="fw-bold">Tratamento({index + 1}):</span>
                   </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Diagnostico: </span> {value?.diagnostico ?? ""}
+                  <Col md="12" lg="4" className="mb-2">
+                    <span className="fw-bold">Diagnostico: </span> {value?.diagnostico ?? ''}
                   </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Hospital do Tratamento: </span> {value?.hospitalTratamento ?? ""}
+                  <Col md="12" lg="4" className="mb-2">
+                    <span className="fw-bold">Hospital do Tratamento: </span>{' '}
+                    {value?.hospitalTratamento ?? ''}
                   </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Ano do Diagnostico: </span> {value?.anoDiagnostico ?? ""}
+                  <Col md="12" lg="4" className="mb-2">
+                    <span className="fw-bold">Ano do Diagnostico: </span>{' '}
+                    {value?.anoDiagnostico ?? ''}
                   </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Status do Tratamento: </span> {value?.statusTratamento ?? ""}
+                  <Col md="12" lg="4" className="mb-2">
+                    <span className="fw-bold">Status do Tratamento: </span>{' '}
+                    {value?.statusTratamento ?? ''}
                   </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Médico: </span> {value?.medico ?? ""}
+                  <Col md="12" lg="4" className="mb-2">
+                    <span className="fw-bold">Médico: </span> {value?.medico ?? ''}
                   </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Tipo da Cirurgia: </span> {value?.tipoCirurgia ?? ""}
+                  <Col md="12" lg="4" className="mb-2">
+                    <span className="fw-bold">Tipo da Cirurgia: </span> {value?.tipoCirurgia ?? ''}
                   </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Histórico Familiar de Câncer: </span> {value?.historicoFamiliaCancer ? "Sim" : "Não"}
+                  <Col md="12" lg="4" className="mb-2">
+                    <span className="fw-bold">Histórico Familiar de Câncer: </span>{' '}
+                    {value?.historicoFamiliaCancer ? 'Sim' : 'Não'}
                   </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Uso de Álcool/Drogas: </span> {value?.usoEntorpecente ? "Sim" : "Não"}
+                  <Col md="12" lg="4" className="mb-2">
+                    <span className="fw-bold">Uso de Álcool/Drogas: </span>{' '}
+                    {value?.usoEntorpecente ? 'Sim' : 'Não'}
                   </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Data da Observação: </span> {value?.dataObservacao != null  ? moment(value?.dataObservacao).format("DD/MM/YYYY") :  ""}
+                  <Col md="12" lg="4" className="mb-2">
+                    <span className="fw-bold">Data da Observação: </span>{' '}
+                    {value?.dataObservacao != null
+                      ? moment(value?.dataObservacao).format('DD/MM/YYYY')
+                      : ''}
                   </Col>
-                  <Col md="12" lg="4" className='mb-2'>
-                    <span className="fw-bold" >Observacao: </span> {value?.observacao ?? ""}
+                  <Col md="12" lg="4" className="mb-2">
+                    <span className="fw-bold">Observacao: </span> {value?.observacao ?? ''}
                   </Col>
                 </Row>
-              ))
-            }
+              ))}
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }
