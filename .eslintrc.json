@@ -16,8 +16,12 @@
   },
   "plugins": ["react"],
   "rules": {
+    "react/jsx-props-no-spreading": "off",
     "eslint-prettier/prettier": "off",
     "react/react-in-jsx-scope": "off",
+    "react/jsx-closing-tag-location": "off",
+    "no-extra-boolean-cast": "off",
+    "no-useless-escape": "off",
     "react/prop-types": "off",
     "no-console": "warn", // Avisa sobre o uso de console.log e declarações similares
     "no-unused-vars": "warn", // Avisa sobre variáveis não utilizadas
