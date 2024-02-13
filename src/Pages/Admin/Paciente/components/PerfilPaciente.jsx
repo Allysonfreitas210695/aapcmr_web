@@ -15,7 +15,12 @@ import { ShowMessage } from '../../../../helpers/ShowMessage';
 import { HiPencilAlt } from 'react-icons/hi';
 import { FaRegSave } from 'react-icons/fa';
 
-export default function PerfilPaciente({ paciente, loadPaciente, showLoading, setPaciente }) {
+export default function PerfilPaciente({
+  paciente,
+  loadPaciente,
+  showLoading,
+  setPaciente
+}) {
   const { session } = useAuth();
 
   const { handleSubmit, control, setValue } = useForm({
@@ -35,7 +40,10 @@ export default function PerfilPaciente({ paciente, loadPaciente, showLoading, se
     }
   }, [paciente]);
 
-  const [programaGoverno, setProgramaGoverno] = useState({ value: false, label: 'Não' });
+  const [programaGoverno, setProgramaGoverno] = useState({
+    value: false,
+    label: 'Não'
+  });
 
   const onSubmit = async (data) => {
     const json = {

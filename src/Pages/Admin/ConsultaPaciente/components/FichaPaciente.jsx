@@ -6,7 +6,10 @@ import { BsFileEarmarkPdfFill } from 'react-icons/bs';
 import moment from 'moment';
 
 //Helpers
-import { mascaraCPF, mascaraTelefone } from '../../../../helpers/ValidadacaoDocumentos';
+import {
+  mascaraCPF,
+  mascaraTelefone
+} from '../../../../helpers/ValidadacaoDocumentos';
 import { ShowMessage } from '../../../../helpers/ShowMessage';
 
 //Context
@@ -65,10 +68,18 @@ export default function FichaPaciente({ id, handleVoltar }) {
   return (
     <>
       <div className="mb-2 d-flex justify-content-between align-items-center">
-        <Button color="danger" className="text-white px-4" onClick={() => handlePrint()}>
+        <Button
+          color="danger"
+          className="text-white px-4"
+          onClick={() => handlePrint()}
+        >
           <BsFileEarmarkPdfFill color="#fff" /> PDF
         </Button>
-        <Button color="secondary" className="text-white" onClick={() => handleVoltar()}>
+        <Button
+          color="secondary"
+          className="text-white"
+          onClick={() => handleVoltar()}
+        >
           <FaArrowLeft color="#fff" /> Voltar
         </Button>
       </div>
@@ -79,7 +90,11 @@ export default function FichaPaciente({ id, handleVoltar }) {
         >
           <div className="d-flex justify-content-center align-items-center w-100 header">
             <div className="text-center">
-              <img src={'/images/Logo_AAPCMR.jpg'} width={220} alt="logo do sistema" />
+              <img
+                src={'/images/Logo_AAPCMR.jpg'}
+                width={220}
+                alt="logo do sistema"
+              />
             </div>
           </div>
           <h2>Registro do Paciente</h2>
@@ -93,7 +108,8 @@ export default function FichaPaciente({ id, handleVoltar }) {
             </h5>
             <Row className="px-1 py-2">
               <Col md="12" lg="12" className="mb-2">
-                <span className="fw-bold">Status: </span> {paciente?.status ? 'Ativo' : 'Inativo'}
+                <span className="fw-bold">Status: </span>{' '}
+                {paciente?.status ? 'Ativo' : 'Inativo'}
               </Col>
               <Col md="12" lg="4" className="mb-2">
                 <span className="fw-bold">Nome: </span> {paciente?.nome ?? ''}
@@ -103,10 +119,12 @@ export default function FichaPaciente({ id, handleVoltar }) {
                 {!!paciente?.cpf ? mascaraCPF(paciente?.cpf) : ''}
               </Col>
               <Col md="12" lg="4" className="mb-2">
-                <span className="fw-bold">Estado civil: </span> {paciente?.statusCivil ?? ''}
+                <span className="fw-bold">Estado civil: </span>{' '}
+                {paciente?.statusCivil ?? ''}
               </Col>
               <Col md="12" lg="4" className="mb-2">
-                <span className="fw-bold">Naturalidade: </span> {paciente?.naturalidade ?? ''}
+                <span className="fw-bold">Naturalidade: </span>{' '}
+                {paciente?.naturalidade ?? ''}
               </Col>
               <Col md="12" lg="4" className="mb-2">
                 <span className="fw-bold">Data de Nascimento: </span>{' '}
@@ -124,7 +142,9 @@ export default function FichaPaciente({ id, handleVoltar }) {
               </Col>
               <Col md="12" lg="4" className="mb-2">
                 <span className="fw-bold">Celular: </span>{' '}
-                {!!paciente?.celular ? mascaraTelefone(paciente?.celular) : 'Não Informado'}
+                {!!paciente?.celular
+                  ? mascaraTelefone(paciente?.celular)
+                  : 'Não Informado'}
               </Col>
               <Col md="12" lg="4" className="mb-2">
                 <span className="fw-bold">Telefone Fixo: </span>{' '}
@@ -166,18 +186,24 @@ export default function FichaPaciente({ id, handleVoltar }) {
                 </Col>
                 <Col md="12" lg="4" className="mb-2">
                   <span className="fw-bold">Instalação Sanitária? </span>{' '}
-                  {paciente?.situacaoHabitacional?.instalacaoSanitaria ? 'Sim' : 'Não'}
+                  {paciente?.situacaoHabitacional?.instalacaoSanitaria
+                    ? 'Sim'
+                    : 'Não'}
                 </Col>
                 <Col md="12" lg="4" className="mb-2">
                   <span className="fw-bold">CEP: </span>{' '}
-                  {paciente?.situacaoHabitacional?.cep?.replace(/^(\d{5})(\d)/, '$1-$2') ?? ''}
+                  {paciente?.situacaoHabitacional?.cep?.replace(
+                    /^(\d{5})(\d)/,
+                    '$1-$2'
+                  ) ?? ''}
                 </Col>
                 <Col md="12" lg="4" className="mb-2">
                   <span className="fw-bold">Bairro: </span>{' '}
                   {paciente?.situacaoHabitacional?.bairro ?? ''}
                 </Col>
                 <Col md="12" lg="4" className="mb-2">
-                  <span className="fw-bold">UF: </span> {paciente?.situacaoHabitacional?.uf ?? ''}
+                  <span className="fw-bold">UF: </span>{' '}
+                  {paciente?.situacaoHabitacional?.uf ?? ''}
                 </Col>
                 <Col md="12" lg="4" className="mb-2">
                   <span className="fw-bold">Numero: </span>{' '}
@@ -213,13 +239,16 @@ export default function FichaPaciente({ id, handleVoltar }) {
                     <span className="fw-bold">Familiar({index + 1}):</span>
                   </Col>
                   <Col md="12" lg="4" className="mb-2">
-                    <span className="fw-bold">Nome: </span> {value?.nomeFamiliar ?? ''}
+                    <span className="fw-bold">Nome: </span>{' '}
+                    {value?.nomeFamiliar ?? ''}
                   </Col>
                   <Col md="12" lg="4" className="mb-2">
-                    <span className="fw-bold">Idade: </span> {value?.idadeFamiliar ?? ''} Anos
+                    <span className="fw-bold">Idade: </span>{' '}
+                    {value?.idadeFamiliar ?? ''} Anos
                   </Col>
                   <Col md="12" lg="4" className="mb-2">
-                    <span className="fw-bold">Vinculo: </span> {value?.vinculoFamiliar ?? ''}
+                    <span className="fw-bold">Vinculo: </span>{' '}
+                    {value?.vinculoFamiliar ?? ''}
                   </Col>
                   <Col md="12" lg="4" className="mb-2">
                     <span className="fw-bold">Renda: </span>{' '}
@@ -246,7 +275,8 @@ export default function FichaPaciente({ id, handleVoltar }) {
                     <span className="fw-bold">Tratamento({index + 1}):</span>
                   </Col>
                   <Col md="12" lg="4" className="mb-2">
-                    <span className="fw-bold">Diagnostico: </span> {value?.diagnostico ?? ''}
+                    <span className="fw-bold">Diagnostico: </span>{' '}
+                    {value?.diagnostico ?? ''}
                   </Col>
                   <Col md="12" lg="4" className="mb-2">
                     <span className="fw-bold">Hospital do Tratamento: </span>{' '}
@@ -261,13 +291,17 @@ export default function FichaPaciente({ id, handleVoltar }) {
                     {value?.statusTratamento ?? ''}
                   </Col>
                   <Col md="12" lg="4" className="mb-2">
-                    <span className="fw-bold">Médico: </span> {value?.medico ?? ''}
+                    <span className="fw-bold">Médico: </span>{' '}
+                    {value?.medico ?? ''}
                   </Col>
                   <Col md="12" lg="4" className="mb-2">
-                    <span className="fw-bold">Tipo da Cirurgia: </span> {value?.tipoCirurgia ?? ''}
+                    <span className="fw-bold">Tipo da Cirurgia: </span>{' '}
+                    {value?.tipoCirurgia ?? ''}
                   </Col>
                   <Col md="12" lg="4" className="mb-2">
-                    <span className="fw-bold">Histórico Familiar de Câncer: </span>{' '}
+                    <span className="fw-bold">
+                      Histórico Familiar de Câncer:{' '}
+                    </span>{' '}
                     {value?.historicoFamiliaCancer ? 'Sim' : 'Não'}
                   </Col>
                   <Col md="12" lg="4" className="mb-2">
@@ -281,7 +315,8 @@ export default function FichaPaciente({ id, handleVoltar }) {
                       : ''}
                   </Col>
                   <Col md="12" lg="4" className="mb-2">
-                    <span className="fw-bold">Observacao: </span> {value?.observacao ?? ''}
+                    <span className="fw-bold">Observacao: </span>{' '}
+                    {value?.observacao ?? ''}
                   </Col>
                 </Row>
               ))}

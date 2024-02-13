@@ -27,7 +27,9 @@ const handleErrorResponse = (error) => {
       try {
         return {
           status: error.response.data.status,
-          message: error.response.data ? error.response.data.message : error.response.message
+          message: error.response.data
+            ? error.response.data.message
+            : error.response.message
         };
       } catch {
         return { status: 500, message: 'Erro ao conectar com API' };
@@ -87,7 +89,8 @@ const api_POST = async (endpoint, obj, contentType) =>
 
 const api_PUT = async (endpoint, obj) => makeRequest('PUT', endpoint, obj);
 
-const api_DELETE = async (endpoint, obj) => makeRequest('DELETE', endpoint, obj);
+const api_DELETE = async (endpoint, obj) =>
+  makeRequest('DELETE', endpoint, obj);
 
 const api_GET = async (endpoint) => makeRequest('GET', endpoint);
 
@@ -97,4 +100,11 @@ const api_GET_Unauthorize = async (endpoint) =>
 const api_POST_Unauthorize = async (endpoint, obj) =>
   makeRequest('POST', endpoint, obj, 'application/json', false);
 
-export { api_POST, api_POST_Unauthorize, api_PUT, api_DELETE, api_GET, api_GET_Unauthorize };
+export {
+  api_POST,
+  api_POST_Unauthorize,
+  api_PUT,
+  api_DELETE,
+  api_GET,
+  api_GET_Unauthorize
+};

@@ -11,14 +11,22 @@ import { api_DELETE, api_POST, api_PUT } from '../../../../Service/api';
 import { ShowConfirmation, ShowMessage } from '../../../../helpers/ShowMessage';
 
 //Constants
-import { EditeActionTable, RemoveActionTable } from '../../../../Constants/ActionsTable';
+import {
+  EditeActionTable,
+  RemoveActionTable
+} from '../../../../Constants/ActionsTable';
 
 //Components
 import ControlledInput from '../../../../Components/ControlledInput';
 import SelectCustom from '../../../../Components/SelectCustom';
 import TableCustom from '../../../../Components/TableCustom';
 
-export default function ComposicaoFamiliar({ paciente, loadPaciente, showLoading, setPaciente }) {
+export default function ComposicaoFamiliar({
+  paciente,
+  loadPaciente,
+  showLoading,
+  setPaciente
+}) {
   const { handleSubmit, control, setValue } = useForm({
     mode: 'onBlur'
   });
@@ -35,7 +43,12 @@ export default function ComposicaoFamiliar({ paciente, loadPaciente, showLoading
       title: 'Renda',
       field: 'renda',
       render: (rowDate) => (
-        <>{rowDate.renda.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</>
+        <>
+          {rowDate.renda.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+          })}
+        </>
       )
     }
   ]);

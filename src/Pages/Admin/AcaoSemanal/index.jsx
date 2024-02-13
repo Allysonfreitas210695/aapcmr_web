@@ -129,7 +129,10 @@ export default function AcaoSemanal() {
 
   const handleSelectEvent = (event) => {
     setEventoId(event);
-    setAcaoApoio({ value: event.acoesApoioId, label: event.acoesApoio.descricao });
+    setAcaoApoio({
+      value: event.acoesApoioId,
+      label: event.acoesApoio.descricao
+    });
     setValue('dataInicial', moment(event.start).format('YYYY-MM-DD'));
     setValue('timeInicial', moment(event.start).format('HH:mm'));
     setValue('dataFinal', moment(event.end).format('YYYY-MM-DD'));
@@ -223,7 +226,9 @@ export default function AcaoSemanal() {
       dataInicial: moment(new Date(`${dataInicial}T${timeInicial}:00`)).format(
         'YYYY-MM-DD HH:mm:ss'
       ),
-      dataFinal: moment(new Date(`${dataFinal}T${timeFinal}:00`)).format('YYYY-MM-DD HH:mm:ss'),
+      dataFinal: moment(new Date(`${dataFinal}T${timeFinal}:00`)).format(
+        'YYYY-MM-DD HH:mm:ss'
+      ),
       acoesApoioId: acaoApoio.value
     };
 
@@ -285,7 +290,12 @@ export default function AcaoSemanal() {
 
   return (
     <>
-      <ModalCustom isOpen={isOpenModal} toggle={togglemodal} size={'lg'} invisibleButtons={false}>
+      <ModalCustom
+        isOpen={isOpenModal}
+        toggle={togglemodal}
+        size={'lg'}
+        invisibleButtons={false}
+      >
         <Row>
           <Col sm={12} lg={12}>
             <SelectCustom

@@ -14,7 +14,10 @@ import {
 } from '../../../../../Constants/ActionsTable';
 
 //Helpers
-import { ShowConfirmation, ShowMessage } from '../../../../../helpers/ShowMessage';
+import {
+  ShowConfirmation,
+  ShowMessage
+} from '../../../../../helpers/ShowMessage';
 import { mascaraTelefone } from '../../../../../helpers/ValidadacaoDocumentos';
 
 //Services
@@ -47,7 +50,12 @@ export default function Doacao({ itemCard, handleVoltar }) {
       title: 'Valor de Doação',
       field: 'valorDoacao',
       render: (rowDate) => (
-        <>{rowDate.valorDoacao.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</>
+        <>
+          {rowDate.valorDoacao.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+          })}
+        </>
       )
     },
     { title: 'Data da Doação', field: 'dataDoacao' },
@@ -98,7 +106,8 @@ export default function Doacao({ itemCard, handleVoltar }) {
   };
 
   const handleAddConfirmacao = (rowData) => {
-    if (rowData.statusDoacao == 'Pendente') return AddActionTable(confirmaDoacao);
+    if (rowData.statusDoacao == 'Pendente')
+      return AddActionTable(confirmaDoacao);
     else return null;
   };
 
@@ -261,7 +270,12 @@ export default function Doacao({ itemCard, handleVoltar }) {
 
   return (
     <>
-      <ModalCustom isOpen={isOpenModal} toggle={togglemodal} size={'lg'} invisibleButtons={false}>
+      <ModalCustom
+        isOpen={isOpenModal}
+        toggle={togglemodal}
+        size={'lg'}
+        invisibleButtons={false}
+      >
         <Row>
           <Col sm={12} lg={7}>
             <ControlledInput
@@ -456,7 +470,11 @@ export default function Doacao({ itemCard, handleVoltar }) {
       </ModalCustom>
       <Row>
         <Col lg={12} md={12} className="mb-2 d-flex justify-content-end">
-          <Button color="secondary" className="text-white" onClick={() => handleVoltar()}>
+          <Button
+            color="secondary"
+            className="text-white"
+            onClick={() => handleVoltar()}
+          >
             <FaArrowLeft color="#fff" /> Voltar
           </Button>
         </Col>

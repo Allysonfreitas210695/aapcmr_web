@@ -23,7 +23,11 @@ export default function PrivateRoute() {
 
   return (
     <>
-      {session ? <AdminLayout adminRoutes={AdminRoutes} /> : <AuthLayout authRoutes={AuthRoutes} />}
+      {session ? (
+        <AdminLayout adminRoutes={AdminRoutes} />
+      ) : (
+        <AuthLayout authRoutes={AuthRoutes} />
+      )}
     </>
   );
 }

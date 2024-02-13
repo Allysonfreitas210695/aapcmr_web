@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import { FormGroup, Label } from 'reactstrap';
 import Select from 'react-select';
 
-export default function SelectCustom({ name, value, onChange, options, label }) {
+export default function SelectCustom({
+  name,
+  value,
+  onChange,
+  options,
+  label
+}) {
   const handleChange = (selectedOption) => {
     if (onChange) {
       onChange(selectedOption);

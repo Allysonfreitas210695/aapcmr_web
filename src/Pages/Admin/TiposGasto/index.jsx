@@ -19,7 +19,10 @@ import ControlledInput from '../../../Components/ControlledInput';
 import { ModalCustom } from '../../../Components/Modal';
 
 //Actions
-import { EditeActionTable, RemoveActionTable } from '../../../Constants/ActionsTable';
+import {
+  EditeActionTable,
+  RemoveActionTable
+} from '../../../Constants/ActionsTable';
 
 export default function TiposGasto() {
   const { showLoading, loding } = useAuth();

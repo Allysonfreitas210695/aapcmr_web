@@ -16,10 +16,18 @@ import { api_DELETE, api_POST, api_PUT } from '../../../../Service/api';
 import { ShowConfirmation, ShowMessage } from '../../../../helpers/ShowMessage';
 
 //Constants
-import { EditeActionTable, RemoveActionTable } from '../../../../Constants/ActionsTable';
+import {
+  EditeActionTable,
+  RemoveActionTable
+} from '../../../../Constants/ActionsTable';
 import moment from 'moment';
 
-export default function TratamentoPaciente({ paciente, loadPaciente, showLoading, setPaciente }) {
+export default function TratamentoPaciente({
+  paciente,
+  loadPaciente,
+  showLoading,
+  setPaciente
+}) {
   const { handleSubmit, control, setValue } = useForm({
     mode: 'onBlur'
   });
@@ -84,7 +92,10 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
     setValue('anoDiagnostico', tratamentoPacientes.anoDiagnostico);
     setValue('hospitalTratamento', tratamentoPacientes.hospitalTratamento);
     setValue('observacao', tratamentoPacientes.observacao);
-    setValue('dataObservacao', moment(tratamentoPacientes.dataObservacao).format('YYYY-MM-DD'));
+    setValue(
+      'dataObservacao',
+      moment(tratamentoPacientes.dataObservacao).format('YYYY-MM-DD')
+    );
     setHistoricoFamiliaCancer({
       value: tratamentoPacientes.historicoFamiliaCancer,
       label: tratamentoPacientes.historicoFamiliaCancer ? 'Sim' : 'Não'
@@ -115,7 +126,10 @@ export default function TratamentoPaciente({ paciente, loadPaciente, showLoading
     setHistoricoFamiliaCancer(selectedOption);
   };
 
-  const [usoEntorpecente, setUsoEntorpecente] = useState({ value: false, label: 'Não' });
+  const [usoEntorpecente, setUsoEntorpecente] = useState({
+    value: false,
+    label: 'Não'
+  });
   const handleUsoEntorpecente = (selectedOption) => {
     setUsoEntorpecente(selectedOption);
   };

@@ -11,7 +11,9 @@ export default function Relatorios() {
   const [relatorios, setRelatorios] = useState([]);
 
   useEffect(() => {
-    setRelatorios(AdminRoutes.filter((x) => x.relatorio != null && x.relatorio == true));
+    setRelatorios(
+      AdminRoutes.filter((x) => x.relatorio != null && x.relatorio == true)
+    );
   }, []);
 
   return (

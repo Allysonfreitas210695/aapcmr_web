@@ -32,7 +32,10 @@ export default function Dashboard() {
   const [itemCard, setItemCard] = useState(null);
 
   //State para filtro
-  const [filtroDashBorad, setFiltroDashBorad] = useState({ dataInicial: null, dataFinal: null });
+  const [filtroDashBorad, setFiltroDashBorad] = useState({
+    dataInicial: null,
+    dataFinal: null
+  });
 
   const loadDashboard = async (json) => {
     showLoading(true);
@@ -146,10 +149,13 @@ export default function Dashboard() {
                     style={{ width: '120px', height: '120px' }}
                   >
                     <span className="display-5 text-center">
-                      {listDasboard?.valorTotalDesposito?.toLocaleString('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL'
-                      })}
+                      {listDasboard?.valorTotalDesposito?.toLocaleString(
+                        'pt-BR',
+                        {
+                          style: 'currency',
+                          currency: 'BRL'
+                        }
+                      )}
                     </span>
                   </div>
                   <CardText className="fw-bold">Doações Por Depósito</CardText>
@@ -164,13 +170,18 @@ export default function Dashboard() {
                     style={{ width: '120px', height: '120px' }}
                   >
                     <span className="display-5 text-center">
-                      {listDasboard?.valorTotalMessageiro?.toLocaleString('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL'
-                      })}
+                      {listDasboard?.valorTotalMessageiro?.toLocaleString(
+                        'pt-BR',
+                        {
+                          style: 'currency',
+                          currency: 'BRL'
+                        }
+                      )}
                     </span>
                   </div>
-                  <CardText className="fw-bold">Doações Por Mensageiro</CardText>
+                  <CardText className="fw-bold">
+                    Doações Por Mensageiro
+                  </CardText>
                 </CardBody>
               </Card>
             </Col>
@@ -257,7 +268,9 @@ export default function Dashboard() {
                       {listDasboard?.pacientesAtivoDtos?.length}
                     </span>
                   </div>
-                  <CardText className="fw-bold">Pacientes Ativos no Sistema</CardText>
+                  <CardText className="fw-bold">
+                    Pacientes Ativos no Sistema
+                  </CardText>
                 </CardBody>
               </Card>
             </Col>
@@ -282,14 +295,18 @@ export default function Dashboard() {
                       {listDasboard?.pacientesInativosDtos?.length}
                     </span>
                   </div>
-                  <CardText className="fw-bold">Pacientes Inativo no Sistema</CardText>
+                  <CardText className="fw-bold">
+                    Pacientes Inativo no Sistema
+                  </CardText>
                 </CardBody>
               </Card>
             </Col>
           </Row>
         </>
       )}
-      {itemCard && <TabelaCard itemCard={itemCard} handleVoltar={handleVoltar} />}
+      {itemCard && (
+        <TabelaCard itemCard={itemCard} handleVoltar={handleVoltar} />
+      )}
     </>
   );
 }

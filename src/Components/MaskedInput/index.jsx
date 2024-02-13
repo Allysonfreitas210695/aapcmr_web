@@ -3,7 +3,15 @@ import { FormGroup, Label } from 'reactstrap';
 import InputMask from 'react-input-mask';
 import './MaskedInput.css'; // Importe um arquivo de estilos separado
 
-function MaskedInput({ value, onChange, onBlur = null, mask, type, name, label }) {
+function MaskedInput({
+  value,
+  onChange,
+  onBlur = null,
+  mask,
+  type,
+  name,
+  label
+}) {
   const handleChange = (event) => {
     if (onChange) {
       onChange(event.target.value);

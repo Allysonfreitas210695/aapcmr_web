@@ -19,7 +19,10 @@ import { useAuth } from '../../../Context/useAuth';
 import { ShowConfirmation, ShowMessage } from '../../../helpers/ShowMessage';
 
 //Actions
-import { EditeActionTable, RemoveActionTable } from '../../../Constants/ActionsTable';
+import {
+  EditeActionTable,
+  RemoveActionTable
+} from '../../../Constants/ActionsTable';
 
 export default function Usuarios() {
   const { showLoading, loding } = useAuth();
@@ -114,7 +117,10 @@ export default function Usuarios() {
   };
 
   //Listas com as acoes definidas
-  const _actions = [EditeActionTable(handleEditUsuario), RemoveActionTable(handleRemoveUsuario)];
+  const _actions = [
+    EditeActionTable(handleEditUsuario),
+    RemoveActionTable(handleRemoveUsuario)
+  ];
 
   const onSubmit = async () => {
     const { nome, email } = getValues();

@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { FaRegArrowAltCircleDown, FaRegArrowAltCircleUp, FaUser } from 'react-icons/fa';
+import {
+  FaRegArrowAltCircleDown,
+  FaRegArrowAltCircleUp,
+  FaUser
+} from 'react-icons/fa';
 import { UncontrolledPopover, PopoverBody } from 'reactstrap';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { IoIosLogOut } from 'react-icons/io';
@@ -54,10 +58,17 @@ export default function Header() {
 
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <FaUser color="#000" />
-          <span className="text-dark" style={{ cursor: 'pointer', margin: '0px 8px' }}>
+          <span
+            className="text-dark"
+            style={{ cursor: 'pointer', margin: '0px 8px' }}
+          >
             {session?.nome}
           </span>
-          <div id="UncontrolledPopover" type="button" onClick={() => setPopover(!openPopover)}>
+          <div
+            id="UncontrolledPopover"
+            type="button"
+            onClick={() => setPopover(!openPopover)}
+          >
             {!openPopover ? (
               <FaRegArrowAltCircleDown color="#000" />
             ) : (

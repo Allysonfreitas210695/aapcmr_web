@@ -21,7 +21,11 @@ export default function Paciente({ itemCard, handleVoltar }) {
     { title: 'Estado Civil', field: 'statusCivil' },
     { title: 'Naturalidade', field: 'naturalidade' },
     { title: 'DataNascimento', field: 'dataNascimento' },
-    { title: 'CPF', field: 'cpf', render: (rowDate) => <>{mascaraCPF(rowDate.cpf)}</> },
+    {
+      title: 'CPF',
+      field: 'cpf',
+      render: (rowDate) => <>{mascaraCPF(rowDate.cpf)}</>
+    },
     {
       title: 'Status',
       field: 'status',
@@ -42,7 +46,11 @@ export default function Paciente({ itemCard, handleVoltar }) {
         <>
           <Row>
             <Col lg={12} md={12} className="mb-2 d-flex justify-content-end">
-              <Button color="secondary" className="text-white" onClick={() => handleVoltar()}>
+              <Button
+                color="secondary"
+                className="text-white"
+                onClick={() => handleVoltar()}
+              >
                 <FaArrowLeft color="#fff" /> Voltar
               </Button>
             </Col>
@@ -59,7 +67,9 @@ export default function Paciente({ itemCard, handleVoltar }) {
           </Row>
         </>
       )}
-      {pacienteId && <FichaPaciente id={pacienteId} handleVoltar={handleVoltar} />}
+      {pacienteId && (
+        <FichaPaciente id={pacienteId} handleVoltar={handleVoltar} />
+      )}
     </>
   );
 }

@@ -1,5 +1,9 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
-import { deleteSessionCookie, getSessionCookie, setSessionCookie } from '../helpers/Cookie.js';
+import {
+  deleteSessionCookie,
+  getSessionCookie,
+  setSessionCookie
+} from '../helpers/Cookie.js';
 
 import { api_POST_Unauthorize } from '../Service/api.js';
 
@@ -47,7 +51,11 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  return <AuthContext.Provider value={{ state, dispatch }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ state, dispatch }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 // Hook personalizado para acessar o contexto de autenticação
@@ -63,10 +71,14 @@ export const useAuth = () => {
   const logIn = async ({ email, senha }) => {
     try {
       showLoading(true);
-      let response = await api_POST_Unauthorize('Autenticante', { email, senha });
+      let response = await api_POST_Unauthorize('Autenticante', {
+        email,
+        senha
+      });
       showLoading(false);
 
-      if (!response || !response.data) throw new Error('Email ou senha inválida.');
+      if (!response || !response.data)
+        throw new Error('Email ou senha inválida.');
 
       const { data } = response;
       setSessionCookie(data);

@@ -42,7 +42,11 @@ export default function Login() {
     try {
       await logIn(data);
       ShowMessage(
-        { title: 'Sucesso', text: 'Operação realizada com sucesso.', icon: 'success' },
+        {
+          title: 'Sucesso',
+          text: 'Operação realizada com sucesso.',
+          icon: 'success'
+        },
         () => {
           navigate('/admin/home');
         }
@@ -54,7 +58,12 @@ export default function Login() {
 
   return (
     <>
-      <ModalCustom isOpen={isOpenModal} toggle={togglemodal} size={'ms'} invisibleButtons={false}>
+      <ModalCustom
+        isOpen={isOpenModal}
+        toggle={togglemodal}
+        size={'ms'}
+        invisibleButtons={false}
+      >
         <Row>
           <Col sm={12} lg={12}>
             <h2>Seja Bem-Vindo,</h2>
@@ -76,7 +85,11 @@ export default function Login() {
         <Content>
           <div className="d-flex justify-content-center w-100">
             <div className="d-none d-sm-block w-50">
-              <img src={'/images/Logo_AAPCMR.jpg'} alt="logo da AAPCMR" width={'100%'} />
+              <img
+                src={'/images/Logo_AAPCMR.jpg'}
+                alt="logo da AAPCMR"
+                width={'100%'}
+              />
             </div>
             <div className="w-50">
               <h1 className="mt-4 mb-2 text-center">Login</h1>

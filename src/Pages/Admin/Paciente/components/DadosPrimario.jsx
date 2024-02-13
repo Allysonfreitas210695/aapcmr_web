@@ -20,7 +20,12 @@ import { api_POST, api_PUT } from '../../../../Service/api';
 //Context
 import { useAuth } from '../../../../Context/useAuth';
 
-export default function DadosPrimario({ paciente, loadPaciente, showLoading, setPaciente }) {
+export default function DadosPrimario({
+  paciente,
+  loadPaciente,
+  showLoading,
+  setPaciente
+}) {
   const { session } = useAuth();
 
   const { handleSubmit, control, setValue } = useForm({
@@ -58,7 +63,9 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
       setValue('bairro', paciente.bairro);
       setValue('susNumero', paciente.susNumero);
       if (paciente.dataNascimento != null) {
-        const dataNascimentoFormatada = moment(paciente.dataNascimento).format('YYYY-MM-DD');
+        const dataNascimentoFormatada = moment(paciente.dataNascimento).format(
+          'YYYY-MM-DD'
+        );
         setValue('dataNascimento', dataNascimentoFormatada);
       }
       setValue('cep', paciente.cep);
@@ -70,8 +77,14 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
       setCpf(paciente.cpf);
       setCelular(paciente.celular ?? '');
       setTelefone(paciente.telefoneFixo ?? '');
-      setEstadoCivil({ value: paciente.statusCivil, label: paciente.statusCivil });
-      setCestaBasica({ value: paciente.cestaBasica, label: paciente.cestaBasica ? 'Sim' : 'Não' });
+      setEstadoCivil({
+        value: paciente.statusCivil,
+        label: paciente.statusCivil
+      });
+      setCestaBasica({
+        value: paciente.cestaBasica,
+        label: paciente.cestaBasica ? 'Sim' : 'Não'
+      });
       setSexo({ value: paciente.sexo, label: paciente.sexo });
       setStatus({ value: paciente.status, label: paciente.status });
     }
@@ -82,7 +95,10 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
     setCpf(value);
   };
 
-  const [estadoCivil, setEstadoCivil] = useState({ value: 'Solteiro(a)', label: 'Solteiro(a)' });
+  const [estadoCivil, setEstadoCivil] = useState({
+    value: 'Solteiro(a)',
+    label: 'Solteiro(a)'
+  });
   const handleEstadoCivil = (selectedOption) => {
     setEstadoCivil(selectedOption);
   };
@@ -131,7 +147,10 @@ export default function DadosPrimario({ paciente, loadPaciente, showLoading, set
       return;
     }
 
-    if (telefone?.length > 0 && telefone.replace(/[()\-.\s_]/g, '').length < 10) {
+    if (
+      telefone?.length > 0 &&
+      telefone.replace(/[()\-.\s_]/g, '').length < 10
+    ) {
       ShowMessage({
         title: 'Aviso',
         text: 'Númeno de telefone incorreto.',

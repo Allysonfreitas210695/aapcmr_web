@@ -46,7 +46,11 @@ export default function ConsultaPaciente() {
     { title: 'Estado Civil', field: 'statusCivil' },
     { title: 'Naturalidade', field: 'naturalidade' },
     { title: 'DataNascimento', field: 'dataNascimento' },
-    { title: 'CPF', field: 'cpf', render: (rowDate) => <>{mascaraCPF(rowDate.cpf)}</> },
+    {
+      title: 'CPF',
+      field: 'cpf',
+      render: (rowDate) => <>{mascaraCPF(rowDate.cpf)}</>
+    },
     { title: 'Status', field: 'status' }
   ]);
 

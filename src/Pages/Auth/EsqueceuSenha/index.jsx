@@ -68,7 +68,11 @@ export default function EsqueceuSenha() {
       <Content>
         <div className="d-flex justify-content-center w-100">
           <div className="d-none d-sm-block w-50">
-            <img src={'/images/Logo_AAPCMR.jpg'} alt="logo da AAPCMR" width={'100%'} />
+            <img
+              src={'/images/Logo_AAPCMR.jpg'}
+              alt="logo da AAPCMR"
+              width={'100%'}
+            />
           </div>
           <div className="w-50">
             <h1 className="mt-4 mb-4 text-center">Informe seu email</h1>

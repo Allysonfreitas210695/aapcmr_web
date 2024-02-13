@@ -16,7 +16,12 @@ import { ShowMessage } from '../../../../helpers/ShowMessage';
 //Services
 import { api_POST, api_PUT } from '../../../../Service/api';
 
-export default function SituacaoHabitacional({ paciente, loadPaciente, showLoading, setPaciente }) {
+export default function SituacaoHabitacional({
+  paciente,
+  loadPaciente,
+  showLoading,
+  setPaciente
+}) {
   const { handleSubmit, control, setValue } = useForm({
     mode: 'onBlur'
   });
@@ -93,7 +98,10 @@ export default function SituacaoHabitacional({ paciente, loadPaciente, showLoadi
     setAgua(selectedOption);
   };
 
-  const [instalacaoSanitaria, setInstalacaoSanitaria] = useState({ value: false, label: 'Não' });
+  const [instalacaoSanitaria, setInstalacaoSanitaria] = useState({
+    value: false,
+    label: 'Não'
+  });
   const handleInstalacaoSanitaria = (selectedOption) => {
     setInstalacaoSanitaria(selectedOption);
   };

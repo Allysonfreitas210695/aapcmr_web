@@ -100,7 +100,11 @@ export default function NovoPaciente({ id = null, handleVoltar }) {
     <>
       <Row>
         <Col lg={12} md={12} className="mb-2 d-flex justify-content-end">
-          <Button color="secondary" className="text-white" onClick={() => handleVoltar()}>
+          <Button
+            color="secondary"
+            className="text-white"
+            onClick={() => handleVoltar()}
+          >
             <FaArrowLeft color="#fff" /> Voltar
           </Button>
         </Col>
@@ -112,7 +116,11 @@ export default function NovoPaciente({ id = null, handleVoltar }) {
               <NavLink
                 role="button"
                 style={{ backgroundColor: activeStep == 1 ? '#fff' : '#ccc' }}
-                className={activeStep == 1 ? 'active fw-bold text-primary' : 'text-secondary'}
+                className={
+                  activeStep == 1
+                    ? 'active fw-bold text-primary'
+                    : 'text-secondary'
+                }
                 onClick={() => {
                   setActiveStep(1);
                 }}
@@ -124,7 +132,11 @@ export default function NovoPaciente({ id = null, handleVoltar }) {
               <NavLink
                 role="button"
                 style={{ backgroundColor: activeStep == 2 ? '#fff' : '#ccc' }}
-                className={activeStep == 2 ? 'active fw-bold text-primary' : 'text-secondary'}
+                className={
+                  activeStep == 2
+                    ? 'active fw-bold text-primary'
+                    : 'text-secondary'
+                }
                 onClick={() => {
                   if (paciente == null) {
                     ShowMessage({
@@ -144,7 +156,11 @@ export default function NovoPaciente({ id = null, handleVoltar }) {
               <NavLink
                 role="button"
                 style={{ backgroundColor: activeStep == 3 ? '#fff' : '#ccc' }}
-                className={activeStep == 3 ? 'active fw-bold text-primary' : 'text-secondary'}
+                className={
+                  activeStep == 3
+                    ? 'active fw-bold text-primary'
+                    : 'text-secondary'
+                }
                 onClick={() => {
                   if (paciente == null) {
                     ShowMessage({
@@ -164,7 +180,11 @@ export default function NovoPaciente({ id = null, handleVoltar }) {
               <NavLink
                 role="button"
                 style={{ backgroundColor: activeStep == 4 ? '#fff' : '#ccc' }}
-                className={activeStep == 4 ? 'active fw-bold text-primary' : 'text-secondary'}
+                className={
+                  activeStep == 4
+                    ? 'active fw-bold text-primary'
+                    : 'text-secondary'
+                }
                 onClick={() => {
                   if (paciente == null) {
                     ShowMessage({
@@ -184,7 +204,11 @@ export default function NovoPaciente({ id = null, handleVoltar }) {
               <NavLink
                 role="button"
                 style={{ backgroundColor: activeStep == 5 ? '#fff' : '#ccc' }}
-                className={activeStep == 5 ? 'active fw-bold text-primary' : 'text-secondary'}
+                className={
+                  activeStep == 5
+                    ? 'active fw-bold text-primary'
+                    : 'text-secondary'
+                }
                 onClick={() => {
                   if (paciente == null) {
                     ShowMessage({

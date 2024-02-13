@@ -9,10 +9,18 @@ import * as XLSX from 'xlsx';
 import { ShowConfirmation, ShowMessage } from '../../../../helpers/ShowMessage';
 
 //Service
-import { api_DELETE, api_GET, api_POST, api_PUT } from '../../../../Service/api';
+import {
+  api_DELETE,
+  api_GET,
+  api_POST,
+  api_PUT
+} from '../../../../Service/api';
 
 //Contants
-import { EditeActionTable, RemoveActionTable } from '../../../../Constants/ActionsTable';
+import {
+  EditeActionTable,
+  RemoveActionTable
+} from '../../../../Constants/ActionsTable';
 
 //Components
 import { ModalCustom } from '../../../../Components/Modal';
@@ -52,21 +60,36 @@ export default function RelatorioMovimentacao() {
       title: 'Entrada',
       field: 'entrada',
       render: (rowData) => (
-        <>{rowData.entrada?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</>
+        <>
+          {rowData.entrada?.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+          })}
+        </>
       )
     },
     {
       title: 'Saida',
       field: 'saida',
       render: (rowData) => (
-        <>{rowData.saida?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</>
+        <>
+          {rowData.saida?.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+          })}
+        </>
       )
     },
     {
       title: 'Saldo Referente ao Dia',
       field: 'saldo',
       render: (rowData) => (
-        <>{rowData.saldo?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</>
+        <>
+          {rowData.saldo?.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+          })}
+        </>
       )
     }
   ]);
@@ -203,7 +226,11 @@ export default function RelatorioMovimentacao() {
       return;
     }
 
-    if (entrada == null || entrada?.length == 0 || entrada?.trim().length == 0) {
+    if (
+      entrada == null ||
+      entrada?.length == 0 ||
+      entrada?.trim().length == 0
+    ) {
       ShowMessage({
         title: 'Aviso',
         text: 'Por favor, Informe o valor de entrada.',
@@ -226,9 +253,20 @@ export default function RelatorioMovimentacao() {
     showLoading(true);
     try {
       if (id) {
-        await api_PUT('RelatorioMensal', { id, saida, entrada, data, tipoGastoId: tipoGasto.id });
+        await api_PUT('RelatorioMensal', {
+          id,
+          saida,
+          entrada,
+          data,
+          tipoGastoId: tipoGasto.id
+        });
       } else {
-        await api_POST('RelatorioMensal', { saida, entrada, data, tipoGastoId: tipoGasto.id });
+        await api_POST('RelatorioMensal', {
+          saida,
+          entrada,
+          data,
+          tipoGastoId: tipoGasto.id
+        });
       }
       ShowMessage({
         title: 'Sucesso',
@@ -268,8 +306,14 @@ export default function RelatorioMovimentacao() {
       ...listRelatorioMensal.map((item) => ({
         Movimentação: item.tipoGasto.descricao,
         Data: moment(item.data).format('DD/MM/YYYY'),
-        Entrada: item.entrada?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
-        Saida: item.saida?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+        Entrada: item.entrada?.toLocaleString('pt-BR', {
+          style: 'currency',
+          currency: 'BRL'
+        }),
+        Saida: item.saida?.toLocaleString('pt-BR', {
+          style: 'currency',
+          currency: 'BRL'
+        }),
         'Saldo Referente ao Dia': item.saldo?.toLocaleString('pt-BR', {
           style: 'currency',
           currency: 'BRL'
@@ -282,8 +326,14 @@ export default function RelatorioMovimentacao() {
           style: 'currency',
           currency: 'BRL'
         }),
-        'Saida Total': totalSaida?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
-        'Saldo Total': TotalSaldo?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+        'Saida Total': totalSaida?.toLocaleString('pt-BR', {
+          style: 'currency',
+          currency: 'BRL'
+        }),
+        'Saldo Total': TotalSaldo?.toLocaleString('pt-BR', {
+          style: 'currency',
+          currency: 'BRL'
+        })
       }
     ];
 
@@ -430,7 +480,11 @@ export default function RelatorioMovimentacao() {
                 </Col>
                 <Col sm={12} lg={2} className="mb-3">
                   <br />
-                  <Button color="danger" className="mt-2 w-100" onClick={exportToExcel}>
+                  <Button
+                    color="danger"
+                    className="mt-2 w-100"
+                    onClick={exportToExcel}
+                  >
                     <FaFileCsv /> Exportar
                   </Button>
                 </Col>

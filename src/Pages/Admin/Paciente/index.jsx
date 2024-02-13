@@ -15,10 +15,16 @@ import { api_DELETE, api_GET } from '../../../Service/api';
 
 //Helpers
 import { ShowConfirmation, ShowMessage } from '../../../helpers/ShowMessage';
-import { mascaraCPF, mascaraTelefone } from '../../../helpers/ValidadacaoDocumentos';
+import {
+  mascaraCPF,
+  mascaraTelefone
+} from '../../../helpers/ValidadacaoDocumentos';
 
 //Actions
-import { EditeActionTable, RemoveActionTable } from '../../../Constants/ActionsTable';
+import {
+  EditeActionTable,
+  RemoveActionTable
+} from '../../../Constants/ActionsTable';
 
 export default function Paciente() {
   const { showLoading, loding } = useAuth();
@@ -42,7 +48,11 @@ export default function Paciente() {
     { title: 'Endereço', field: 'endereco' },
     { title: 'Naturalidade', field: 'naturalidade' },
     { title: 'DataNascimento', field: 'dataNascimento' },
-    { title: 'CPF', field: 'cpf', render: (rowDate) => <>{mascaraCPF(rowDate.cpf)}</> },
+    {
+      title: 'CPF',
+      field: 'cpf',
+      render: (rowDate) => <>{mascaraCPF(rowDate.cpf)}</>
+    },
     { title: 'Status', field: 'status' }
   ]);
 
@@ -108,7 +118,10 @@ export default function Paciente() {
   };
 
   // //Listas com as acoes definidas
-  const _actions = [EditeActionTable(handleEditPaciente), RemoveActionTable(handleRemovePaciente)];
+  const _actions = [
+    EditeActionTable(handleEditPaciente),
+    RemoveActionTable(handleRemovePaciente)
+  ];
 
   const handleVoltar = () => {
     setPacienteId(null);

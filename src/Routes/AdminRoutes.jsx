@@ -13,7 +13,13 @@ import TrocaSenha from '../Pages/Admin/TrocaSenha';
 import Relatorios from '../Pages/Admin/Relatorios/Relatorios';
 
 //Icons
-import { FaUserFriends, FaUsersCog, FaFileContract, FaBookOpen, FaSearch } from 'react-icons/fa';
+import {
+  FaUserFriends,
+  FaUsersCog,
+  FaFileContract,
+  FaBookOpen,
+  FaSearch
+} from 'react-icons/fa';
 import { BiSolidDashboard } from 'react-icons/bi';
 import { RiMoneyDollarBoxLine } from 'react-icons/ri';
 import { FaCalendarAlt } from 'react-icons/fa';

@@ -176,7 +176,11 @@ export default function RelatorioDoacao() {
                 </Col>
                 <Col sm={12} lg={2} className="mb-3">
                   <br />
-                  <Button color="danger" className="mt-2 w-100" onClick={exportToExcel}>
+                  <Button
+                    color="danger"
+                    className="mt-2 w-100"
+                    onClick={exportToExcel}
+                  >
                     <FaFileCsv /> Exportar
                   </Button>
                 </Col>
@@ -190,7 +194,9 @@ export default function RelatorioDoacao() {
                   {
                     title: 'Telefone',
                     field: 'telefone',
-                    render: (rowDate) => <>{mascaraTelefone(rowDate.telefone)}</>
+                    render: (rowDate) => (
+                      <>{mascaraTelefone(rowDate.telefone)}</>
+                    )
                   },
                   {
                     title: 'Valor de Doação',
@@ -207,12 +213,16 @@ export default function RelatorioDoacao() {
                   {
                     title: 'Data da Doação',
                     field: 'dataDoacao',
-                    render: (rowDate) => <>{moment(rowDate.dataDoacao).format('DD/MM/YYYY')}</>
+                    render: (rowDate) => (
+                      <>{moment(rowDate.dataDoacao).format('DD/MM/YYYY')}</>
+                    )
                   },
                   {
                     title: 'Status da Doação',
                     field: 'statusDoacao',
-                    render: (rowDate) => <>{rowDate.statusDoacao ? 'Recebido' : 'Pendente'}</>
+                    render: (rowDate) => (
+                      <>{rowDate.statusDoacao ? 'Recebido' : 'Pendente'}</>
+                    )
                   },
                   { title: 'Tipo de Envior', field: 'tipoDeEnvioValor' }
                 ]}
